@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-    <img src="./assets/img/logo.png">
+  <div id="app" style="height:100%,width:100%">
     <router-view/>
   </div>
 </template>
@@ -8,7 +7,7 @@
 <script>
 export default {
   name: 'App'
-}
+};
 </script>
 
 <style>
@@ -19,5 +18,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background: #2c3e50;
 }
 </style>

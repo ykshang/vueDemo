@@ -24,6 +24,11 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'avoidEscape':true,
+    //不检查句尾分号
+    'semi':[1,"always"],
+    //总是检查句尾分号，并给出错误提示。
+    //'semi': ["error", "always"]
   }
 }
