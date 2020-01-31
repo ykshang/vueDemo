@@ -5,10 +5,14 @@ import App from './App';
 import router from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import vueGlobal from './util/vueGlobal';
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
+Object.keys(vueGlobal).forEach(key => {
+  Vue.prototype['$' + key] = vueGlobal[key];
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

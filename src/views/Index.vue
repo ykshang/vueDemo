@@ -1,45 +1,54 @@
 <template>
-  <div class="hello">
-    <el-form :model="loginForm" :inline="true" :rules="rules" ref="loginForm">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="loginForm.username" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input v-model="loginForm.password" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="alert('submit')">提交</el-button>
-        <el-button @click="alert('reset')">重置</el-button>
-      </el-form-item>
-    </el-form>
+  <div>
+    <el-container style="border: 1px solid #eee">
+      <el-header height="60px">
+        <Header></Header>
+      </el-header>
+      <el-container>
+        <el-aside width="auto">
+          <menus></menus>
+        </el-aside>
+        <el-container>
+          <el-main>Main</el-main>
+          <el-footer height="60px">Footer</el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
+import Menus from './Menus/Menus';
+import Header from './Headers/Header';
 export default {
   name: 'Index',
   data () {
     return {
-      loginForm: {
-        username: '',
-        password: ''
-      },
-      rules: {
-        username: [],
-        password: []
-      }
     };
   },
   methods: {
-    alert (val) {
-      this.$message({
-        message: val,
-        center: true
-      });
-    }
+  },
+  components: {
+    Menus,
+    Header
   }
 };
 </script>
 
 <style scoped>
+  .el-aside {
+    color: #333;
+  }
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+  }
+  .el-header {
+    background-color: #3385ff;
+    color: #333;
+  }
+  .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+  }
 </style>
