@@ -9,7 +9,9 @@
           <menus></menus>
         </el-aside>
         <el-container>
-          <el-main>Main</el-main>
+          <el-main>
+            <Main></Main>
+          </el-main>
           <el-footer height="60px">Footer</el-footer>
         </el-container>
       </el-container>
@@ -18,8 +20,9 @@
 </template>
 
 <script>
-import Menus from './Menus/Menus';
-import Header from './Headers/Header';
+import Menus from './menus/Menus';
+import Header from './headers/Header';
+import Main from './main/Main';
 export default {
   name: 'Index',
   data () {
@@ -30,7 +33,8 @@ export default {
   },
   components: {
     Menus,
-    Header
+    Header,
+    Main
   }
 };
 </script>

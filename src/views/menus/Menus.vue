@@ -1,11 +1,5 @@
 <template>
 <div style="position:'relative'">
-  <div class="menu_button">
-    <el-button-group>
-      <el-button type="info" v-if="isCollapse" @click="changeCollapse" icon="el-icon-s-fold" size="mini" round></el-button>
-      <el-button type="info" v-if="!!!isCollapse" @click="changeCollapse" icon="el-icon-caret-left" size="mini" round></el-button>
-    </el-button-group>
-  </div>
   <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
     <el-submenu index="1">
       <template slot="title">
@@ -14,7 +8,7 @@
       </template>
       <el-menu-item-group>
         <span slot="title">分组一</span>
-        <el-menu-item index="1-1">选项1</el-menu-item>x
+        <el-menu-item index="1-1">选项1</el-menu-item>
         <el-menu-item index="1-2">选项2</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group title="分组2">
@@ -45,9 +39,6 @@
     width: 200px;
     min-height: 400px;
   }
-  .menu_button {
-    position: relative;
-  }
 </style>
 
 <script>
@@ -56,17 +47,13 @@ export default {
   name: 'Menus',
   data () {
     return {
-      isCollapse: true,
+      isCollapse: this.$isCollapse,
       menuList: menuList.bind(this)()
     };
   },
   mounted () {
-    console.log(this.$isCollapse);
   },
   methods: {
-    changeCollapse () {
-      this.isCollapse = !this.isCollapse;
-    },
     handleOpen (key, keyPath) {
       console.log(key, keyPath);
     },
