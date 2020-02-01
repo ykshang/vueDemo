@@ -4,7 +4,7 @@
       <el-header height="60px">
         <Header></Header>
       </el-header>
-      <el-container>
+      <el-container style="position: absolute; top: 60px; width: 100%; height: auto; bottom: 0px; left: 0px">
         <el-aside width="auto">
           <menus></menus>
         </el-aside>
@@ -46,6 +46,8 @@ export default {
   .el-main {
     background-color: #E9EEF3;
     color: #333;
+    padding: 0px;
+    margin: 0px;
   }
   .el-header {
     background-color: #3385ff;

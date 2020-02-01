@@ -1,12 +1,8 @@
 <template>
-<div style="hegiht:'100%'">
-  <el-row></el-row>
+<div>
   <div class="logo">
-      <el-image
-        style="width: 40px; height: 40px"
-        :src="logoSrc"
-        :fit="'contain'">
-      </el-image>
+    <el-image class="logoStyle" :src="logoSrc" :fit="'contain'">
+    </el-image>
   </div>
 </div>
 </template>
@@ -28,8 +24,8 @@ export default {
 </script>
 <style scoped>
 .logo {
-    width: auto;
-    height: 40px;
-    margin: 10px 0px;
+  margin: 15px 0px;
+  height: 30px;
+  width: 168px;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-<div style="hegiht:'100%'">
+<div>
   <div class="menu_button">
-    <el-button-group>
-      <el-button type="info" v-if="isCollapse" @click="changeCollapse" icon="el-icon-s-fold" size="mini" round></el-button>
-      <el-button type="info" v-if="!!!isCollapse" @click="changeCollapse" icon="el-icon-caret-left" size="mini" round></el-button>
+    <el-button-group  v-show="false">
+      <el-button icon="el-icon-fa fa-bars" v-if="isCollapse" @click="changeCollapse" size="mini" circle></el-button>
+      <el-button icon="el-icon-fa fa-ellipsis-h" v-if="!!!isCollapse" @click="changeCollapse" size="mini" circle></el-button>
     </el-button-group>
   </div>
 </div>
@@ -14,7 +14,7 @@ export default {
   name: 'Main',
   data () {
     return {
-      isCollapse: this.$isCollapse
+      isCollapse: true
     };
   },
   mounted () {
@@ -23,8 +23,7 @@ export default {
   methods: {
     changeCollapse () {
       console.log(this.$isCollapse);
-      this.$isCollapse = !this.$isCollapse;
-      this.isCollapse = this.$isCollapse;
+      this.isCollapse = !this.isCollapse;
     }
   }
 };

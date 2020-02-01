@@ -1,36 +1,29 @@
 <template>
 <div style="position:'relative'">
-  <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-    <el-submenu index="1">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span slot="title">导航一</span>
-      </template>
-      <el-menu-item-group>
-        <span slot="title">分组一</span>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="分组2">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <span slot="title">选项4</span>
-        <el-menu-item index="1-4-1">选项1</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
-      <span slot="title">导航二</span>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <i class="el-icon-document"></i>
-      <span slot="title">导航三</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <span slot="title">导航四</span>
-    </el-menu-item>
+  <div class="el-card box-card" style="text-align: center; padding:9px; border: 1px solid #EBEEF5; background-color: #FFF; color: #303133; -webkit-transition: .3s; transition: .3s">
+      <span v-if="!!!isCollapse">{{"导航菜单"}}</span>
+      <el-button icon="el-icon-fa fa-bars" type="text" v-if="isCollapse" @click="changeCollapse"></el-button>
+      <el-button icon="el-icon-fa fa-angle-double-left" type="text" style="float: right;" v-if="!!!isCollapse" @click="changeCollapse" size="mini"></el-button>
+  </div>
+  <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" @select="onSelect">
+    <template v-for="menu in menuList">
+        <el-submenu :index="menu.key" :key="menu.key" v-if="menu.flag && menu.subMenus && menu.subMenus.length != 0">
+            <template slot="title" v-if="menu.subMenus">
+              <i :class="menu.iconType"></i>
+              <span>{{menu.name}}</span>
+            </template>
+            <el-menu-item v-for="subMenu in menu.subMenus" :key="subMenu.key" :index="subMenu.key">
+              <template slot="title" v-if="subMenu.flag">
+                <i :class="[subMenu.iconType]"></i>
+                <span>{{subMenu.name}}</span>
+              </template>
+            </el-menu-item>
+        </el-submenu>
+        <el-menu-item :index="menu.key"  :key="menu.key" v-if="menu.flag && (!menu.subMenus || menu.subMenus.length === 0)">
+          <i :class="menu.iconType"></i>
+          <span>{{menu.name}}</span>
+        </el-menu-item>
+    </template>
   </el-menu>
 </div>
 </template>
@@ -47,13 +40,22 @@ export default {
   name: 'Menus',
   data () {
     return {
-      isCollapse: this.$isCollapse,
+      isCollapse: false,
       menuList: menuList.bind(this)()
     };
   },
   mounted () {
   },
   methods: {
+    changeCollapse () {
+      this.isCollapse = !this.isCollapse;
+    },
+    onSelect (key, keyPath) {
+      console.log(key);
+      console.log(keyPath);
+      console.log(keyPath.join('/'));
+      let path = keyPath.join('/');
+    },
     handleOpen (key, keyPath) {
       console.log(key, keyPath);
     },

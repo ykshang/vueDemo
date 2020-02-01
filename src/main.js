@@ -6,8 +6,11 @@ import router from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import vueGlobal from './util/vueGlobal';
+import Vuex from 'vuex';
+import 'font-awesome/css/font-awesome.css';
 
 Vue.use(ElementUI);
+Vue.use(Vuex);
 Vue.config.productionTip = false;
 
 Object.keys(vueGlobal).forEach(key => {
