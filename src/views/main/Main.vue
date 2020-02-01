@@ -18,7 +18,6 @@ export default {
     };
   },
   mounted () {
-    console.log(424242);
   },
   methods: {
     changeCollapse () {
