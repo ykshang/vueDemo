@@ -3,5 +3,5 @@ import base from './base';
 
 export default {
   validation: validation,
-  base: base.base
+  base: base
 };

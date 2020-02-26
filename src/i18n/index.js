@@ -7,7 +7,7 @@ Vue.use(VueI18n);
 export default {
   init: function (language) {
     const i18n = new VueI18n({
-      locale: localStorage.getItem("lang") || "zh",
+      locale: localStorage.getItem("lang") || "zh_CN",
       messages: {
         "en_US": enUSLocal,
         "zh_CN": zhCNLocal
