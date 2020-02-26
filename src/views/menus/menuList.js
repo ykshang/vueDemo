@@ -23,7 +23,7 @@ module.exports = function () {
     subMenus: [{
       flag: true,
       key: 'attendance',
-      name: '请假',
+      name: this.$t("base.userInfo"),
       path: 'attendance',
       iconType: 'el-icon-fa fa-home',
       subMenus: []

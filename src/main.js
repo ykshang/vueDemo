@@ -8,7 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import vueGlobal from './util/vueGlobal';
 import Vuex from 'vuex';
 import 'font-awesome/css/font-awesome.css';
+import i18n from "./i18n";
 
+i18n.init();
 Vue.use(ElementUI);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
@@ -19,6 +21,7 @@ Object.keys(vueGlobal).forEach(key => {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  i18n,
   router,
   components: { App },
   template: '<App/>'

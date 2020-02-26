@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'indent': ['warn', 2], //warn error
     'no-unused-vars': [0, {"vars": "all", "args": "none"}],
+    "quotes": [0],//引号类型 `` "" ''
 
     // allow async-await
     'generator-star-spacing': 'off',
