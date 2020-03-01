@@ -1,10 +1,15 @@
 <template>
 <div>
-  <div class="menu_button">
-    <el-button-group  v-show="false">
-      <el-button icon="el-icon-fa fa-bars" v-if="isCollapse" @click="changeCollapse" size="mini" circle></el-button>
-      <el-button icon="el-icon-fa fa-ellipsis-h" v-if="!!!isCollapse" @click="changeCollapse" size="mini" circle></el-button>
-    </el-button-group>
+  <div class="breadcrumb">
+    <el-breadcrumb separator="/">
+    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+    <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+    </el-breadcrumb>
+  </div>
+  <div class="router_view_des">
+    dasada
   </div>
 </div>
 </template>
@@ -28,12 +33,13 @@ export default {
 };
 </script>
 <style scoped>
-.logo {
-    width: auto;
-    height: 40px;
-    margin: 10px 0px;
+.breadcrumb {
+  width: auto;
+  margin: 10px 0px 15px 0px;
 }
-.menu_button {
-  position: relative;
+.router_view_des {
+  width: auto;
+  background-color: #e4ebf1;
+  min-height: 20px;
 }
 </style>
