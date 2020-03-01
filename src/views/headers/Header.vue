@@ -4,6 +4,19 @@
     <el-image class="logoStyle" :src="logoSrc" :fit="'contain'">
     </el-image>
   </div>
+  <div class="dropdList">
+    <el-dropdown trigger="click" @command="handleCommand">
+      <span class="el-dropdown-link" @click="handleClickDropList">
+        个人菜单
+        <i v-if="dropListIconFlag" class="fa fa-angle-up"></i>
+        <i v-else class="fa fa-angle-down"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>个人信息</el-dropdown-item>
+        <el-dropdown-item>账号信息</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </div>
   <div class="avatar">
     <el-avatar :src="avatarSrc"></el-avatar>
   </div>
@@ -17,12 +30,19 @@ export default {
   data () {
     return {
       logoSrc: logo,
-      avatarSrc: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+      avatarSrc: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+      dropListIconFlag: false
     };
   },
   mounted () {
   },
   methods: {
+    handleClickDropList () {
+      this.dropListIconFlag = !this.dropListIconFlag;
+    },
+    handleCommand () {
+      this.dropListIconFlag = !this.dropListIconFlag;
+    }
   }
 };
 </script>
@@ -36,5 +56,21 @@ export default {
 .avatar {
   float: right;
   margin: 8px 20px;
+}
+.dropdList {
+  float: right;
+  margin: 18px 15px 18px 0px;
+  font-weight: 600;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #EEEEEE;
+  font-size: 16px;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.el-dropdown-menu .el-popper {
+  width: 200px;
 }
 </style>
