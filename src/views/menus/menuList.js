@@ -3,7 +3,7 @@ module.exports = function () {
   return [{
     flag: true,
     key: 'overview',
-    name: '概览',
+    name: this.$t('base.overview'),
     path: 'overview',
     iconType: 'el-icon-fa fa-thumb-tack',
     subMenus: []

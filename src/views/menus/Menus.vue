@@ -35,6 +35,7 @@
 </style>
 
 <script>
+import Vue from 'vue';
 import menuList from './menuList';
 export default {
   name: 'Menus',
@@ -45,6 +46,7 @@ export default {
     };
   },
   mounted () {
+    //  this.$i18n.locale === 'zh_CN' ? this.language = 0 : this.language = 1;// 数据加载时判断当前属于哪种语言，为其单选按钮赋值
   },
   methods: {
     changeCollapse () {
