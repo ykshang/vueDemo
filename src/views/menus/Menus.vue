@@ -9,18 +9,18 @@
     <template v-for="menu in menuList">
         <el-submenu :index="menu.key" :key="menu.key" v-if="menu.flag && menu.subMenus && menu.subMenus.length != 0">
             <template slot="title" v-if="menu.subMenus">
-              <i :class="menu.iconType"></i>
+              <i :class="menu.icon"></i>
               <span>{{menu.name}}</span>
             </template>
             <el-menu-item v-for="subMenu in menu.subMenus" :key="subMenu.key" :index="subMenu.key">
               <template slot="title" v-if="subMenu.flag">
-                <i :class="[subMenu.iconType]"></i>
+                <i :class="[subMenu.icon]"></i>
                 <span>{{subMenu.name}}</span>
               </template>
             </el-menu-item>
         </el-submenu>
         <el-menu-item :index="menu.key"  :key="menu.key" v-if="menu.flag && (!menu.subMenus || menu.subMenus.length === 0)">
-          <i :class="menu.iconType"></i>
+          <i :class="menu.icon"></i>
           <span>{{menu.name}}</span>
         </el-menu-item>
     </template>
@@ -55,8 +55,8 @@ export default {
     onSelect (key, keyPath) {
       console.log(key);
       console.log(keyPath);
-      console.log(keyPath.join('/'));
-      let path = keyPath.join('/');
+      let path = "/" + keyPath.join('/');
+      console.log("当前菜单项的路由为：", path);
     },
     handleOpen (key, keyPath) {
       console.log(key, keyPath);
