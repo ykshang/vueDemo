@@ -10,6 +10,7 @@ import 'font-awesome/css/font-awesome.css';// 引入font-awesome图表字体组�
 import VueI18n from 'vue-i18n';// 引入vue-i18n组件
 import local from './i18n';// 引入i18n语言配置文件
 import vueGlobal from './util/vueGlobal';// 引入自定义的全部变量
+import './assets/css/app.css';// 引入自定义样式
 
 Vue.use(ElementUI);// 应用element-ui组件
 Vue.use(Vuex);// 应用Vuex组件
