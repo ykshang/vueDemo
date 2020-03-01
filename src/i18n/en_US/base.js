@@ -3,8 +3,11 @@ export default {
     overview: "overview",
     language: "Language",
     userInfo: "User Info",
+    accontInfo: "Accont Info",
     userName: "User Name",
     password: "Password",
-    login: "Login"
+    login: "Log in",
+    signOut: "Sign Out",
+    setting: "Setting"
   }
 };

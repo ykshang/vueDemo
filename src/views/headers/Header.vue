@@ -11,9 +11,8 @@
         <i v-if="dropListIconFlag" class="fa fa-angle-up"></i>
         <i v-else class="fa fa-angle-down"></i>
       </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>个人信息</el-dropdown-item>
-        <el-dropdown-item>账号信息</el-dropdown-item>
+      <el-dropdown-menu slot="dropdown" >
+        <el-dropdown-item v-for="item in operationDropList" :key="item.path" :command="item.path" :icon="item.icon">{{item.name}}</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -31,7 +30,20 @@ export default {
     return {
       logoSrc: logo,
       avatarSrc: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-      dropListIconFlag: false
+      dropListIconFlag: false,
+      operationDropList: [{
+        icon: "fa fa-user",
+        name: this.$t('base.userInfo'),
+        path: "1"
+      }, {
+        icon: "fa fa-cog",
+        name: this.$t('base.setting'),
+        path: "2"
+      }, {
+        icon: "fa fa-power-off",
+        name: this.$t('base.signOut'),
+        path: "3"
+      }]
     };
   },
   mounted () {
@@ -40,8 +52,10 @@ export default {
     handleClickDropList () {
       this.dropListIconFlag = !this.dropListIconFlag;
     },
-    handleCommand () {
+    handleCommand (command) {
       this.dropListIconFlag = !this.dropListIconFlag;
+      let path = command;
+      this.$message('click on item ' + path);
     }
   }
 };
