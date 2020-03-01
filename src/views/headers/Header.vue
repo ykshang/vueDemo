@@ -5,8 +5,8 @@
     </el-image>
   </div>
   <div class="dropdList">
-    <el-dropdown trigger="click" @command="handleCommand">
-      <span class="el-dropdown-link" @click="handleClickDropList">
+    <el-dropdown trigger="click" @command="handleCommand" @visible-change="handleShowDropList">
+      <span class="el-dropdown-link">
         个人菜单
         <i v-if="dropListIconFlag" class="fa fa-angle-up"></i>
         <i v-else class="fa fa-angle-down"></i>
@@ -49,11 +49,13 @@ export default {
   mounted () {
   },
   methods: {
-    handleClickDropList () {
-      this.dropListIconFlag = !this.dropListIconFlag;
+    /**
+     * 当菜单展开/隐藏时触发，展开为true，隐藏为false
+     */
+    handleShowDropList (showFlag) {
+      this.dropListIconFlag = showFlag;
     },
     handleCommand (command) {
-      this.dropListIconFlag = !this.dropListIconFlag;
       let path = command;
       this.$message('click on item ' + path);
     }
