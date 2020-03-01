@@ -2,7 +2,7 @@
 <div style="position:'relative'">
   <div class="el-card box-card" style="text-align: center; padding:9px; border: 1px solid #EBEEF5; background-color: #FFF; color: #303133; -webkit-transition: .3s; transition: .3s">
       <span v-if="!!!isCollapse">{{$t("menu.navigationMenu")}}</span>
-      <el-button  v-if="isCollapse" icon="fa fa-th fa-lg" type="text" @click="changeCollapse"></el-button>
+      <el-button v-if="isCollapse" icon="fa fa-th fa-lg" type="text" @click="changeCollapse"></el-button>
       <el-button v-else icon="fa fa-outdent fa-lg"  type="text" style="float: right;" @click="changeCollapse" size="mini"></el-button>
   </div>
   <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" @select="onSelect">
