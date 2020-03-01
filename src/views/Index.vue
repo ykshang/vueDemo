@@ -1,18 +1,18 @@
 <template>
   <div>
-    <el-container style="border: 1px solid #eee">
+    <el-container>
       <el-header height="60px">
         <Header></Header>
       </el-header>
       <el-container style="position: absolute; top: 60px; width: 100%; height: auto; bottom: 0px; left: 0px">
-        <el-aside width="auto">
+        <el-aside width="auto" style="border: 1px solid #e6e6e6">
           <menus></menus>
         </el-aside>
         <el-container>
           <el-main>
             <Main></Main>
           </el-main>
-          <el-footer height="60px">Footer</el-footer>
+          <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -42,12 +42,11 @@ export default {
 <style scoped>
   .el-aside {
     color: #333;
+    background-color: #f2f6fc
   }
   .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    padding: 0px;
-    margin: 0px;
+    background-color: #F5F7FA;
+    padding: 10px;
   }
   .el-header {
     background-color: #3385ff;
@@ -56,5 +55,6 @@ export default {
   .el-footer {
     background-color: #B3C0D1;
     color: #333;
+    height: 60px;
   }
 </style>
