@@ -1,10 +1,12 @@
 export default {
   menu: {
-    overview: "overview",
-    language: "Language",
-    userInfo: "User Info",
-    userName: "User Name",
-    password: "Password",
-    login: "Login"
+    navigationMenu: "Navigation Menu",
+    overview: "Overview",
+    task: "Task",
+    vacation: "Vacation",
+    attendance: "Attendance",
+    organization: "Organization",
+    timeline: "Timeline",
+    reimburse: "Rimburse"
   }
 };
