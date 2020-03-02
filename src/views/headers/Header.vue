@@ -7,12 +7,12 @@
   <div class="dropdList">
     <el-dropdown trigger="click" @command="handleCommand" @visible-change="handleShowDropList">
       <span class="el-dropdown-link">
-        个人菜单
+        {{$t("base.setting")}}
         <i v-if="dropListIconFlag" class="fa fa-angle-up"></i>
         <i v-else class="fa fa-angle-down"></i>
       </span>
       <el-dropdown-menu slot="dropdown" >
-        <el-dropdown-item v-for="item in operationDropList" :key="item.path" :command="item.path" :icon="item.icon">{{item.name}}</el-dropdown-item>
+        <el-dropdown-item v-for="item in operationDropList" :key="item.path" :command="item" :icon="item.icon">{{item.name}}</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -33,7 +33,7 @@ export default {
       dropListIconFlag: false,
       operationDropList: [{
         icon: "fa fa-user",
-        name: this.$t('base.userInfo'),
+        name: this.$t('base.profile'),
         path: "1"
       }, {
         icon: "fa fa-cog",
@@ -57,7 +57,7 @@ export default {
     },
     handleCommand (command) {
       let path = command;
-      this.$message('click on item ' + path);
+      this.$message('click on item ' + path.name);
     }
   }
 };
