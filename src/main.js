@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';// 引入element-ui必需样式
 import Vuex from 'vuex';// 引入Vuex组件
 import 'font-awesome/css/font-awesome.css';// 引入font-awesome图表字体组件
 import VueI18n from 'vue-i18n';// 引入vue-i18n组件
-import local from './i18n';// 引入i18n语言配置文件
+import i18nList from './i18n';// 引入i18n语言配置文件
 import vueGlobal from './util/vueGlobal';// 引入自定义的全部变量
 import './assets/css/app.css';// 引入自定义样式
 
@@ -23,18 +23,11 @@ Object.keys(vueGlobal).forEach(key => {
   Vue.prototype['$' + key] = vueGlobal[key];
 });
 
-// 组装i18n的本地配置文件-start
-let messagesList = {};
-Object.keys(local).forEach(key => {
-  messagesList[key] = local[key];
-});
-// 组装i18n的本地配置文件-end
-
 // 配置vue-i18n组件
 const i18n = new VueI18n({
   locale: 'zh_CN', // 语言标识
   // this.$i18n.locale, 通过切换locale的值来实现语言切换
-  messages: messagesList
+  messages: i18nList
 });
 
 /* eslint-disable no-new */
