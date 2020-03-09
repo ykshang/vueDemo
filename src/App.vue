@@ -27,7 +27,5 @@ export default {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  @import '../node_modules/font-awesome/css/font-awesome.css';
-  $fa-css-prefix: el-icon-fa;
+}
 </style>
