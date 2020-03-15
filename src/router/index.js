@@ -1,15 +1,26 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Index from '../views/Index';
 
+const Index = resolve => {
+  require.ensure(['../views/layout/Index.vue'], () => {
+    resolve(require('../views/layout/Index.vue'));
+  }, 'Index');
+};
+const routesMap = [
+  {
+    path: '/',
+    name: 'Index',
+    component: Index,
+    // alias: '/',
+    // meta: {
+    //   // title: Vue.t("calcStorLang.calculateStorage"),
+    //   // des: Vue.t('base.index')
+    // },
+    children: []
+  }
+];
 Vue.use(Router);
-
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Index',
-      component: Index
-    }
-  ]
+  mode: 'hash',
+  routes: routesMap
 });

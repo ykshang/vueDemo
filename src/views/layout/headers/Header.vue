@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import logo from '../../assets/img/logo.png';
+import logo from '../../../assets/img/logo.png';
 export default {
   name: 'Header',
   data () {
@@ -33,16 +33,20 @@ export default {
       dropListIconFlag: false,
       operationDropList: [{
         icon: "fa fa-user",
-        name: this.$t('base.profile'),
+        name: this.$t('base.profile'), // 个人信息
         path: "1"
       }, {
-        icon: "fa fa-cog",
-        name: this.$t('base.setting'),
+        icon: "fa fa-refresh",
+        name: this.$t('base.changeAvatar'), // 更换头像
         path: "2"
       }, {
-        icon: "fa fa-power-off",
-        name: this.$t('base.signOut'),
+        icon: "fa fa-cog",
+        name: this.$t('base.settingCenter'), // 设置中心
         path: "3"
+      }, {
+        icon: "fa fa-power-off",
+        name: this.$t('base.signOut'), // 退出登录
+        path: "4"
       }]
     };
   },
