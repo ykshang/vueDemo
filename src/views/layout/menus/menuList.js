@@ -3,90 +3,90 @@ module.exports = function () {
   return [{
     flag: true,
     icon: 'el-icon-fa fa-thumb-tack',
-    key: 'overview',
+    key: 'Overview',
     name: this.$t('menu.overview'), // 概览
-    path: 'overview',
+    path: 'Overview',
     subMenus: []
   }, {
     flag: true,
     icon: 'el-icon-fa fa-tags',
-    key: 'task',
+    key: 'Task',
     name: this.$t('menu.task'), // 待办任务
-    path: 'task',
+    path: 'Task',
     subMenus: []
   }, {
     flag: true,
     icon: 'el-icon-fa fa-calendar',
-    key: 'vacation',
+    key: 'Vacation',
     name: this.$t('menu.vacation'), // 考勤管理
-    path: 'vacation',
+    path: 'Vacation',
     subMenus: [{
       flag: true,
       icon: 'el-icon-fa fa-home',
-      key: 'attendanceLog',
+      key: 'AttendanceLog',
       name: this.$t('menu.attendanceLog'), // 考勤记录
-      path: 'attendanceLog',
+      path: 'AttendanceLog',
       subMenus: []
     }, {
       flag: true,
       icon: 'el-icon-fa fa-home',
-      key: 'attendanceTicket',
+      key: 'AttendanceTicket',
       name: this.$t('menu.attendanceTicket'), // 考勤单据
-      path: 'attendanceTicket',
+      path: 'AttendanceTicket',
       subMenus: []
     }, {
       flag: true,
       icon: 'el-icon-fa fa-home',
-      key: 'attendanceApproval',
+      key: 'AttendanceApproval',
       name: this.$t('menu.attendanceApproval'), // 考勤审批
-      path: 'attendanceApproval',
+      path: 'AttendanceApproval',
       subMenus: []
     }]
   }, {
     flag: true,
     icon: 'el-icon-fa fa-sitemap',
-    key: 'organization',
+    key: 'Organization',
     name: this.$t('menu.organization'), // 组织结构
-    path: 'organization',
+    path: 'Organization',
     subMenus: [{
       flag: true,
       icon: 'el-icon-fa fa-home',
-      key: 'deptment',
+      key: 'Deptment',
       name: this.$t('menu.deptment'), // 部门管理
-      path: 'deptment'
+      path: 'Deptment'
     }, {
       flag: true,
       icon: 'el-icon-fa fa-home',
-      key: 'employee',
+      key: 'Employee',
       name: this.$t('menu.employee'), // 员工管理
-      path: 'employee'
+      path: 'Employee'
     }, {
       flag: true,
       icon: 'el-icon-fa fa-home',
-      key: 'position',
+      key: 'Position',
       name: this.$t('menu.position'), // 岗位管理
-      path: 'position'
+      path: 'Position'
     }]
   }, {
     flag: true,
     icon: 'el-icon-fa fa-money',
-    key: 'finance',
+    key: 'Finance',
     name: this.$t('menu.finance'), // 财务管理
-    path: 'finance',
+    path: 'Finance',
     subMenus: [{
       flag: true,
       icon: 'el-icon-fa fa-money',
-      key: 'finance',
+      key: 'Finance',
       name: this.$t('menu.finance'), // 薪酬清单
-      path: 'finance',
+      path: 'Finance',
       subMenus: []
     }]
   }, {
     flag: true,
     icon: 'el-icon-fa fa-line-chart',
-    key: 'timeline',
+    key: 'Timeline',
     name: this.$t('menu.timeline'), // 工时管理
-    path: 'timeline',
+    path: 'Timeline',
     subMenus: []
   }];
 };

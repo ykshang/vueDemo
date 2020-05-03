@@ -1,22 +1,26 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const Index = resolve => {
-  require.ensure(['../views/layout/Index.vue'], () => {
-    resolve(require('../views/layout/Index.vue'));
-  }, 'Index');
-};
+import Index from "@/views/layout/Index.vue";
+import Overview from "@/views/overview/Overview.vue";
+import Task from "@/views/task/Task.vue";
+
 const routesMap = [
   {
-    path: '/',
     name: 'Index',
+    path: '/',
     component: Index,
-    // alias: '/',
-    // meta: {
-    //   // title: Vue.t("calcStorLang.calculateStorage"),
-    //   // des: Vue.t('base.index')
-    // },
-    children: []
+    children: [{
+      name: 'Overview',
+      path: 'Overview',
+      component: Overview,
+      children: []
+    }, {
+      name: 'Task',
+      path: 'Task',
+      component: Task,
+      children: []
+    }]
   }
 ];
 Vue.use(Router);

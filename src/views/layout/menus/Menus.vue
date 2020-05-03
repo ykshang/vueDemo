@@ -1,5 +1,5 @@
 <template>
-<div style="position:'relative'">
+<div style="position:'relative';">
   <div class="menuHeader">
       <span v-if="!!!isCollapse">{{$t("menu.navigationMenu")}}</span>
       <el-button v-if="isCollapse" icon="fa fa-th fa-lg" type="text" @click="changeCollapse"></el-button>
@@ -19,7 +19,7 @@
               </template>
             </el-menu-item>
         </el-submenu>
-        <el-menu-item :index="menu.key"  :key="menu.key" v-if="menu.flag && (!menu.subMenus || menu.subMenus.length === 0)">
+        <el-menu-item :index="menu.key" :key="menu.key" v-if="menu.flag && (!menu.subMenus || menu.subMenus.length === 0)">
           <i :class="menu.icon"></i>
           <span>{{menu.name}}</span>
         </el-menu-item>
@@ -46,6 +46,7 @@ export default {
     };
   },
   mounted () {
+    console.log(this.$router);
     //  this.$i18n.locale === 'zh_CN' ? this.language = 0 : this.language = 1;// 数据加载时判断当前属于哪种语言，为其单选按钮赋值
   },
   methods: {
@@ -53,10 +54,9 @@ export default {
       this.isCollapse = !this.isCollapse;
     },
     onSelect (key, keyPath) {
-      console.log(key);
-      console.log(keyPath);
-      let path = "/" + keyPath.join('/');
-      console.log("当前菜单项的路由为：", path);
+      let fullPath = "/Index/" + keyPath.join('/');
+      console.log("当前菜单项的路由为：", fullPath);
+      this.$emit("menuChanged", key, fullPath);
     },
     handleOpen (key, keyPath) {
       console.log(key, keyPath);

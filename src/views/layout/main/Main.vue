@@ -9,11 +9,9 @@
     </el-breadcrumb>
   </div>
   <div class="router_view_des">
-    <i class="fa fa-spinner fa-spin"></i>
-    <i class="fa fa-circle-o-notch fa-spin"></i>
-    <i class="fa fa-refresh fa-spin"></i>
-    <i class="fa fa-cog fa-spin"></i>
-    <i class="fa fa-spinner fa-pulse"></i>
+  </div>
+  <div>
+    <router-view></router-view>
   </div>
 </div>
 </template>
@@ -21,18 +19,16 @@
 <script>
 export default {
   name: 'Main',
+  props: ["router"],
   data () {
     return {
       isCollapse: true
     };
   },
   mounted () {
+    console.log(this.router);
   },
   methods: {
-    changeCollapse () {
-      console.log(this.$isCollapse);
-      this.isCollapse = !this.isCollapse;
-    }
   }
 };
 </script>

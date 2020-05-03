@@ -6,11 +6,11 @@
       </el-header>
       <el-container style="position: absolute; top: 60px; width: 100%; height: auto; bottom: 0px; left: 0px">
         <el-aside width="auto" style="border: 1px solid #e6e6e6">
-          <menus></menus>
+          <menus @menuChanged="menuChanged"></menus>
         </el-aside>
         <el-container>
           <el-main>
-            <Main></Main>
+            <Main :router="currentRouter"></Main>
           </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
@@ -27,9 +27,25 @@ export default {
   name: 'Index',
   data () {
     return {
+      currentRouter: ""
     };
   },
+  watch: {
+    // 切换页面
+    '$route' (to, from) {
+      console.log(from);
+      console.log(to);
+      console.log(this.$route);
+      let pathList = this.$route.matched;
+    }
+  },
   methods: {
+    menuChanged (name, path) {
+      this.$router.push({
+        name: name,
+        path: path
+      });
+    }
   },
   components: {
     Menus,
