@@ -28,4 +28,6 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+@import url("./assets/plug-ins/font-awesome-4.7.0/css/font-awesome.min.css");
+$fa-css-prefix: el-icon-fa;
 </style>

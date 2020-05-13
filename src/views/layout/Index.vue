@@ -33,9 +33,6 @@ export default {
   watch: {
     // 切换页面
     '$route' (to, from) {
-      console.log(from);
-      console.log(to);
-      console.log(this.$route);
       let pathList = this.$route.matched;
     }
   },

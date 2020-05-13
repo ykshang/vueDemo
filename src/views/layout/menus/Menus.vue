@@ -46,7 +46,6 @@ export default {
     };
   },
   mounted () {
-    console.log(this.$router);
     //  this.$i18n.locale === 'zh_CN' ? this.language = 0 : this.language = 1;// 数据加载时判断当前属于哪种语言，为其单选按钮赋值
   },
   methods: {
@@ -55,7 +54,6 @@ export default {
     },
     onSelect (key, keyPath) {
       let fullPath = "/Index/" + keyPath.join('/');
-      console.log("当前菜单项的路由为：", fullPath);
       this.$emit("menuChanged", key, fullPath);
     },
     handleOpen (key, keyPath) {
