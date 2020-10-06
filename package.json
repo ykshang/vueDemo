@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "element-ui": "^2.10.1",
+    "eslint-plugin-bes": "0.0.1",
     "font-awesome": "^4.7.0",
     "vue": "^2.5.2",
     "vue-i18n": "^8.15.4",

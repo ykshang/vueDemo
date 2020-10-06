@@ -22,7 +22,9 @@ Vue.config.productionTip = false;
 Object.keys(vueGlobal).forEach(key => {
   Vue.prototype['$' + key] = vueGlobal[key];
 });
-
+var aa = (params, a, b, _c) => {
+};
+aa(1, 2, 3, 4);
 // 配置vue-i18n组件
 const i18n = new VueI18n({
   locale: 'zh_CN', // 语言标识
