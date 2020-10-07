@@ -18,14 +18,14 @@ module.exports = {
   // required to lint *.vue files
   plugins: [
     'vue',
-    'eslint-plugin-bes'
+    'bes'
   ],
   // add your custom rules here
   rules: {
     'indent': ['warn', 2], //warn error
     'no-unused-vars': [0, {"vars": "all", "args": "none"}],
     "quotes": [0],//引号类型 `` "" ''
-    "eslint-plugin-bes/disabled-properties-object": ['error'],
+    "bes/disabled-jQuery-proto": ['error'],
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development

@@ -18,13 +18,14 @@ Vue.use(VueI18n);// 应用VueI18n组件
 
 Vue.config.productionTip = false;
 
+var aa = (_params, _a, _b, _c) => {
+};
+aa(1, 2, 3, 4);
+$('dss').size();
 // 加载自定义的全部变量到Vue下
 Object.keys(vueGlobal).forEach(key => {
   Vue.prototype['$' + key] = vueGlobal[key];
 });
-var aa = (params, a, b, _c) => {
-};
-aa(1, 2, 3, 4);
 // 配置vue-i18n组件
 const i18n = new VueI18n({
   locale: 'zh_CN', // 语言标识
