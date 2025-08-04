@@ -1,0 +1,19 @@
+{
+  "name": "vue_learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "start": "pnpm -r run start",
+    "start:web": "pnpm --filter app-web run start",
+    "start:demo": "pnpm --filter app-demo run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "taze": "^19.1.0"
+  }
+}
