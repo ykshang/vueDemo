@@ -2,7 +2,7 @@
   <person></person>
 </template>
 <script lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+// import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 import Person from './components/Person.vue'
 export default {
