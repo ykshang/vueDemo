@@ -13,10 +13,6 @@ catalogs:
 importers:
 
   .:
-    dependencies:
-      sass:
-        specifier: 'catalog:'
-        version: 1.89.2
     devDependencies:
       taze:
         specifier: ^19.1.0
@@ -79,6 +75,9 @@ importers:
       prettier:
         specifier: 3.6.2
         version: 3.6.2
+      sass:
+        specifier: 'catalog:'
+        version: 1.89.2
       typescript:
         specifier: ~5.8.0
         version: 5.8.3

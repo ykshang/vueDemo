@@ -16,7 +16,5 @@
   "devDependencies": {
     "taze": "^19.1.0"
   },
-  "dependencies": {
-    "sass": "catalog:"
-  }
+  "dependencies": {}
 }
