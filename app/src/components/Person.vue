@@ -1,31 +1,22 @@
 <template>
   <div class="person">
-    <div>姓名：{{ name }}</div>
-    <div>年龄：{{ age }}</div>
-    <div>电话：{{ tel }}</div>
-    <button @click="changeName()">修改姓名</button>
-    <button @click="changeAge()">修改年龄</button>
-    <button @click="showtel">查看电话</button>
+    <div>{{ car.brand }} {{ car.price }}</div>
+    <button @click="changePrice">修改价格</button>
   </div>
 </template>
 <script setup lang="ts" name="111">
-import { defineOptions, ref } from 'vue'
+import { defineOptions, reactive } from 'vue'
 // 设置组件名称
 defineOptions({
   name: 'Person123',
 })
 // 数据
-let name = ref('zhangsan')
-let age = ref(12)
-let tel = ref('12132131231231')
-function changeName() {
-  name.value = 'lisi'
-}
-function changeAge() {
-  age.value += 1
-}
-function showtel() {
-  alert(tel.value)
+let car = reactive({
+  brand: '奔驰',
+  price: 100,
+})
+function changePrice() {
+  car.price += 1000;
 }
 </script>
 <style lang="scss" scoped>
