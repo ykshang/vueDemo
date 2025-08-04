@@ -2,16 +2,14 @@ packages:
   - app
   - packages/**
   - services/**
-# 两种配置方式
+
 catalog:
-  # 引用方式"package-name"：”catalog:“
+  axios: ^1.11.0
   html-webpack-plugin: ^5.6.3
+  sass: ^1.89.2
   webpack: 5.100.2
   webpack-cli: ^6.0.1
   webpack-dev-server: ^5.2.2
-  sass: ^1.89.2
-  axios: ^1.11.0
-
 
 catalogs:
   webpack5:
