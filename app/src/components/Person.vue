@@ -1,30 +1,23 @@
 <template>
   <div class="person">
-    <div>{{ car.brand }} {{ car.price }}</div>
-    <button @click="changePrice">修改价格</button>
+    <h1 ref="title1">尚硅谷</h1>
+    <h2 ref="title2">前端</h2>
+    <h3 ref="title3">Vue</h3>
+    <button @click="viewRef">查看 ref</button>
   </div>
 </template>
-<script setup lang="ts" name="111">
-import { defineOptions, reactive } from 'vue'
-// 设置组件名称
-defineOptions({
-  name: 'Person123',
-})
-// 数据
-let car = reactive({
-  brand: '奔驰',
-  price: 100,
-})
-function changePrice() {
-  car.price += 1000;
+
+<script lang="ts" setup>
+import { ref, defineOptions } from 'vue'
+// eslint-disable-next-line vue/multi-word-component-names
+defineOptions({ name: 'person' })
+const title1 = ref()
+const title2 = ref()
+const title3 = ref()
+// 通过ref获取元素
+function viewRef() {
+  console.log(title1.value)
+  console.log(title2.value)
+  console.log(title3.value)
 }
 </script>
-<style lang="scss" scoped>
-.person {
-  border: 1px solid #ccc;
-  padding: 20px;
-}
-button {
-  margin: 10px;
-}
-</style>
