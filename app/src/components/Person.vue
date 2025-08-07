@@ -9,8 +9,20 @@
 
 <script lang="ts" setup>
 import { ref, defineOptions } from 'vue'
-// eslint-disable-next-line vue/multi-word-component-names
-defineOptions({ name: 'person' })
+import { type PersonInterface, type PersonList } from '@/types/index'
+defineOptions({ name: 'person-1' })
+
+const person: PersonInterface = {
+  id: '1',
+  age: 1,
+  name: 'kangkang',
+}
+console.clear()
+console.log(person)
+const personList: PersonList = []
+// const personList: PersonInterface[] = []
+personList.push(person)
+console.log(personList)
 const title1 = ref()
 const title2 = ref()
 const title3 = ref()
