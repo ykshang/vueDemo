@@ -7,8 +7,9 @@
           v-for="button in buttonList"
           :key="button.id"
           @click="toView(button.path)"
-          >{{ button.name }}</el-button
         >
+          {{ button.name }}
+        </el-button>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -25,9 +26,9 @@ const buttonList = reactive([
   { id: 1, name: 'about', path: '/about' },
   { id: 2, name: 'news', path: '/news' },
 ])
-const router = useRouter();
+const router = useRouter()
 function toView(path: string) {
-  router.push(path);
+  router.push(path)
 }
 </script>
 
