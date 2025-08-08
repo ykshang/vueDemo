@@ -1,18 +1,9 @@
 packages:
-  - app
+  - demo
   - packages/**
   - services/**
 
 catalog:
   axios: ^1.11.0
-  html-webpack-plugin: ^5.6.3
   sass: ^1.89.2
-  webpack: 5.100.2
-  webpack-cli: ^6.0.1
-  webpack-dev-server: ^5.2.2
-
-catalogs:
-  webpack5:
-    webpack: 5.100.2
-    webpack-cli: ^6.0.1
-    webpack-dev-server: ^5.2.2
+  element-plus: ^2.10.6
