@@ -23,8 +23,10 @@ import { reactive } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 const buttonList = reactive([
   { id: 1, name: 'home', path: '/' },
-  { id: 1, name: 'about', path: '/about' },
-  { id: 2, name: 'news', path: '/news' },
+  { id: 2, name: 'about', path: '/about' },
+  { id: 3, name: 'news', path: '/news' },
+  { id: 4, name: 'attr', path: '/AttrView' },
+  { id: 5, name: 'refs', path: '/refs' },
 ])
 const router = useRouter()
 function toView(path: string) {

@@ -19,6 +19,16 @@ const router = createRouter({
       props: true,
       component: () => import('@/views/NewsView.vue'),
     },
+    {
+      path: '/AttrView',
+      name: 'attes',
+      component: () => import('@/views/AttrView.vue'),
+    },
+        {
+      path: '/refs',
+      name: 'refs',
+      component: () => import('@/views/refs/RefParent.vue'),
+    },
   ],
 })
 
