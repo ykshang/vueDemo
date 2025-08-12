@@ -24,10 +24,15 @@ const router = createRouter({
       name: 'attes',
       component: () => import('@/views/AttrView.vue'),
     },
-        {
+    {
       path: '/refs',
       name: 'refs',
       component: () => import('@/views/refs/RefParent.vue'),
+    },
+    {
+      path: '/inject',
+      name: 'inject',
+      component: () => import('@/views/inject/Parent.vue'),
     },
   ],
 })

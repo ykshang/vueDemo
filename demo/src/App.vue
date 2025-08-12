@@ -27,6 +27,7 @@ const buttonList = reactive([
   { id: 3, name: 'news', path: '/news' },
   { id: 4, name: 'attr', path: '/AttrView' },
   { id: 5, name: 'refs', path: '/refs' },
+  { id: 6, name: 'inject', path: '/inject' },
 ])
 const router = useRouter()
 function toView(path: string) {

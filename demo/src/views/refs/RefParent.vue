@@ -13,19 +13,26 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineOptions, ref, useTemplateRef } from "vue";
-import RefChild from "./RefChild.vue";
-defineOptions({ name: "RefParent" });
-const childRef = useTemplateRef("child");
-const childVal = ref<string>("");
-const parent = ref("hello parent！");
+import { defineOptions, ref, useTemplateRef } from 'vue'
+import RefChild from './RefChild.vue'
+defineOptions({ name: 'RefParent' })
+const childRef = useTemplateRef('child')
+const childVal = ref<string>('')
+const parent = ref('hello parent！')
 function viewRen() {
-  console.log(childRef.value?.child);
-  childVal.value = childRef.value?.child as string;
+  console.log(childRef.value?.child)
+  childVal.value = childRef.value?.child as string
 }
+defineExpose({
+  parent, viewRen
+})
 </script>
 <style scoped>
 .RefParent {
   display: flex;
+  border: 2px dashed var(--el-color-primary);
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 </style>
