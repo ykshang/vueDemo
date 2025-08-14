@@ -12,9 +12,9 @@ import 'element-plus/dist/index.css'
 
 const app = createApp(App)
 
+app.config.globalProperties.xxxxxxx = 123456789
 app.use(ElementPlus)
 // 应用pinia
 app.use(createPinia())
 app.use(router)
-
 app.mount('#app')

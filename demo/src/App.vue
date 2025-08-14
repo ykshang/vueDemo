@@ -1,7 +1,8 @@
 <template>
-  <div class="common-layout">
+  <div class="layout">
     <el-container>
-      <el-header class="">
+      <el-header>1</el-header>
+      <!-- <el-header class="">
         <el-button
           type="primary"
           v-for="button in buttonList"
@@ -10,7 +11,7 @@
         >
           {{ button.name }}
         </el-button>
-      </el-header>
+      </el-header> -->
       <el-main>
         <router-view></router-view>
       </el-main>
@@ -36,23 +37,12 @@ function toView(path: string) {
 </script>
 
 <style lang="scss" scoped>
-.common-layout {
+.layout {
   width: 100vw;
   height: 100vh;
   display: flex;
-}
-.common-layout .el-header,
-.common-layout .el-footer {
-  background-color: var(--el-color-primary-light-7);
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.common-layout .el-main {
-  background-color: var(--el-color-primary-light-9);
-  color: var(--el-text-color-primary);
-  text-align: center;
-  flex: 1;
+  .el-header {
+    border-bottom: 1px solid #dbcae0
+  }
 }
 </style>
