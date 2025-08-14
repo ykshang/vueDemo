@@ -14,7 +14,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "taze": "^19.1.0"
-  },
-  "dependencies": {}
+  }
 }
