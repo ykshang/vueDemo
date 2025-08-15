@@ -1,6 +1,7 @@
 @use './base'; // 基础样式
 @use './theme-toggler'; // 主题切换动画
 @use './css-vars'; // css 样式变量
+@use './atom'; // 原子化 css 类
 
 #app {
   margin: 0 auto;

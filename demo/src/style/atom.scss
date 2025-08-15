@@ -1,0 +1,66 @@
+/**
+* 弹性布局相关原子化 css 类
+*/
+.flex {
+  display: flex;
+}
+$columns: 12;
+
+@for $i from 1 through $columns {
+  .flex-#{$i} {
+    flex: #{$i}; // 组装
+  }
+}
+/**
+ * 内外间距相关
+ */
+$margin: 10;
+@for $i from 1 through $columns {
+  $j: $i * 10;
+  .m-#{$j} {
+    margin: #{$j}px; // 组装
+  }
+  .mt-#{$j} {
+    margin-top: #{$j}px; // 组装
+  }
+  .mb-#{$j} {
+    margin-bottom: #{$j}px; // 组装
+  }
+  .ml-#{$j} {
+    margin-left: #{$j}px; // 组装
+  }
+  .mr-#{$j} {
+    margin-right: #{$j}px; // 组装
+  }
+  .mtb-#{$j} {
+    margin-top: #{$j}px; // 组装
+    margin-bottom: #{$j}px; // 组装
+  }
+  .mlr-#{$j} {
+    margin-left: #{$j}px; // 组装
+    margin-right: #{$j}px; // 组装
+  }
+  .p-#{$j} {
+    padding: #{$j}px; // 组装
+  }
+  .pt-#{$j} {
+    padding-top: #{$j}px; // 组装
+  }
+  .pb-#{$j} {
+    padding-bottom: #{$j}px; // 组装
+  }
+  .pl-#{$j} {
+    padding-left: #{$j}px; // 组装
+  }
+  .pr-#{$j} {
+    padding-right: #{$j}px; // 组装
+  }
+  .ptb-#{$j} {
+    padding-top: #{$j}px; // 组装
+    padding-bottom: #{$j}px; // 组装
+  }
+  .plr-#{$j} {
+    padding-left: #{$j}px; // 组装
+    padding-right: #{$j}px; // 组装
+  }
+}
