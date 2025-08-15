@@ -1,17 +1,12 @@
 <template>
   <div class="layout">
     <el-container>
-      <el-header>1</el-header>
-      <!-- <el-header class="">
-        <el-button
-          type="primary"
-          v-for="button in buttonList"
-          :key="button.id"
-          @click="toView(button.path)"
-        >
+      <HeaderLayout></HeaderLayout>
+      <el-header class="">
+        <el-button type="primary" v-for="button in buttonList" :key="button.id" @click="toView(button.path)">
           {{ button.name }}
         </el-button>
-      </el-header> -->
+      </el-header>
       <el-main>
         <router-view></router-view>
       </el-main>
@@ -20,8 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import HeaderLayout from '@/views/Layout/Header/Header.vue'
 import { reactive } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
+defineOptions({
+  name: 'AppView',
+})
 const buttonList = reactive([
   { id: 1, name: 'home', path: '/' },
   { id: 2, name: 'about', path: '/about' },
@@ -41,8 +40,5 @@ function toView(path: string) {
   width: 100vw;
   height: 100vh;
   display: flex;
-  .el-header {
-    border-bottom: 1px solid #dbcae0
-  }
 }
 </style>
