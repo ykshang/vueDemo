@@ -1,18 +1,17 @@
 <template>
   <el-switch ref="switchRef" v-model="darkMode" :before-change="beforeChange">
     <template #active-action>
-      <DarkIcon />
+      <IconDark />
     </template>
     <template #inactive-action>
-      <LightIcon />
+      <IconLight />
     </template>
   </el-switch>
 </template>
 <script lang="ts" setup>
 import { isDark, toggleDark } from '@/composables/dark'
 import type { SwitchInstance } from 'element-plus'
-import DarkIcon from './Dark.vue'
-import LightIcon from './Light.vue'
+import { IconDark, IconLight } from '@/components/icons'
 import { ref, watch, nextTick } from 'vue'
 defineOptions({
   name: 'TogglerTheme',
