@@ -1,7 +1,7 @@
 import { useDark, useToggle } from '@vueuse/core'
 
 export const isDark = useDark({
-  storageKey: 'vitepress-theme-appearance',
+  storageKey: 'project-theme-data',
 })
 
 export const toggleDark = useToggle(isDark)
