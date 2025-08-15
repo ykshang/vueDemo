@@ -7,3 +7,5 @@ catalog:
   axios: ^1.11.0
   sass: ^1.89.2
   element-plus: ^2.10.6
+  '@vueuse/core': ^13.6.0
+

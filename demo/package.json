@@ -16,11 +16,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "element-plus": "catalog:",
     "pinia": "^3.0.3",
+    "sass": "catalog:",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1",
-    "sass": "catalog:",
-    "element-plus": "catalog:"
+    "@vueuse/core": "catalog:"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",
