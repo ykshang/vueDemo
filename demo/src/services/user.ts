@@ -9,6 +9,7 @@ const api = {
 
 //登录
 export const login = (params: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return post(api.login, params).then((res: any) => {
         if (res.code === 200) {
             localStorage.setItem('token', res.data.token);
