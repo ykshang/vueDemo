@@ -3,7 +3,12 @@
     <el-container>
       <HeaderLayout></HeaderLayout>
       <el-header class="">
-        <el-button type="primary" v-for="button in buttonList" :key="button.id" @click="toView(button.path)">
+        <el-button
+          type="primary"
+          v-for="button in buttonList"
+          :key="button.id"
+          @click="toView(button.path)"
+        >
           {{ button.name }}
         </el-button>
       </el-header>
@@ -16,8 +21,9 @@
 
 <script setup lang="ts">
 import HeaderLayout from '@/views/Layout/Header/Header.vue'
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
+
 defineOptions({
   name: 'AppView',
 })
@@ -33,6 +39,20 @@ const router = useRouter()
 function toView(path: string) {
   router.push(path)
 }
+import { login, getUserInfo } from '@/services/user'
+
+onMounted(async () => {
+  // 登录
+  const user = await login({
+    username: 'admin',
+    password: '123456789',
+  })
+  console.log(user)
+
+  // 获取用户信息
+  const users = await getUserInfo()
+  console.log(users)
+})
 </script>
 
 <style lang="scss" scoped>
