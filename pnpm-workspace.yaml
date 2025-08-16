@@ -8,4 +8,5 @@ catalog:
   sass: ^1.89.2
   element-plus: ^2.10.6
   '@vueuse/core': ^13.6.0
+  mockjs: ^1.1.0
 
