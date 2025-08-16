@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm -r run build",
-    "start": "pnpm -r run start",
-    "start:web": "pnpm --filter app-web run start",
-    "start:demo": "pnpm --filter app-demo run start"
+    "dev": "pnpm -r run dev"
   },
   "keywords": [],
   "author": "",
