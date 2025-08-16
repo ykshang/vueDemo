@@ -14,9 +14,19 @@ export default defineConfig(({ command }) => {
       vueDevTools(),
       viteMockServe({
         mockPath: './src/mock', // mock文件夹路径
-        enable: command === 'serve', // 只有开发环境才开启mock
+        enable: command !== 'serve',
+        // enable: command === 'serve', // 只有开发环境才开启mock
       }),
     ],
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
