@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "koa": "^3.0.1",
+    "koa-combine-routers": "^4.0.2",
+    "koa-router": "^14.0.0",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.17.1",
+    "nodemon": "^3.1.10"
+  }
+}
