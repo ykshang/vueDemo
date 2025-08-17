@@ -2,7 +2,7 @@
   <div class="ml-10">
     <el-dropdown>
       <span class="el-dropdown-link">
-        Dropdown List
+        用户名
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
@@ -21,6 +21,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ArrowDown } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 defineOptions({
   name: 'UserAvatar',

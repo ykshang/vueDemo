@@ -4,6 +4,10 @@
 .flex {
   display: flex;
 }
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
 $columns: 12;
 
 @for $i from 1 through $columns {
