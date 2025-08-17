@@ -16,7 +16,7 @@ $columns: 12;
  */
 $margin: 10;
 @for $i from 1 through $columns {
-  $j: $i * 10;
+  $j: $i * 5;
   .m-#{$j} {
     margin: #{$j}px; // 组装
   }

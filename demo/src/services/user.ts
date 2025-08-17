@@ -1,6 +1,6 @@
 // api/user.ts
 
-import { get, post } from '@/composables/axios';
+import { get, post } from '@/util/axios';
 
 const api = {
     login: '/api/user/login',

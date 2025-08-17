@@ -2,5 +2,5 @@
   <Parent></Parent>
 </template>
 <script setup lang="ts">
-import Parent from '@/views/attr/Parent.vue'
+import Parent from './attr/Parent.vue'
 </script>
