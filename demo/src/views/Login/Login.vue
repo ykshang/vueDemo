@@ -4,6 +4,9 @@
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24" class="login_col">
         <el-form class="login_form" :model="form" ref="formRef">
+          <div class="form_subject">
+            ERP智慧管理系统
+          </div>
           <el-form-item prop="username">
             <el-input :prefix-icon="User" v-model="form.username" placeholder="用户名"></el-input>
           </el-form-item>
@@ -12,17 +15,19 @@
           </el-form-item>
           <div class="flex flex-center mt-30">
             <el-button class="mlr-10" type="primary" @click="handleSubmit">登录</el-button>
-            <el-button class="mlr-10" type="primary" @click="handleRegister">注册</el-button>
+            <el-button class="mlr-10" type="primary" @click="onOpenRegister">注册</el-button>
           </div>
         </el-form>
       </el-col>
     </el-row>
   </div>
+  <Register @close="onCloseRegister" v-if="showRegisterFlg"></Register>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
+import Register from '../Register/Register.vue';
 const router = useRouter();
 
 defineOptions({
@@ -33,10 +38,21 @@ const form = reactive({
   username: '',
   password: '',
 })
+
+// 登录按钮
 const handleSubmit = async () => {
   router.push('/')
 };
-const handleRegister = async () => { };
+
+// 注册用户-弹出框
+const showRegisterFlg = ref(false);
+const onOpenRegister = () => {
+  showRegisterFlg.value = true;
+};
+const onCloseRegister = () => {
+  console.log("关闭注册弹窗");
+  showRegisterFlg.value = false;
+};
 
 </script>
 <style lang="scss" scoped>
@@ -53,11 +69,34 @@ const handleRegister = async () => { };
     align-items: center;
 
     .login_form {
-      width: 300px;
+      width: 20vw;
       margin: auto;
-      background-color: var(--el-color-primary-dark-2);
+      background: linear-gradient(135deg, #0d78be, #2483e3, #38aaf6, #2483e3, #0d78be);
+      background-size: 200% 200%;
+      animation: gradient-bg 10s linear infinite;
+      /* 初始背景色 */
+      /* 动画过渡 */
       padding: 40px;
       border-radius: 10px;
+
+      @keyframes gradient-bg {
+        0% {
+          background-position: 0% 0%;
+        }
+
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+
+      .form_subject {
+        color: #f1f1f1;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
     }
   }
 }
