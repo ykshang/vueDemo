@@ -71,9 +71,9 @@ const onCloseRegister = () => {
     .login_form {
       width: 20vw;
       margin: auto;
-      background: linear-gradient(135deg, #0d78be, #2483e3, #38aaf6, #2483e3, #0d78be);
+      background: linear-gradient(135deg, #016cb4, #0165c8, #038deac4, #0165c8, #016cb4, #0165c8, #038deac4, #0165c8, #016cb4);
       background-size: 200% 200%;
-      animation: gradient-bg 10s linear infinite;
+      animation: gradient-bg 20s linear infinite;
       /* 初始背景色 */
       /* 动画过渡 */
       padding: 40px;
