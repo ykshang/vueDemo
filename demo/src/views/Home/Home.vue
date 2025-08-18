@@ -42,7 +42,7 @@ const userInfo: UserInterface = {
 console.log(userInfo);
 onMounted(async () => {
   // 登录
-  axios.get('/api/users/userList').then((res) => {
+  axios.get('/api/user/userList').then((res) => {
     console.log(res)
   })
 })

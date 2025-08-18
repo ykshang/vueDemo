@@ -11,7 +11,8 @@
             <el-input :prefix-icon="User" v-model="form.username" placeholder="用户名"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input :prefix-icon="Lock" v-model="form.password" placeholder="密码" type="password"></el-input>
+            <el-input :prefix-icon="Lock" v-model="form.password" placeholder="密码" show-password
+              type="password"></el-input>
           </el-form-item>
           <div class="flex flex-center mt-30">
             <el-button class="mlr-10" type="primary" @click="handleSubmit">登录</el-button>

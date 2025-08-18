@@ -5,7 +5,15 @@ export interface UserInterface {
 }
 // 定义注册表单的数据类型
 export interface RegisterForm {
-  username: string;
+  userName: string;
   password: string;
   email: string;
+}
+
+export interface Response<T> {
+  code: number;
+  result: {
+    msg: string;
+    data: T;
+  }
 }

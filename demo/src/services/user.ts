@@ -1,27 +1,21 @@
 // api/user.ts
 
-import { get, post } from '@/util/axios';
+import { post } from '@/util/axios'
+import type { RegisterForm } from '@/types/user'
 
 const api = {
-    login: '/api/user/login',
-    users: '/api/user/info'
+  login: '/api/user/login',
+  users: '/api/user/info',
+  register: '/api/user/register',
 }
-
+// 注册
+export const register = (params: RegisterForm) => {
+  // console.log('注册参数', params)
+  return post(api.register, params).then((res) => {
+    // console.log('注册成功', res)
+    return Promise.resolve(res)
+  })
+}
 //登录
-export const login = (params: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return post(api.login, params).then((res: any) => {
-        if (res.code === 200) {
-            localStorage.setItem('token', res.data.token);
-        }
-        return Promise.resolve(res);
-    })
-}
-
 
 //获取用户信息
-export const getUserInfo = () => {
-    const token = localStorage.getItem('token');
-    if (!token) return Promise.reject(new Error('用户未登录'));
-    return get(api.users);
-}
