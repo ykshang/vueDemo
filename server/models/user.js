@@ -2,8 +2,9 @@ import mongoose from '../db.js' // 复用连接
 
 // 定义用户模型
 const userSchema = new mongoose.Schema({
-  name: String,
+  userName: String,
   email: String,
+  password: String,
 })
 
 // 导出模型
