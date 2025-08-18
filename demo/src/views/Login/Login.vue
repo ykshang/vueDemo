@@ -21,15 +21,14 @@
       </el-col>
     </el-row>
   </div>
-  <Register @close="onCloseRegister" v-if="showRegisterFlg"></Register>
+  <Register ref="registerRef" v-if="showRegisterFlg" @close="onCloseRegister"></Register>
 </template>
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import Register from '../Register/Register.vue';
 const router = useRouter();
-
 defineOptions({
   name: 'LoginView',
 })
@@ -43,16 +42,19 @@ const form = reactive({
 const handleSubmit = async () => {
   router.push('/')
 };
-
 // 注册用户-弹出框
 const showRegisterFlg = ref(false);
+const registerRef = ref();
 const onOpenRegister = () => {
   showRegisterFlg.value = true;
+  nextTick(() => {
+    registerRef.value.handleOpen()
+  })
 };
 const onCloseRegister = () => {
-  console.log("关闭注册弹窗");
+  console.log('dad关闭弹窗')
   showRegisterFlg.value = false;
-};
+}
 
 </script>
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="register-dialog">
-    <el-dialog title="用户注册" v-model="dialogVisible" width="600px" :closed="handleClose" draggable>
+    <el-dialog title="用户注册" v-model="dialogVisible" width="600px" @closed="handleClose" draggable>
       <el-form :model="registerForm" label-width="80px">
         <el-form-item label="用户名">
           <el-input v-model="registerForm.username"></el-input>
@@ -23,40 +23,37 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import type { RegisterForm } from '@/types/user';
-const emit = defineEmits(["close"]);
-
 defineOptions({
   name: 'RegisterView',
 })
-
+const emit = defineEmits(["close"]);
 // 控制弹窗显示
-const dialogVisible = ref(true);
-
+const dialogVisible = ref(false);
 // 初始化注册表单
 const registerForm = ref<RegisterForm>({
   username: '',
   password: '',
   email: ''
 });
-onMounted(() => {
-  dialogVisible.value = true;
-});
 const handleRegister = () => {
   // 这里可添加注册逻辑，如调用 API
   console.log('注册信息:', registerForm.value);
   // 注册成功后可关闭弹窗
-  // dialogVisible.value = false;
 };
+console.log("注册弹窗2233")
+const handleOpen = () => {
+  dialogVisible.value = true;
+}
 const handleClose = () => {
-  console.log(111);
-  emit("close");
+  dialogVisible.value = false;
+  console.log("关闭弹窗")
+  emit('close')
 }
+defineExpose({
+  handleOpen,
+  handleClose,
+});
 </script>
-
-<style scoped>
-.register-dialog {
-  /* 可添加样式 */
-}
-</style>
+<style scoped></style>
