@@ -45,11 +45,11 @@ const handleRegister = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register(toRaw(registerForm.value)).then((res: any) => {
     loading.value = false;
-    if (res?.code === 200) {
+    if (res.data) {
       handleClose()
       ElMessage.success('注册成功')
     } else {
-      ElMessage.error(res?.result?.msg)
+      ElMessage.error(res?.msg)
     }
   })
   // 注册成功后可关闭弹窗

@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 
 const router = new Router({ prefix: '/user' })
-import { getUserList, registerUser } from '../service/user.js'
+import { getUserList, registerUser, login } from '../service/user.js'
 
 router.get('/userList', async (ctx) => {
   const userList = await getUserList()
@@ -11,12 +11,12 @@ router.get('/userList', async (ctx) => {
 router.post('/register', async (ctx) => {
   const res = await registerUser(ctx.request.body)
   ctx.body = {
-    code: 200,
-    result: {
-      msg: '注册成功',
-      data: res,
-    },
+    msg: '注册成功',
+    data: res,
   }
 })
-
+router.post('/login', async (ctx) => {
+  const res = await login(ctx.request.body)
+  ctx.body = res
+})
 export default router

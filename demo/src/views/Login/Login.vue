@@ -3,15 +3,15 @@
     <el-row class="flex-1">
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24" class="login_col">
-        <el-form class="login_form" :model="form" ref="formRef">
+        <el-form class="login_form" :model="formData" ref="formRef">
           <div class="form_subject">
             ERP智慧管理系统
           </div>
           <el-form-item prop="username">
-            <el-input :prefix-icon="User" v-model="form.username" placeholder="用户名"></el-input>
+            <el-input :prefix-icon="User" v-model="formData.userName" placeholder="用户名"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input :prefix-icon="Lock" v-model="form.password" placeholder="密码" show-password
+            <el-input :prefix-icon="Lock" v-model="formData.password" placeholder="密码" show-password
               type="password"></el-input>
           </el-form-item>
           <div class="flex flex-center mt-30">
@@ -29,19 +29,32 @@ import { ref, reactive, nextTick } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import Register from '../Register/Register.vue';
+import { login } from '@/services/user';
+import { ElMessage } from 'element-plus';
 const router = useRouter();
 defineOptions({
   name: 'LoginView',
 })
 
-const form = reactive({
-  username: '',
+const formData = reactive({
+  userName: '',
   password: '',
 })
 
 // 登录按钮
 const handleSubmit = async () => {
-  router.push('/')
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  login(formData).then((res: any) => {
+    console.log(res);
+    if (res?.status === 'success') {
+      ElMessage.success('登录成功')
+      router.push('/')
+    } else {
+      ElMessage.error('用户名或密码错误');
+    }
+    // router.push('/')
+  })
+  // router.push('/')
 };
 // 注册用户-弹出框
 const showRegisterFlg = ref(false);

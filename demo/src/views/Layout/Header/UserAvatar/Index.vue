@@ -13,6 +13,9 @@
             <span @click="loginout">个人中心</span>
           </el-dropdown-item>
           <el-dropdown-item>
+            <span @click="loginout">切换主题</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
             <span @click="loginout">退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>

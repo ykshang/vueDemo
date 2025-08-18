@@ -16,7 +16,6 @@
 
 <script setup lang="ts">
 import HeaderLayout from '@/views/Layout/Header/Header.vue'
-import type { UserInterface } from '@/types/user'
 import { onMounted, reactive } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 import axios from '@/util/axios';
@@ -35,11 +34,6 @@ const router = useRouter()
 function toView(path: string) {
   router.push(path)
 }
-const userInfo: UserInterface = {
-  id: 1,
-  name: '张三',
-}
-console.log(userInfo);
 onMounted(async () => {
   // 登录
   axios.get('/api/user/userList').then((res) => {
