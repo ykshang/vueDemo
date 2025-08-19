@@ -21,7 +21,7 @@ async function connectDB() {
     })
 
     isConnected = true
-    console.log('Database connected successfully')
+    console.log('Database connected successfully !!!!')
   } catch (err) {
     console.error('Database connection error:', err)
     // 重试连接
