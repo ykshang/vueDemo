@@ -5,7 +5,6 @@ import { getUserList, registerUser, login } from '../service/user.js'
 
 router.get('/userList', async (ctx) => {
   const userList = await getUserList()
-  console.log(userList)
   ctx.body = userList
 })
 router.post('/register', async (ctx) => {
