@@ -1,11 +1,14 @@
 <template>
-  <div class="ml-10">
+  <div class="user">
+    <IconAvatar class="user_avatar" />
     <el-dropdown>
       <span class="el-dropdown-link">
-        用户名
-        <el-icon class="el-icon--right">
-          <arrow-down />
-        </el-icon>
+        <span class="username">
+          用户名
+          <el-icon class="">
+            <arrow-down />
+          </el-icon>
+        </span>
       </span>
       <template #dropdown>
         <el-dropdown-menu>
@@ -26,6 +29,7 @@
 <script setup lang="ts">
 import { ArrowDown } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
+import { IconAvatar } from '@/components/icons'
 defineOptions({
   name: 'UserAvatar',
 })
@@ -35,9 +39,31 @@ const loginout = () => {
 }
 </script>
 <style lang="scss" scoped>
-.el-dropdown-link {
-  cursor: pointer;
+.user {
   display: flex;
+  justify-content: center;
   align-items: center;
+
+  .user_avatar {
+    height: 36px;
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .el-dropdown-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    // color: #fff;
+    .username {
+      font-size: 14px;
+
+      &:hover {
+        color: var(--el-color-primary);
+      }
+    }
+
+  }
 }
 </style>
