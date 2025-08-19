@@ -1,23 +1,20 @@
 <template>
-  <div class="aside">
-    <div class="project_title">
-      <IconVue class="icon" />
-      <span v-show="!isCollapse">Vue Admin</span>
-    </div>
-    <el-menu class="main_menu" default-active="2-1" :collapse="isCollapse">
-      <el-sub-menu v-for="menu1 in menuData" :index="menu1.index" :key="menu1.index">
-        <template #title>
-          <component class="menu_icon" :is="menu1.icon"></component>
-          <span class="menu_title">{{ menu1.title }}</span>
-        </template>
-        <el-menu-item v-for="menu2 in menu1.subMenu" :index="menu2.index" @click="handleClick(menu2)"
-          :key="menu2.index">
-          <component class="menu_icon" :is="menu2.icon"></component>
-          <span class="menu_title">{{ menu2.title }}</span>
-        </el-menu-item>
-      </el-sub-menu>
-    </el-menu>
+  <div class="project_title">
+    <IconVue class="icon" />
+    <span v-show="!isCollapse">Vue Admin</span>
   </div>
+  <el-menu class="main_menu" default-active="2-1" :collapse="isCollapse">
+    <el-sub-menu v-for="menu1 in menuData" :index="menu1.index" :key="menu1.index">
+      <template #title>
+        <component class="menu_icon" :is="menu1.icon"></component>
+        <span class="menu_title">{{ menu1.title }}</span>
+      </template>
+      <el-menu-item v-for="menu2 in menu1.subMenu" :index="menu2.index" @click="handleClick(menu2)" :key="menu2.index">
+        <component class="menu_icon" :is="menu2.icon"></component>
+        <span class="menu_title">{{ menu2.title }}</span>
+      </el-menu-item>
+    </el-sub-menu>
+  </el-menu>
 </template>
 
 <script setup lang="ts">
@@ -37,41 +34,32 @@ const isCollapse = ref(false);
 // 监听菜单展开关闭事件
 emitter.on("menu:expanded", (value) => {
   isCollapse.value = value as boolean;
-  console.log("menu:expand事件被触发", value);
 });
 </script>
 <style lang="scss" scoped>
-.aside {
+.project_title {
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #333;
+  margin: auto;
   display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, .12);
-  margin-right: 1px;
+  justify-items: center;
+  align-items: center;
 
-  .project_title {
-    height: 60px;
-    line-height: 60px;
-    font-size: 20px;
-    color: #333;
-    margin: auto;
-    display: flex;
-    justify-items: center;
-    align-items: center;
-
-    .icon {
-      width: 30px;
-      height: auto;
-      margin-right: 5px;
-    }
+  .icon {
+    width: 30px;
+    height: auto;
+    margin-right: 5px;
   }
+}
 
-  .main_menu {
-    flex: 1;
-  }
-
+.main_menu {
+  flex: 1;
 }
 
 .menu_icon {
-  width: 16px;
+  width: 18px;
   height: auto;
   margin-right: 5px;
 }

@@ -1,39 +1,29 @@
 <template>
-  <el-container class="layout">
-    <AsideLayout class="aside"></AsideLayout>
-    <el-main class="main">
-      <HeaderLayout class="header"></HeaderLayout>
-      <el-header class="">
-        <el-button type="primary" v-for="button in buttonList" :key="button.id" @click="toView(button.path)">
-          {{ button.name }}
-        </el-button>
+  <el-container>
+    <el-aside class="aside">
+      <AsideLayout></AsideLayout>
+    </el-aside>
+    <el-container>
+      <el-header>
+        <HeaderLayout class="header"></HeaderLayout>
       </el-header>
-      <router-view></router-view>
-    </el-main>
+      <el-main>
+        <MainLayout></MainLayout>
+      </el-main>
+    </el-container>
   </el-container>
 </template>
 
 <script setup lang="ts">
-import HeaderLayout from '@/views/Layout/Header/Header.vue'
-import AsideLayout from '@/views/Layout/Aside/Aside.vue'
-import { onMounted, reactive } from 'vue'
-import { RouterView, useRouter } from 'vue-router'
+import HeaderLayout from './Header/Header.vue'
+import AsideLayout from './Aside/Aside.vue'
+import MainLayout from './Main/Main.vue'
+import { onMounted } from 'vue'
 import axios from '@/util/axios';
 
 defineOptions({
   name: 'AppView',
 })
-const buttonList = reactive([
-  { id: 1, name: 'home', path: '/' },
-  { id: 2, name: 'about', path: '/about' },
-  { id: 4, name: 'attr', path: '/AttrView' },
-  { id: 5, name: 'refs', path: '/refs' },
-  { id: 6, name: 'inject', path: '/inject' },
-])
-const router = useRouter()
-function toView(path: string) {
-  router.push(path)
-}
 onMounted(async () => {
   // 登录
   axios.get('/api/user/userList').then((res) => {
@@ -43,22 +33,11 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.layout {
-  width: 100vw;
+.aside {
   height: 100vh;
-  background-color: #f5f5f5;
-
-  .aside {
-    height: 100vh;
-    background-color: #fff;
-  }
-
-  .main {
-    padding: 0;
-
-    .header {
-      background: #fff;
-    }
-  }
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: min-content;
 }
 </style>

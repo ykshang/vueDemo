@@ -1,5 +1,7 @@
 <template>
-  <RouterView></RouterView>
+  <div class="app">
+    <RouterView></RouterView>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -11,9 +13,7 @@ defineOptions({
 </script>
 
 <style lang="scss" scoped>
-.layout {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+.app {
+  background: #f0f0f0;
 }
 </style>

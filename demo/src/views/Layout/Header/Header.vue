@@ -31,7 +31,7 @@ const clickExpand = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #dbcae0;
+  background: #fff;
 
   // background-color: var(--el-color-primary)
   .expand_btn {
