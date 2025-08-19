@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-// import TogglerTheme from './TogglerTheme/TogglerTheme.vue'
-import UserAvatar from './UserAvatar/Index.vue'
+// import TogglerTheme from './TogglerTheme.vue'
+import UserAvatar from './UserAvatar.vue'
 defineOptions({
   name: 'HeaderLayout',
 })
