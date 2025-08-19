@@ -28,12 +28,12 @@
 </template>
 <script setup lang="ts">
 import { ArrowDown } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 import { IconAvatar } from '@/components/icons'
 defineOptions({
   name: 'UserAvatar',
 })
-const router = useRouter();
+const router = useRouter()
 const loginout = () => {
   router.push('/login')
 }
@@ -55,6 +55,7 @@ const loginout = () => {
     display: flex;
     align-items: center;
     margin-right: 10px;
+
     // color: #fff;
     .username {
       font-size: 14px;
@@ -63,7 +64,6 @@ const loginout = () => {
         color: var(--el-color-primary);
       }
     }
-
   }
 }
 </style>

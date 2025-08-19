@@ -46,7 +46,6 @@ emitter.on("menu:expanded", (value) => {
   display: flex;
   justify-items: center;
   align-items: center;
-
   .icon {
     width: 30px;
     height: auto;
@@ -65,6 +64,8 @@ emitter.on("menu:expanded", (value) => {
 }
 
 .menu_title {
-  width: 200px;
+  font-size: 16px;
+  width: 180px;
+  font-weight: 400;
 }
 </style>

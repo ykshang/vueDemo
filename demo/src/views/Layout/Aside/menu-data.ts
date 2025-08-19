@@ -17,7 +17,7 @@ export default <OperationMenu[]>[
     subMenu: [
       {
         index: '1-1',
-        title: '首页1',
+        title: '首页',
         icon: HomeFilled,
       },
       {

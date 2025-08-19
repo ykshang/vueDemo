@@ -4,8 +4,8 @@
       <AsideLayout></AsideLayout>
     </el-aside>
     <el-container>
-      <el-header>
-        <HeaderLayout class="header"></HeaderLayout>
+      <el-header class="header">
+        <HeaderLayout></HeaderLayout>
       </el-header>
       <el-main>
         <MainLayout></MainLayout>
@@ -39,5 +39,10 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   width: min-content;
+  margin-right: 1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.header {
+  padding: 0;
 }
 </style>
