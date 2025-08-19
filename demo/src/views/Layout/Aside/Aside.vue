@@ -64,16 +64,15 @@ emitter.on("menu:expanded", (value) => {
 
   .main_menu {
     flex: 1;
-
-    .menu_icon {
-      width: 16px;
-      height: auto;
-      margin-right: 5px;
-    }
-
-    ::deep(.el-sub-menu__title) {
-      font-size: 20px;
-    }
   }
+
+}
+.menu_icon {
+  width: 16px;
+  height: auto;
+  margin-right: 5px;
+}
+.menu_title {
+  width: 200px;
 }
 </style>
