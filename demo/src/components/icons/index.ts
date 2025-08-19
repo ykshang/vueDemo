@@ -6,6 +6,7 @@ import IconLight from './IconLight.vue'
 import IconSupport from './IconSupport.vue'
 import IconTooling from './IconTooling.vue'
 import IconAvatar from './IconAvatar.vue'
+import IconVue from './IconVue.vue'
 
 export {
   IconDark,
@@ -16,4 +17,5 @@ export {
   IconSupport,
   IconTooling,
   IconAvatar,
+  IconVue,
 }

@@ -1,21 +1,21 @@
 <template>
-  <div class="layout">
-    <el-container>
-      <HeaderLayout></HeaderLayout>
+  <el-container class="layout">
+    <AsideLayout class="aside"></AsideLayout>
+    <el-main class="main">
+      <HeaderLayout class="header"></HeaderLayout>
       <el-header class="">
         <el-button type="primary" v-for="button in buttonList" :key="button.id" @click="toView(button.path)">
           {{ button.name }}
         </el-button>
       </el-header>
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-    </el-container>
-  </div>
+      <router-view></router-view>
+    </el-main>
+  </el-container>
 </template>
 
 <script setup lang="ts">
 import HeaderLayout from '@/views/Layout/Header/Header.vue'
+import AsideLayout from '@/views/Layout/Aside/Aside.vue'
 import { onMounted, reactive } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 import axios from '@/util/axios';
@@ -46,6 +46,21 @@ onMounted(async () => {
 .layout {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  background-color: #f5f5f5;
+
+  .aside {
+    height: 100vh;
+    width: 300px;
+    border: 1px solid #dbcae0;
+    background-color: #fff;
+  }
+
+  .main {
+    padding: 0;
+
+    .header {
+      background: #fff;
+    }
+  }
 }
 </style>
