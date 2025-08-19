@@ -45,6 +45,7 @@ emitter.on("menu:expanded", (value) => {
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, .12);
+  margin-right: 1px;
 
   .project_title {
     height: 60px;
