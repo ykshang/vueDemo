@@ -1,3 +1,4 @@
+import type { OperationMenu } from '@/types/menu'
 import {
   Checked,
   HomeFilled,
@@ -8,7 +9,7 @@ import {
   UserFilled,
 } from '@element-plus/icons-vue'
 
-export default [
+export default <OperationMenu[]>[
   {
     index: '1',
     title: '首页',

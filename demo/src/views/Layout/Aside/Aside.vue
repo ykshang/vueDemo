@@ -1,34 +1,55 @@
 <template>
   <div class="aside">
-    <div class="title">
+    <div class="project_title">
       <IconVue class="icon" />
-      Vue Admin
+      <span v-show="!isCollapse">Vue Admin</span>
     </div>
-    <MenuLayout></MenuLayout>
+    <el-menu class="main_menu" default-active="2-1" :collapse="isCollapse">
+      <el-sub-menu v-for="menu1 in menuData" :index="menu1.index" :key="menu1.index">
+        <template #title>
+          <component class="menu_icon" :is="menu1.icon"></component>
+          <span class="menu_title">{{ menu1.title }}</span>
+        </template>
+        <el-menu-item v-for="menu2 in menu1.subMenu" :index="menu2.index" @click="handleClick(menu2)"
+          :key="menu2.index">
+          <component class="menu_icon" :is="menu2.icon"></component>
+          <span class="menu_title">{{ menu2.title }}</span>
+        </el-menu-item>
+      </el-sub-menu>
+    </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
 import { IconVue } from '@/components/icons'
-import MenuLayout from '@/views/Layout/Menu/Menu.vue'
-
+import { ref } from 'vue'
+import emitter from '@/util/emitter'
+import menuData from './menu-data'
+import type { OperationMenuItem } from '@/types/menu'
 defineOptions({
   name: 'AsideLayout',
 })
 
+function handleClick(menu2: OperationMenuItem) {
+  console.log(menu2);
+}
+const isCollapse = ref(false);
+// 监听菜单展开关闭事件
+emitter.on("menu:expanded", (value) => {
+  isCollapse.value = value as boolean;
+  console.log("menu:expand事件被触发", value);
+});
 </script>
 <style lang="scss" scoped>
 .aside {
   display: flex;
   flex-direction: column;
 
-  .title {
+  .project_title {
     height: 60px;
     line-height: 60px;
-    text-align: center;
     font-size: 20px;
     color: #333;
-    display: flex;
     margin: auto;
     display: flex;
     justify-items: center;
@@ -41,8 +62,18 @@ defineOptions({
     }
   }
 
-  .menu {
+  .main_menu {
     flex: 1;
+
+    .menu_icon {
+      width: 16px;
+      height: auto;
+      margin-right: 5px;
+    }
+
+    ::deep(.el-sub-menu__title) {
+      font-size: 20px;
+    }
   }
 }
 </style>
