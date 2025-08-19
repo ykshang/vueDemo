@@ -44,6 +44,7 @@ emitter.on("menu:expanded", (value) => {
 .aside {
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .12);
 
   .project_title {
     height: 60px;
@@ -67,11 +68,13 @@ emitter.on("menu:expanded", (value) => {
   }
 
 }
+
 .menu_icon {
   width: 16px;
   height: auto;
   margin-right: 5px;
 }
+
 .menu_title {
   width: 200px;
 }
