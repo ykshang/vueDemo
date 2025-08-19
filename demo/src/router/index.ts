@@ -3,7 +3,7 @@ const routers = [
   {
     path: '/', // 主页
     name: 'home',
-    component: () => import('@/views/Home/Home.vue'),
+    component: () => import('@/views/Layout/Home.vue'),
     children: [
       {
         path: '/about',

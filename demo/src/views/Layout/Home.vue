@@ -50,8 +50,6 @@ onMounted(async () => {
 
   .aside {
     height: 100vh;
-    width: 300px;
-    border: 1px solid #dbcae0;
     background-color: #fff;
   }
 
