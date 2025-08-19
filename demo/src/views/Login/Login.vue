@@ -45,7 +45,6 @@ const formData = reactive({
 const handleSubmit = async () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   login(formData).then((res: any) => {
-    console.log(res);
     if (res?.status === 'success') {
       ElMessage.success('登录成功')
       router.push('/')
@@ -66,7 +65,6 @@ const onOpenRegister = () => {
   })
 };
 const onCloseRegister = () => {
-  console.log('dad关闭弹窗')
   showRegisterFlg.value = false;
 }
 
