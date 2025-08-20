@@ -23,12 +23,13 @@ import { ref } from 'vue'
 import emitter from '@/util/emitter'
 import menuData from './menu-data'
 import type { OperationMenuItem } from '@/types/menu'
+import router from '@/router'
 defineOptions({
   name: 'AsideLayout',
 })
 
 function handleClick(menu2: OperationMenuItem) {
-  console.log(menu2);
+  router.push(menu2.path as string);
 }
 const isCollapse = ref(false);
 // 监听菜单展开关闭事件

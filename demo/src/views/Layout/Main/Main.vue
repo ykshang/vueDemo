@@ -1,9 +1,79 @@
 <template>
-  <RouterView></RouterView>
+  <div class="tab-pane">
+    <el-tabs v-model="editableTabsValue" class="demo-tabs" closable @tab-remove="removeTab">
+      <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name">
+      </el-tab-pane>
+    </el-tabs>
+    <RouterView></RouterView>
+    <div>11122</div>
+    <div style="margin-bottom: 20px">
+      <el-button size="small" @click="addTab(editableTabsValue)">
+        add tab
+      </el-button>
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
+import { ref } from 'vue'
+import type { TabPaneName } from 'element-plus'
 defineOptions({
   name: 'MainView',
 })
+
+let tabIndex = 2
+const editableTabsValue = ref('2')
+const editableTabs = ref([
+  {
+    title: 'Tab 1',
+    name: '1',
+    content: 'Tab 1 content',
+  },
+  {
+    title: 'Tab 2',
+    name: '2',
+    content: 'Tab 2 content',
+  },
+])
+
+const addTab = (targetName: string) => {
+  console.log('targetName', targetName)
+  const newTabName = `${++tabIndex}`
+  editableTabs.value.push({
+    title: 'New Tab',
+    name: newTabName,
+    content: 'New Tab content',
+  })
+  editableTabsValue.value = newTabName
+}
+const removeTab = (targetName: TabPaneName) => {
+  const tabs = editableTabs.value
+  let activeName = editableTabsValue.value
+  if (activeName === targetName) {
+    tabs.forEach((tab, index) => {
+      if (tab.name === targetName) {
+        const nextTab = tabs[index + 1] || tabs[index - 1]
+        if (nextTab) {
+          activeName = nextTab.name
+        }
+      }
+    })
+  }
+
+  editableTabsValue.value = activeName
+  editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
+}
 </script>
+
+<style>
+.tab-pane {
+  background: #fff;
+}
+
+.demo-tabs>.el-tabs__content {
+  padding: 32px;
+  color: #6b778c;
+  font-size: 32px;
+  font-weight: 600;
+}
+</style>

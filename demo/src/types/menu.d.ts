@@ -5,5 +5,5 @@ export interface OperationMenu {
   subMenu?: OperationMenuItem[]
 }
 export interface OperationMenuItem extends OperationMenu {
-  router?: string
+  path?: string
 }

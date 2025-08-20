@@ -7,7 +7,7 @@
       <el-header class="header">
         <HeaderLayout></HeaderLayout>
       </el-header>
-      <el-main>
+      <el-main class="main">
         <MainLayout></MainLayout>
       </el-main>
     </el-container>
@@ -43,6 +43,12 @@ onMounted(async () => {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 .header {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+}
+.main {
   padding: 0;
 }
 </style>

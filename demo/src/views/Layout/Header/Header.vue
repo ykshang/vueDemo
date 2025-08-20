@@ -1,13 +1,11 @@
 <template>
-  <el-header class="header">
-    <span @click="clickExpand">
-      <Expand v-if="isExpandFlag" class="expand_btn"></Expand>
-      <Fold v-else class="expand_btn"></Fold>
-    </span>
-    <div class="flex-1">1</div>
-    <!-- <TogglerTheme></TogglerTheme> -->
-    <UserAvatar></UserAvatar>
-  </el-header>
+  <span @click="clickExpand">
+    <Expand v-if="isExpandFlag" class="expand_btn"></Expand>
+    <Fold v-else class="expand_btn"></Fold>
+  </span>
+  <div class="flex-1">1</div>
+  <!-- <TogglerTheme></TogglerTheme> -->
+  <UserAvatar></UserAvatar>
 </template>
 
 <script setup lang="ts">
