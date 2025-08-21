@@ -37,4 +37,8 @@ const isCollapse = ref(false)
   font-size: 16px;
   font-weight: 400;
 }
+
+.ep-menu-item.is-active {
+  background-color: var(--ep-menu-hover-bg-color);
+}
 </style>
