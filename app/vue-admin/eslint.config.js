@@ -5,6 +5,6 @@ export default antfu({
   unocss: true,
   vue: true,
   rules: {
-    'brace-style': ['error', '1tbs', { allowSingleLine: true }],
+    'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
   },
 })
