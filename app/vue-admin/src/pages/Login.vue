@@ -17,7 +17,7 @@ function handleSubmit() {
   login(formData).then((res: any) => {
     if (res?.status === 'success') {
       ElMessage.success('登录成功')
-      router.push('/')
+      router.push('/Home/HomePage')
     }
     else {
       ElMessage.error('用户名或密码错误')
