@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 onMounted(() => {
-  // router.push('Home/HomePage')
+  router.push('Home/HomePage')
 })
 </script>
 
@@ -18,5 +18,6 @@ onMounted(() => {
   color: var(--ep-text-color-primary);
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 </style>
