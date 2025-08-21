@@ -9,7 +9,7 @@ const isCollapse = ref(false)
   <div h="full" w-250px flex flex-col>
     <div h-60px flex items-center justify-center>
       <IconVue mr-10px h-a w-35px />
-      <span v-show="!isCollapse">Vue Admin</span>
+      <span v-show="!isCollapse" class="text-2xl font-bold">Vue Admin</span>
     </div>
     <el-menu router class="flex-1" default-active="/Home/HomePage" :collapse="isCollapse">
       <el-sub-menu v-for="menu1 in menuData" :key="menu1.index" :index="menu1.index">
