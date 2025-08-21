@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 
 const count = ref(0)
 const input = ref('element-plus')
 
 const curDate = ref('')
-
-function toast() {
-  ElMessage.success('Hello')
-}
 
 const value1 = ref(true)
 </script>
@@ -20,21 +15,6 @@ const value1 = ref(true)
       <Welcome />
     </el-col>
   </el-row>
-
-  <p>
-    See
-    <a href="https://element-plus.org" target="_blank">element-plus</a> for more
-    information.
-  </p>
-
-  <!-- example components -->
-  <div class="mb-4">
-    <el-button size="large" @click="toast">
-      El Message
-    </el-button>
-
-    <MessageBoxDemo />
-  </div>
 
   <div class="my-2 flex flex-wrap items-center justify-center text-center">
     <el-button @click="count++">
@@ -81,20 +61,9 @@ const value1 = ref(true)
     <el-input v-model="input" class="m-2" style="width: 200px" />
     <el-date-picker v-model="curDate" class="m-2" type="date" placeholder="Pick a day" />
   </div>
-
-  <p>For example, we can custom primary color to 'green'.</p>
-
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test components.
-  </p>
-  <p>
-    Edit
-    <code>styles/element/var.scss</code> to test scss variables.
-  </p>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .ep-button {
   margin: 4px;
 }

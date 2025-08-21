@@ -4,19 +4,19 @@ $--colors: (
     'base': #038ed4,
   ),
   'success': (
-    'base': green,
+    'base': #67C23A,
   ),
   'warning': (
-    'base': #f2711c,
+    'base': #E6A23C,
   ),
   'danger': (
-    'base': #db2828,
+    'base': #F56C6C,
   ),
   'error': (
     'base': #db2828,
   ),
   'info': (
-    'base': #42b8dd,
+    'base': #909399,
   ),
 );
 // 聚合一些内部的变量，用于生成主题系统的 css var变量
