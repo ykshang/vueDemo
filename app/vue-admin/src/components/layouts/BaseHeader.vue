@@ -11,7 +11,7 @@ function loginout() {
 </script>
 
 <template>
-  <div class="header bg-[--ep-bg-color]">
+  <div class="header h-60px bg-[--ep-bg-color]">
     <div flex-1>
       {{ '' }}
     </div>
@@ -47,7 +47,6 @@ function loginout() {
 <style lang="scss">
 .header {
   display: flex;
-  height: 60px;
   border-bottom: solid 1px var(--ep-menu-border-color);
   align-items: center;
 

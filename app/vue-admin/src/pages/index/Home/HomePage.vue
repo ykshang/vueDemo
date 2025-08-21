@@ -2,8 +2,6 @@
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 
-defineProps<{ msg: string }>()
-
 const count = ref(0)
 const input = ref('element-plus')
 
@@ -22,9 +20,6 @@ const value1 = ref(true)
       <Welcome />
     </el-col>
   </el-row>
-  <h1 color="$ep-color-primary">
-    {{ msg }}
-  </h1>
 
   <p>
     See
@@ -104,7 +99,7 @@ const value1 = ref(true)
   margin: 4px;
 }
 
-.ep-button+.ep-button {
+.ep-button + .ep-button {
   margin-left: 0;
   margin: 4px;
 }
