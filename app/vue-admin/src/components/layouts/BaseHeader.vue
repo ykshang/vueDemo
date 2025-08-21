@@ -13,7 +13,7 @@ function loginout() {
 <template>
   <div class="header">
     <div flex-1>
-      some code
+      {{ '' }}
     </div>
     <div class="mr-15px flex items-center">
       <IconAvatar mr-10px h-30px w-30px />
@@ -29,10 +29,13 @@ function loginout() {
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>
-              <span @click="toggleDark()">切换主题</span>
+              <span w-80px text-center>个人中心</span>
             </el-dropdown-item>
             <el-dropdown-item>
-              <span @click="loginout">退出登录</span>
+              <span w-80px text-center @click="toggleDark()">切换主题</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <span w-80px text-center @click="loginout">退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
