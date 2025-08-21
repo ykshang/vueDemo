@@ -33,7 +33,4 @@ onMounted(() => {
       </div>
     </div>
   </el-card>
-  <div item-center h-300px w-300px flex bg-red>
-    1122
-  </div>
 </template>
