@@ -1,0 +1,44 @@
+// 基准色变量
+$--colors: (
+  'primary': (
+    'base': #038ed4,
+  ),
+  'success': (
+    'base': green,
+  ),
+  'warning': (
+    'base': #f2711c,
+  ),
+  'danger': (
+    'base': #db2828,
+  ),
+  'error': (
+    'base': #db2828,
+  ),
+  'info': (
+    'base': #42b8dd,
+  ),
+);
+// 聚合一些内部的变量，用于生成主题系统的 css var变量
+// --ep-color-danger
+// --ep-color-danger-light-3
+@forward 'element-plus/theme-chalk/src/mixins/config.scss' with (
+  $namespace: 'ep'
+);
+
+// --ep-color-danger-light-3// 根据 $--colors 里的颜色生成主题，该主题为日间模式
+// comment next lines to use default color
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  // do not use same name, it will override.
+  $colors: $--colors,
+  $button-padding-horizontal: ('default': 50px)
+);
+
+// if you want to import all
+// @use 'element-plus/theme-chalk/src/index.scss' as *;
+
+// custom dark variables
+@use './dark.scss';
+
+// You can comment it to hide debug info.
+// @debug $--colors;
