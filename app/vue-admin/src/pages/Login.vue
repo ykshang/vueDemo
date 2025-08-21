@@ -37,7 +37,7 @@ function onOpenRegister() {
     <div class="login_container">
       <div class="login-form">
         <el-form class="login_form" :model="formData" size="large">
-          <div class="mb-40px mt-10px flex-1 text-3xl text-white font-bold">
+          <div class="mb-40px mt-10px flex-1 text-3xl text-white color-[#FFF] font-bold">
             ERP智慧管理系统
           </div>
           <el-form-item prop="username">
@@ -98,6 +98,28 @@ function onOpenRegister() {
       100% {
         background-position: 100% 100%;
       }
+    }
+
+    ::v-deep(.ep-input__wrapper) {
+      background-color: #fff;
+      box-shadow: 0 0 0 1px #dcdfe6;
+      color: #303133;
+    }
+
+    ::v-deep(.ep-button) {
+      &:hover {
+        color: #fff;
+        border-color: rgb(123, 205, 231);
+        background-color: rgb(123, 205, 231);
+      }
+    }
+
+    ::v-deep(.ep-input__prefix) {
+      color: #cfd3dc;
+    }
+
+    ::v-deep(.ep-input__inner) {
+      color: #303133;
     }
   }
 }
