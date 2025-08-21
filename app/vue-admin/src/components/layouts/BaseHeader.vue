@@ -11,7 +11,7 @@ function loginout() {
 </script>
 
 <template>
-  <div class="header">
+  <div class="header bg-[--ep-bg-color]">
     <div flex-1>
       {{ '' }}
     </div>
