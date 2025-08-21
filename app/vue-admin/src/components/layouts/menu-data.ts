@@ -53,4 +53,16 @@ export default [
       },
     ],
   },
+  {
+    index: '/Components',
+    title: '组件',
+    icon: Setting,
+    subMenu: [
+      {
+        index: '/Components/IconList',
+        title: '图标列表',
+        icon: Setting,
+      },
+    ],
+  },
 ]
