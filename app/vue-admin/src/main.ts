@@ -20,8 +20,7 @@ import 'element-plus/theme-chalk/src/message.scss'
 import 'element-plus/theme-chalk/src/message-box.scss'
 import 'element-plus/theme-chalk/src/notification.scss'
 
-// eslint-disable-next-line no-console
-console.log(routes)
+// console.log(routes)
 
 // 引入 element-plus 的全量 css
 // import 'element-plus/theme-chalk/src/index.scss'
@@ -37,10 +36,12 @@ app.use(pinia)
 app.use(ElementPlus)
 
 // 引入路由
-app.use(createRouter({
-  history: createWebHistory(),
-  routes,
-}))
+app.use(
+  createRouter({
+    history: createWebHistory(),
+    routes,
+  }),
+)
 app.mount('#app')
 
 // SSG 方式启动
