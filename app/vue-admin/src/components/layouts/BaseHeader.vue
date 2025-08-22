@@ -1,14 +1,21 @@
 <script lang="ts" setup>
 import { ArrowDown } from '@element-plus/icons-vue'
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { toggleDark } from '~/composables/util'
+import { useUserInfoStore } from '~/stores/userIfnoStroe'
 
 const router = useRouter()
 
 function loginout() {
   router.push('/Login')
 }
-const avatarUrl = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+/**
+ * 获取当前已登录的用户信息
+ */
+const userInfoStore = useUserInfoStore()
+const { currentUserInfo } = storeToRefs(userInfoStore)
 </script>
 
 <template>
@@ -18,12 +25,12 @@ const avatarUrl = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcp
     </div>
     <div class="mr-15px flex items-center">
       <!-- <IconAvatar mr-10px h-30px w-30px /> -->
-      <el-avatar shape="circle" :src="avatarUrl" mr-10px />
+      <el-avatar shape="circle" :src="currentUserInfo.avatarUrl" mr-10px cursor-pointer />
       <el-dropdown>
         <span class="el-dropdown-link">
           <span class="username">
-            用户名
-            <el-icon>
+            {{ currentUserInfo.userName }}
+            <el-icon ml-5px>
               <ArrowDown />
             </el-icon>
           </span>
