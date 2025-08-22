@@ -16,7 +16,7 @@ import App from './App.vue'
 /**
  * 自定义的全局样式，重置默认样式
  */
-import '~/styles/index.scss'
+import '~/assets/styles/index.scss'
 
 /**
  * 引入 unocss
