@@ -16,7 +16,7 @@ export default [
     subMenu: [
       {
         index: '/Home/HomePage',
-        title: '首页',
+        title: '欢迎页',
         icon: HomeFilled,
       },
       {
