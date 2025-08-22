@@ -18,23 +18,6 @@ function handleMenuSelect(path: string) {
 const defaultActive = computed(() => {
   return route.path
 })
-// // 默认选中的菜单
-// const defaultActive = ref('')
-// // 监听路由变化，修改当前激活的菜单项
-// watch(
-//   () => route.path,
-//   (newPath) => {
-//     if (defaultActive.value !== newPath) {
-//       defaultActive.value = newPath
-//     }
-//   },
-//   { immediate: true },
-// )
-// onMounted(() => {
-//   if (defaultActive.value !== route.path) {
-//     defaultActive.value = route.path
-//   }
-// })
 </script>
 
 <template>
