@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue'
 
-const mainTitle = ref('，欢迎来到 Vue Admin')
+import { useUserInfoStore } from '~/stores/userIfnoStroe'
+
+const userInfoStore = useUserInfoStore()
+const { currentUserInfo } = storeToRefs(userInfoStore)
+
+const mainTitle = ref('')
 const subTitle = ref('这是一个基于 Vue 3 + Element Plus + Pinia + UnoCSS 的后台管理系统')
 const time = ref(new Date())
 onMounted(() => {
@@ -15,14 +21,18 @@ onMounted(() => {
   } else {
     title = '晚上好'
   }
-  mainTitle.value = title + mainTitle.value
+  mainTitle.value = `${title}！${currentUserInfo.value.userName}，欢迎来到 Vue Admin`
 })
 </script>
 
 <template>
   <el-card m-20px>
     <div mb-8px mt-5px flex justify-center>
-      <IconAvatar h-60px w-a />
+      <el-avatar
+        size="large"
+        class="border-1px border-[--ep-color-primary] border-solid" shape="circle"
+        :src="currentUserInfo.avatarUrl"
+      />
       <div ml-20px flex flex-1 flex-col items-start>
         <div font-size-18px font-bold>
           {{ mainTitle }}
