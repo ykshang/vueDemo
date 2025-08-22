@@ -12,8 +12,20 @@ function toggleMenuCollapse(val: boolean) {
 </script>
 
 <template>
-  <div ml-10px flex>
-    <div v-if="!isMenuCollapse" class="i-ri:menu-fold-2-line" @click="toggleMenuCollapse(true)" />
-    <div v-else class="i-ri:menu-fold-line" @click="toggleMenuCollapse(false)" />
+  <div ml-15px flex>
+    <div class="MenuCollapseBtn" @click="toggleMenuCollapse(!isMenuCollapse)">
+      <div v-if="!!isMenuCollapse" class="i-ri:menu-fold-2-line" />
+      <div v-else class="i-ri:menu-fold-line" />
+    </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+.MenuCollapseBtn {
+  @apply cursor-pointer;
+
+  &:hover {
+    @apply color-[--ep-color-primary];
+  }
+}
+</style>

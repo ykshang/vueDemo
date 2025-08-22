@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useThemeConfigStore } from '~/stores/useThemeStroe'
 import menuData from './menu-data'
 
 const route = useRoute()
 const router = useRouter()
 
-const isCollapse = ref(false)
 // 点击菜单时路由跳转
 function handleMenuSelect(path: string) {
   // 防止菜单重复跳转
@@ -18,15 +19,19 @@ function handleMenuSelect(path: string) {
 const defaultActive = computed(() => {
   return route.path
 })
+
+// 用于菜单的展开和关闭
+const themeConfigStore = useThemeConfigStore()
+const { isMenuCollapse } = storeToRefs(themeConfigStore)
 </script>
 
 <template>
-  <div h="full" w-min flex-col>
+  <div h="full" w-min flex flex-col>
     <div h-60px flex items-center justify-center>
       <IconVue mr-10px h-a w-35px />
-      <span v-show="!isCollapse" class="text-2xl font-bold">Vue Admin</span>
+      <span v-show="!isMenuCollapse" class="text-2xl font-bold">Vue Admin</span>
     </div>
-    <el-menu w-250px flex-1 transition-1000 :default-active="defaultActive" :collapse="isCollapse" @select="handleMenuSelect">
+    <el-menu w-280px flex-1 transition-1000 :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false" @select="handleMenuSelect">
       <el-sub-menu v-for="menu1 in menuData" :key="menu1.index" :index="menu1.index">
         <template #title>
           <component :is="menu1.icon" class="menu_icon" />
