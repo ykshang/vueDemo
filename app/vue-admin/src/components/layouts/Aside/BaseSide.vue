@@ -1,29 +1,28 @@
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
-import { useRouterStore } from '~/stores/routerStroe'
+import { useRoute, useRouter } from 'vue-router'
 import menuData from './menu-data'
 
-const routerStore = useRouterStore()
+const route = useRoute()
+const router = useRouter()
 
-const { currentRouterPath } = storeToRefs(routerStore)
 const isCollapse = ref(false)
 // 点击菜单时路由跳转
 function handleMenuSelect(path: string) {
   // 防止菜单重复跳转
-  if (currentRouterPath.value !== path) {
-    routerStore.push(path)
+  if (route.path !== path) {
+    router.push(path)
   }
 }
 // 使用计算属性代替 watch 和 onMounted 来实时获取当前应该显示的菜单
 const defaultActive = computed(() => {
-  return currentRouterPath.value
+  return route.path
 })
 // // 默认选中的菜单
 // const defaultActive = ref('')
 // // 监听路由变化，修改当前激活的菜单项
 // watch(
-//   () => currentRouterPath.value,
+//   () => route.path,
 //   (newPath) => {
 //     if (defaultActive.value !== newPath) {
 //       defaultActive.value = newPath
@@ -32,8 +31,8 @@ const defaultActive = computed(() => {
 //   { immediate: true },
 // )
 // onMounted(() => {
-//   if (defaultActive.value !== currentRouterPath.value) {
-//     defaultActive.value = currentRouterPath.value
+//   if (defaultActive.value !== route.path) {
+//     defaultActive.value = route.path
 //   }
 // })
 </script>

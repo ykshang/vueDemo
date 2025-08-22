@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useRouterStore } from '~/stores/routerStroe'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
-const routerStore = useRouterStore()
+const router = useRouter()
 watch(
   () => route.path,
   (newPath) => {
-    routerStore.push(newPath)
+    router.push(newPath)
   },
   { immediate: true },
 )
 onMounted(() => {
-  routerStore.push('/Home/HomePage')
+  router.push('/Home/HomePage')
 })
 </script>
 
