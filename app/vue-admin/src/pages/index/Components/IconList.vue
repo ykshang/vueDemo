@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="icon-list-container">
+  <div class="flex-1 p-20px">
     <my-card>
       <template #title>
         @element-plus/icons-vue
@@ -55,10 +55,3 @@
     </my-card>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.icon-list-container {
-  padding: 20px;
-  flex: 1;
-}
-</style>

@@ -24,7 +24,7 @@
   overflow: hidden;
   text-align: left;
   border: 1px solid var(--ep-color-info-light-7);
-  border-radius: 3px;
+  border-radius: 4px;
 
   &:hover {
     box-shadow: 0 0 3px var(--ep-color-info-light-3);
