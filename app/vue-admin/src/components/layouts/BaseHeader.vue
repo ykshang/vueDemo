@@ -8,6 +8,7 @@ const router = useRouter()
 function loginout() {
   router.push('/Login')
 }
+const avatarUrl = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
 </script>
 
 <template>
@@ -16,7 +17,8 @@ function loginout() {
       {{ '' }}
     </div>
     <div class="mr-15px flex items-center">
-      <IconAvatar mr-10px h-30px w-30px />
+      <!-- <IconAvatar mr-10px h-30px w-30px /> -->
+      <el-avatar shape="circle" :src="avatarUrl" mr-10px />
       <el-dropdown>
         <span class="el-dropdown-link">
           <span class="username">
