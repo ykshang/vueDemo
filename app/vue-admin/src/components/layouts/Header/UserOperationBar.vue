@@ -6,7 +6,12 @@ import { toggleDark } from '~/composables/util'
 import { useUserInfoStore } from '~/stores/userIfnoStroe'
 
 const router = useRouter()
+// 跳转到个人中心
+function openProfile() {
+  router.push('/Setting/Profile')
+}
 
+// 退出登录
 function loginout() {
   router.push('/Login')
 }
@@ -43,7 +48,7 @@ function errorHandler() {
     </div>
     <el-dropdown @visible-change="handleVisibleChange">
       <span
-        class="mr-10px max-w-150px min-w-50px flex cursor-pointer items-center font-size-14px hover:color-[--ep-color-primary]"
+        class="mr-10px max-w-200px min-w-100px flex cursor-pointer items-center font-size-16px hover:color-[--ep-color-primary]"
       >
         <span class="overflow-hidden text-ellipsis whitespace-nowrap">{{ currentUserInfo.userName }}</span>
         <div class="ml-5px inline-block">
@@ -54,7 +59,7 @@ function errorHandler() {
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item>
-            <span class="w-80px text-center">个人中心</span>
+            <span class="w-80px text-center" @click="openProfile">个人中心</span>
           </el-dropdown-item>
           <el-dropdown-item>
             <span class="w-80px text-center" @click="toggleDark()">切换主题</span>
