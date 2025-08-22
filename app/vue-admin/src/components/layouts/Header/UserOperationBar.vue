@@ -24,11 +24,23 @@ const isVisible = ref(false)
 function handleVisibleChange(visible: boolean) {
   isVisible.value = visible
 }
+/**
+ * 头像加载失败的回退逻辑
+ */
+const showAvatarFlg = ref(true)
+function errorHandler() {
+  showAvatarFlg.value = false
+}
 </script>
 
 <template>
   <div class="mr-15px flex items-center">
-    <el-avatar shape="circle" :src="currentUserInfo.avatarUrl" class="mr-8px cursor-pointer" />
+    <div class="mr-8px cursor-pointer">
+      <el-avatar v-if="showAvatarFlg" shape="circle" :src="currentUserInfo.avatarUrl" @error="errorHandler" />
+      <el-avatar v-else>
+        User
+      </el-avatar>
+    </div>
     <el-dropdown @visible-change="handleVisibleChange">
       <span
         class="mr-10px max-w-150px min-w-50px flex cursor-pointer items-center font-size-14px hover:color-[--ep-color-primary]"
