@@ -1,19 +1,19 @@
 <template>
-  <section class="admin-card">
-    <div class="admin-card-title">
+  <section class="my-card">
+    <div class="my-card-title">
       <slot name="title" />
     </div>
-    <div class="admin-card-content">
+    <div class="my-card-content">
       <slot name="content" />
     </div>
-    <div class="admin-card-footer">
+    <div class="my-card-footer">
       <slot name="footer" />
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.admin-card {
+.my-card {
   box-sizing: border-box;
   font-size: 14px;
   line-height: 2;
@@ -29,13 +29,13 @@
   &:hover {
     box-shadow: 0 0 3px var(--ep-color-info-light-3);
   }
-  .admin-card-title {
+  .my-card-title {
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: 500;
     color: var(--ep-text-color-primary);
   }
-  .admin-card-content {
+  .my-card-content {
     vertical-align: middle;
   }
 }

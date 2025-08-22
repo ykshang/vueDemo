@@ -2,7 +2,7 @@
 
 <template>
   <div class="icon-list-container">
-    <AdminCompomentCard>
+    <my-card>
       <template #title>
         @element-plus/icons-vue
       </template>
@@ -16,8 +16,8 @@
           <div class="i-ri:external-link-line" ml-3px />
         </el-link>
       </template>
-    </AdminCompomentCard>
-    <AdminCompomentCard class="mt-20px">
+    </my-card>
+    <my-card class="mt-20px">
       <template #title>
         @iconify-json
       </template>
@@ -52,7 +52,7 @@
           （选中一个图标后，可以查看如何通过 UnoCSS 引用该图标）
         </el-text>
       </template>
-    </AdminCompomentCard>
+    </my-card>
   </div>
 </template>
 
