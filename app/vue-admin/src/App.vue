@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouterStore } from '~/stores/routerStroe'
 
-const router = useRouter()
+const routerStore = useRouterStore()
 onMounted(() => {
-  router.push('/Components/IconList')
+  routerStore.push('/Setting/Profile')
 })
 </script>
 
