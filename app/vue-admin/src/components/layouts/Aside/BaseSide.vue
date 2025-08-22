@@ -21,7 +21,10 @@ const defaultActive = computed(() => {
 </script>
 
 <template>
-  <div h="full" w-250px flex flex-col>
+  <div h="full" :class="isCollapse ? 'w-min' : ''" w-250px flex flex-col transition-1000>
+    <div @click="isCollapse = !isCollapse">
+      切换
+    </div>
     <div h-60px flex items-center justify-center>
       <IconVue mr-10px h-a w-35px />
       <span v-show="!isCollapse" class="text-2xl font-bold">Vue Admin</span>
