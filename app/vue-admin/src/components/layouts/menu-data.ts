@@ -60,7 +60,7 @@ export default [
     subMenu: [
       {
         index: '/Components/IconList',
-        title: '图标列表',
+        title: '内置图标',
         icon: Setting,
       },
     ],

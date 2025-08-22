@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { toggleDark } from '~/composables/util'
 import { useUserInfoStore } from '~/stores/userIfnoStroe'
