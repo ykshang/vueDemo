@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
-import { onMounted, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouterStore } from '~/stores/routerStroe'
 import menuData from './menu-data'
 
@@ -15,23 +15,27 @@ function handleMenuSelect(path: string) {
     routerStore.push(path)
   }
 }
-// 默认选中的菜单
-const defaultActive = ref('')
-// 监听路由变化，修改当前激活的菜单项
-watch(
-  () => currentRouterPath.value,
-  (newPath) => {
-    if (defaultActive.value !== newPath) {
-      defaultActive.value = newPath
-    }
-  },
-  { immediate: true },
-)
-onMounted(() => {
-  if (defaultActive.value !== currentRouterPath.value) {
-    defaultActive.value = currentRouterPath.value
-  }
+// 使用计算属性代替 watch 和 onMounted 来实时获取当前应该显示的菜单
+const defaultActive = computed(() => {
+  return currentRouterPath.value
 })
+// // 默认选中的菜单
+// const defaultActive = ref('')
+// // 监听路由变化，修改当前激活的菜单项
+// watch(
+//   () => currentRouterPath.value,
+//   (newPath) => {
+//     if (defaultActive.value !== newPath) {
+//       defaultActive.value = newPath
+//     }
+//   },
+//   { immediate: true },
+// )
+// onMounted(() => {
+//   if (defaultActive.value !== currentRouterPath.value) {
+//     defaultActive.value = currentRouterPath.value
+//   }
+// })
 </script>
 
 <template>
