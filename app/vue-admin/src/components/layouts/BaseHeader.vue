@@ -18,7 +18,7 @@ const { currentUserInfo } = storeToRefs(userInfoStore)
 </script>
 
 <template>
-  <div class="header h-60px bg-[--ep-bg-color]">
+  <div class="header h-66px bg-[--ep-bg-color]">
     <div flex-1>
       {{ '' }}
     </div>
