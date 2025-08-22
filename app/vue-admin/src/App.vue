@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 onMounted(() => {
-  router.push('Home/HomePage')
+  router.push('/Components/IconList')
 })
 </script>
 
