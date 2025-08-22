@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div h-66px flex items-center b-b-1px b-b-solid class="b-b-color-[--ep-menu-border-color] bg-[--ep-bg-color]">
+  <div class="h-66px flex items-center b-b-1px b-b-color-[--ep-menu-border-color] b-b-solid bg-[--ep-bg-color]">
     <MenuCollapseButton />
     <div flex-1>
       {{ '' }}
