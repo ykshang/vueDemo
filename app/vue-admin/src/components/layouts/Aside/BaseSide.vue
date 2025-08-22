@@ -26,20 +26,23 @@ const { isMenuCollapse } = storeToRefs(themeConfigStore)
 </script>
 
 <template>
-  <div h="full" w-min flex flex-col>
+  <div h="full" class="b-r-[--ep-border-color]" w-min flex flex-col b-r-1px b-r-solid>
     <div h-60px flex items-center justify-center>
       <IconVue mr-10px h-a w-35px />
       <span v-show="!isMenuCollapse" class="text-2xl font-bold">Vue Admin</span>
     </div>
-    <el-menu w-280px flex-1 transition-1000 :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false" @select="handleMenuSelect">
+    <el-menu
+      w-280px flex-1 :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false"
+      @select="handleMenuSelect"
+    >
       <el-sub-menu v-for="menu1 in menuData" :key="menu1.index" :index="menu1.index">
         <template #title>
-          <component :is="menu1.icon" class="menu_icon" />
-          <span class="menu_title">{{ menu1.title }}</span>
+          <component :is="menu1.icon" mr-8px h-a w-18px />
+          <span font-size-14px>{{ menu1.title }}</span>
         </template>
         <el-menu-item v-for="menu2 in menu1.subMenu" :key="menu2.index" :index="menu2.index">
-          <component :is="menu2.icon" class="menu_icon" />
-          <span class="menu_title w-40 text-align-left">{{ menu2.title }}</span>
+          <component :is="menu2.icon" mr-8px h-a w-18px />
+          <span font-size-14px>{{ menu2.title }}</span>
         </el-menu-item>
       </el-sub-menu>
     </el-menu>
@@ -47,18 +50,11 @@ const { isMenuCollapse } = storeToRefs(themeConfigStore)
 </template>
 
 <style lang="scss" scoped>
-.menu_icon {
-  width: 18px;
-  height: auto;
-  margin-right: 5px;
-}
-
-.menu_title {
-  font-size: 16px;
-  font-weight: 400;
-}
-
 .ep-menu-item.is-active {
   background-color: var(--ep-menu-hover-bg-color);
+}
+
+::v-deep(.ep-menu) {
+  border: none !important;
 }
 </style>
