@@ -21,15 +21,12 @@ const defaultActive = computed(() => {
 </script>
 
 <template>
-  <div h="full" :class="isCollapse ? 'w-min' : ''" w-250px flex flex-col transition-1000>
-    <div @click="isCollapse = !isCollapse">
-      切换
-    </div>
+  <div h="full" w-min flex-col>
     <div h-60px flex items-center justify-center>
       <IconVue mr-10px h-a w-35px />
       <span v-show="!isCollapse" class="text-2xl font-bold">Vue Admin</span>
     </div>
-    <el-menu class="flex-1" :default-active="defaultActive" :collapse="isCollapse" @select="handleMenuSelect">
+    <el-menu w-250px flex-1 transition-1000 :default-active="defaultActive" :collapse="isCollapse" @select="handleMenuSelect">
       <el-sub-menu v-for="menu1 in menuData" :key="menu1.index" :index="menu1.index">
         <template #title>
           <component :is="menu1.icon" class="menu_icon" />
