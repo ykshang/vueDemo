@@ -1,8 +1,37 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { onMounted, ref, watch } from 'vue'
+import { useRouterStore } from '~/stores/routerStroe'
 import menuData from './menu-data'
 
+const routerStore = useRouterStore()
+
+const { currentRouterPath } = storeToRefs(routerStore)
 const isCollapse = ref(false)
+// 点击菜单时路由跳转
+function handleMenuSelect(path: string) {
+  // 防止菜单重复跳转
+  if (currentRouterPath.value !== path) {
+    routerStore.push(path)
+  }
+}
+// 默认选中的菜单
+const defaultActive = ref('')
+// 监听路由变化，修改当前激活的菜单项
+watch(
+  () => currentRouterPath.value,
+  (newPath) => {
+    if (defaultActive.value !== newPath) {
+      defaultActive.value = newPath
+    }
+  },
+  { immediate: true },
+)
+onMounted(() => {
+  if (defaultActive.value !== currentRouterPath.value) {
+    defaultActive.value = currentRouterPath.value
+  }
+})
 </script>
 
 <template>
@@ -11,7 +40,7 @@ const isCollapse = ref(false)
       <IconVue mr-10px h-a w-35px />
       <span v-show="!isCollapse" class="text-2xl font-bold">Vue Admin</span>
     </div>
-    <el-menu router class="flex-1" default-active="/Home/HomePage" :collapse="isCollapse">
+    <el-menu class="flex-1" :default-active="defaultActive" :collapse="isCollapse" @select="handleMenuSelect">
       <el-sub-menu v-for="menu1 in menuData" :key="menu1.index" :index="menu1.index">
         <template #title>
           <component :is="menu1.icon" class="menu_icon" />
