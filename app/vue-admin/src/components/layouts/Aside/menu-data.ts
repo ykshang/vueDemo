@@ -21,14 +21,14 @@ export default [
       },
       {
         index: '/Home/DashBoard',
-        title: '看板',
+        title: '数据看板',
         icon: DataAnalysis,
       },
     ],
   },
   {
     index: '/Setting',
-    title: '配置',
+    title: '配置中心',
     icon: Setting,
     subMenu: [
       {
