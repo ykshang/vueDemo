@@ -19,6 +19,7 @@ const { currentUserInfo } = storeToRefs(userInfoStore)
 
 <template>
   <div class="header h-66px bg-[--ep-bg-color]">
+    <MenuCollapseButton />
     <div flex-1>
       {{ '' }}
     </div>
