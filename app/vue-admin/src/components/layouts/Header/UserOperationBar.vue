@@ -40,15 +40,15 @@ function errorHandler() {
 
 <template>
   <div class="mr-15px flex items-center">
-    <div class="mr-8px cursor-pointer">
-      <el-avatar v-if="showAvatarFlg" shape="circle" :src="currentUserInfo.avatarUrl" @error="errorHandler" />
+    <div class="mr-10px cursor-pointer">
+      <el-avatar v-if="showAvatarFlg" class="border-1px border-[--ep-color-primary] border-solid" shape="circle" :src="currentUserInfo.avatarUrl" @error="errorHandler" />
       <el-avatar v-else>
         User
       </el-avatar>
     </div>
     <el-dropdown @visible-change="handleVisibleChange">
       <span
-        class="mr-10px max-w-200px min-w-100px flex cursor-pointer items-center font-size-16px hover:color-[--ep-color-primary]"
+        class="mr-10px max-w-200px min-w-100px flex cursor-pointer items-center font-size-16px line-height-24px hover:color-[--ep-color-primary]"
       >
         <span class="overflow-hidden text-ellipsis whitespace-nowrap">{{ currentUserInfo.userName }}</span>
         <div class="ml-5px inline-block">
