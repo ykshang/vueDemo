@@ -26,18 +26,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card m-20px>
-    <div mb-8px mt-5px flex justify-center>
+  <el-card class="m-20px">
+    <div class="mb-8px mt-5px flex justify-center">
       <el-avatar
         size="large"
         class="border-1px border-[--ep-color-primary] border-solid" shape="circle"
         :src="currentUserInfo.avatarUrl"
       />
-      <div ml-20px flex flex-1 flex-col items-start>
-        <div font-size-18px font-bold>
+      <div class="ml-20px flex flex-1 flex-col items-start">
+        <div class="font-size-18px font-bold">
           {{ mainTitle }}
         </div>
-        <div mt-12px font-size-14px>
+        <div class="mt-12px font-size-14px">
           {{ subTitle }}
         </div>
       </div>
