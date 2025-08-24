@@ -8,4 +8,4 @@ const userSchema = new mongoose.Schema({
 })
 
 // 导出模型
-export default mongoose.model('User', userSchema)
+export default mongoose.model('UserPwd', userSchema)

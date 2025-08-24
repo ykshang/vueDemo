@@ -1,4 +1,4 @@
-import User from '../../models/user.js'
+import User from '../../models/UserPwd.js'
 export default async function login(user) {
   const userList = await User.find(user)
   let result = {}
