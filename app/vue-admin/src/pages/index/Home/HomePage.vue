@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import IconEdit from '~icons/ri/file-edit-line'
+
 const count = ref(0)
 const input = ref('element-plus')
 
@@ -15,7 +17,8 @@ const value1 = ref(true)
       <Welcome />
     </el-col>
   </el-row>
-
+  <IconEdit />
+  <iconify-ep-edit />
   <div class="my-2 flex flex-wrap items-center justify-center text-center">
     <el-button @click="count++">
       count is: {{ count }}

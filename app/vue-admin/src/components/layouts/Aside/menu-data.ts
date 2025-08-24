@@ -1,25 +1,24 @@
 import { DataAnalysis, OfficeBuilding, User } from '@element-plus/icons-vue'
 
-import {
-  IconBox,
-  IconGroup,
-  IconHomePage,
-  IconHomePage1,
-  IconIcon,
-  IconMenu,
-  IconTodo,
-} from '~/components/icons'
+import RiAppsLine from '~icons/ri/apps-line'
+import RiBox3Line from '~icons/ri/box-3-line'
+import RiCalendarTodoLine from '~icons/ri/calendar-todo-line'
+import RiCommandLine from '~icons/ri/command-line'
+import RiGroupLine from '~icons/ri/group-line'
+import RiHome2Line from '~icons/ri/home-2-line'
+import RiHome3Line from '~icons/ri/home-3-line'
+import RiUserSettingsLine from '~icons/ri/user-settings-line'
 
 export default [
   {
     index: '/Home',
     title: '首页',
-    icon: IconHomePage,
+    icon: RiHome3Line,
     subMenu: [
       {
         index: '/Home/HomePage',
         title: '欢迎页',
-        icon: IconHomePage1,
+        icon: RiHome2Line,
       },
       {
         index: '/Home/DashBoard',
@@ -31,17 +30,17 @@ export default [
   {
     index: '/Setting',
     title: '配置中心',
-    icon: IconMenu,
+    icon: RiUserSettingsLine,
     subMenu: [
       {
         index: '/Setting/Profile',
-        title: '个人中心',
+        title: '个人信息',
         icon: User,
       },
       {
         index: '/Setting/EmployeeManagent',
         title: '员工管理',
-        icon: IconGroup,
+        icon: RiGroupLine,
       },
       {
         index: '/Setting/DepartmentMangement',
@@ -51,24 +50,24 @@ export default [
       {
         index: '/Setting/MenuMangement',
         title: '菜单管理',
-        icon: IconMenu,
+        icon: RiAppsLine,
       },
       {
         index: '/Setting/TaskMangement',
         title: '任务管理',
-        icon: IconTodo,
+        icon: RiCalendarTodoLine,
       },
     ],
   },
   {
     index: '/Components',
     title: '内置组件',
-    icon: IconBox,
+    icon: RiBox3Line,
     subMenu: [
       {
         index: '/Components/IconList',
         title: '图标组件',
-        icon: IconIcon,
+        icon: RiCommandLine,
       },
     ],
   },
