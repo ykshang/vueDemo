@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Lock, User } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElNotification } from 'element-plus'
 import { nextTick, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '~/composables/services/login'
@@ -11,13 +11,19 @@ const formData = reactive({
   userName: '',
   password: '',
 })
-function handleSubmit() {
+function clickLogin() {
   login(formData).then((res: any) => {
     if (res?.status === 'success') {
-      ElMessage.success('登录成功')
+      ElNotification.success({
+        title: '通知',
+        message: '登录成功',
+      })
       router.push('/Home/HomePage')
     } else {
-      ElMessage.error('用户名或密码错误')
+      ElNotification.error({
+        title: '通知',
+        message: '用户名或密码错误',
+      })
     }
   })
 }
@@ -29,6 +35,9 @@ function onOpenRegister() {
   nextTick(() => {
     registerRef.value.handleOpen()
   })
+}
+function onCloseRegister() {
+  showRegisterFlg.value = false
 }
 </script>
 
@@ -47,7 +56,7 @@ function onOpenRegister() {
             <el-input v-model="formData.password" :prefix-icon="Lock" placeholder="密码" show-password type="password" />
           </el-form-item>
           <div class="flex items-center justify-center">
-            <el-button class="ml-10px mr-10px" type="primary" @click="handleSubmit">
+            <el-button class="ml-10px mr-10px" type="primary" @click="clickLogin">
               登录
             </el-button>
             <el-button class="ml-10px mr-10px" type="primary" @click="onOpenRegister">
@@ -57,6 +66,7 @@ function onOpenRegister() {
         </el-form>
       </div>
     </div>
+    <user-register v-if="showRegisterFlg" ref="registerRef" @close="onCloseRegister" />
   </el-config-provider>
 </template>
 
