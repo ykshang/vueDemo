@@ -1,6 +1,14 @@
-import { DataAnalysis, OfficeBuilding, Setting, User } from '@element-plus/icons-vue'
+import { DataAnalysis, OfficeBuilding, User } from '@element-plus/icons-vue'
 
-import { IconBox, IconHomePage, IconHomePage1, IconIcon, IconMenu, IconTodo } from '~/components/icons'
+import {
+  IconBox,
+  IconGroup,
+  IconHomePage,
+  IconHomePage1,
+  IconIcon,
+  IconMenu,
+  IconTodo,
+} from '~/components/icons'
 
 export default [
   {
@@ -23,12 +31,17 @@ export default [
   {
     index: '/Setting',
     title: '配置中心',
-    icon: Setting,
+    icon: IconMenu,
     subMenu: [
       {
         index: '/Setting/Profile',
         title: '个人中心',
         icon: User,
+      },
+      {
+        index: '/Setting/EmployeeManagent',
+        title: '员工管理',
+        icon: IconGroup,
       },
       {
         index: '/Setting/DepartmentMangement',
