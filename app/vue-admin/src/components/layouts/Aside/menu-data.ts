@@ -3,10 +3,10 @@ import { DataAnalysis, OfficeBuilding, User } from '@element-plus/icons-vue'
 import RiAppsLine from '~icons/ri/apps-line'
 import RiBox3Line from '~icons/ri/box-3-line'
 import RiCalendarTodoLine from '~icons/ri/calendar-todo-line'
-import RiCommandLine from '~icons/ri/command-line'
 import RiGroupLine from '~icons/ri/group-line'
 import RiHome2Line from '~icons/ri/home-2-line'
 import RiHome3Line from '~icons/ri/home-3-line'
+import RiRemixiconLine from '~icons/ri/remixicon-line'
 import RiUserSettingsLine from '~icons/ri/user-settings-line'
 
 export default [
@@ -67,7 +67,7 @@ export default [
       {
         index: '/Components/IconList',
         title: '图标组件',
-        icon: RiCommandLine,
+        icon: RiRemixiconLine,
       },
     ],
   },
