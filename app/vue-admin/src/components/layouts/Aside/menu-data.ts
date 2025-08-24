@@ -6,12 +6,12 @@ export default [
   {
     index: '/Home',
     title: '首页',
-    icon: IconHomePage1,
+    icon: IconHomePage,
     subMenu: [
       {
         index: '/Home/HomePage',
         title: '欢迎页',
-        icon: IconHomePage,
+        icon: IconHomePage1,
       },
       {
         index: '/Home/DashBoard',
