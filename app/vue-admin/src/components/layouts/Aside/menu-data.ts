@@ -1,23 +1,17 @@
-import {
-  Checked,
-  DataAnalysis,
-  HomeFilled,
-  Menu,
-  OfficeBuilding,
-  Setting,
-  UserFilled,
-} from '@element-plus/icons-vue'
+import { DataAnalysis, OfficeBuilding, Setting, User } from '@element-plus/icons-vue'
+
+import { IconBox, IconHomePage, IconHomePage1, IconIcon, IconMenu, IconTodo } from '~/components/icons'
 
 export default [
   {
     index: '/Home',
     title: '首页',
-    icon: HomeFilled,
+    icon: IconHomePage1,
     subMenu: [
       {
         index: '/Home/HomePage',
         title: '欢迎页',
-        icon: HomeFilled,
+        icon: IconHomePage,
       },
       {
         index: '/Home/DashBoard',
@@ -34,7 +28,7 @@ export default [
       {
         index: '/Setting/Profile',
         title: '个人中心',
-        icon: UserFilled,
+        icon: User,
       },
       {
         index: '/Setting/DepartmentMangement',
@@ -44,24 +38,24 @@ export default [
       {
         index: '/Setting/MenuMangement',
         title: '菜单管理',
-        icon: Menu,
+        icon: IconMenu,
       },
       {
         index: '/Setting/TaskMangement',
         title: '任务管理',
-        icon: Checked,
+        icon: IconTodo,
       },
     ],
   },
   {
     index: '/Components',
-    title: '组件',
-    icon: Setting,
+    title: '内置组件',
+    icon: IconBox,
     subMenu: [
       {
         index: '/Components/IconList',
-        title: '内置图标',
-        icon: Setting,
+        title: '图标组件',
+        icon: IconIcon,
       },
     ],
   },
