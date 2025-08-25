@@ -6,9 +6,9 @@ packages:
 
 catalog:
   axios: ^1.11.0
-  sass: ^1.89.2
-  element-plus: ^2.10.6
-  '@vueuse/core': ^13.6.0
+  sass: ^1.90.0
+  element-plus: ^2.11.1
+  '@vueuse/core': ^13.7.0
   mockjs: ^1.1.0
   '@types/mockjs': ^1.0.10
   vite-plugin-mock: ^3.0.2
