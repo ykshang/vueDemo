@@ -21,6 +21,17 @@ const { isFullscreen, toggle } = useFullscreen(target)
       <div v-else class="i-ri:fullscreen-exit-fill icon" @click="toggle" />
     </div>
     <div class="icons">
+      <el-dropdown trigger="hover">
+        <div class="i-ri:translate-2 icon" />
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>中文简体</el-dropdown-item>
+            <el-dropdown-item>English</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
+    <div class="icons">
       <div i-ri-brush-3-line class="icon" />
     </div>
   </div>
