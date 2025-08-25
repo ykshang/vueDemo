@@ -4,7 +4,9 @@
       <div i-ri-brush-3-line class="icon" />
     </div>
     <div class="icons">
-      <div i-ep-bell class="icon" />
+      <el-badge :value="3" class="item">
+        <div i-ep-bell class="icon" />
+      </el-badge>
     </div>
     <div class="icons">
       <div i-ri-brush-3-line class="icon" />
@@ -14,12 +16,12 @@
 
 <style lang="scss" scoped>
 .icons {
-  margin-right: 7px;
+  margin-right: 8px;
   margin-left: 7px;
 
   .icon {
     color: var(--ep-text-color-regular);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
 
     &:hover {
