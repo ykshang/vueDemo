@@ -8,10 +8,11 @@ defineProps({
 </script>
 
 <template>
-  <div class="mx-2px flex items-center border-1px border-solid">
-    <div class="fon-size-14px px-4 py-2 line-height-10px">
+  <div class="mx-5px flex items-center border-1px border-solid px-8px py-5px font-size-14px">
+    <div class="flex items-center line-height-10px">
       {{ label }}
     </div>
+    <div i-ep-close />
   </div>
 </template>
 
