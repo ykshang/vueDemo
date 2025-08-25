@@ -1,8 +1,8 @@
 <template>
   <el-config-provider namespace="ep">
-    <BaseSide />
+    <LayoutSide />
     <div class="main-container flex flex-1 flex-col overflow-hidden bg-[--ep-bg-color-page]">
-      <BaseHeader />
+      <LayoutHeader />
       <RouterView />
     </div>
   </el-config-provider>
