@@ -26,7 +26,7 @@
 
     &:hover {
       cursor: pointer;
-      color: var(--ep-text-color-secondary);
+      color: var(--ep-color-primary);
       animation: rubberBand 0.5s both;
     }
   }
