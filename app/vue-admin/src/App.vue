@@ -26,6 +26,7 @@ onMounted(() => {
   color: var(--ep-text-color-primary);
   display: flex;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
 }
 </style>
