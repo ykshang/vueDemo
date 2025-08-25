@@ -1,8 +1,8 @@
 import Koa from 'koa'
 import combineRouters from 'koa-combine-routers'
-import userRouter from './routes/users.js'
+import userRouter from './routes/products-router.js'
 import { connectDB } from './db.js'
-import productRouter from './routes/products.js'
+import productRouter from './routes/products-router.js'
 import bodyParser from 'koa-bodyparser'
 
 // 合并所有路由
