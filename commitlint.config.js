@@ -1,8 +1,30 @@
 export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore']],
-    'subject-empty': [2, 'never', '提交主题不能为空'],
-    'type-empty': [2, 'never', '提交类型不能为空'],
+    'type-enum': [ // 定义允许的提交类型
+      2, // 2 表示必须遵守，否则报错
+      'always', // 始终检查
+      [ // 允许的 type 列表
+        'Feat',         // 新功能
+        'Fix',          // 修复 bug
+        'Chore',        // 删除、下线已有功能
+        'Refactor',     // 代码重构
+        'Style',        // 代码样式调整（不影响逻辑）
+        'Docs',         // 文档更新
+        'Perf',         // 性能优化
+        'Test',         // 测试相关
+        'Revert',       // 回退提交
+        'Lint',         // 代码检查相关
+        'Build',        // 构建系统或外部依赖变更
+      ],
+    ],
+    // 其他规则可以根据需要添加或覆盖
+    'type-case': [0], // 0 表示不检查 type 的大小写
+    'type-empty': [0], // 不检查 type 是否为空
+    'scope-empty': [0], // 不检查 scope 是否为空
+    'scope-case': [0], // 不检查 scope 的大小写
+    'subject-full-stop': [0, 'never'], // 不检查 subject 末尾的句号
+    'subject-case': [0, 'never'], // 不检查 subject 的大小写
+    'header-max-length': [0, 'always', 72], // 不检查 header 的最大长度
   },
 }
