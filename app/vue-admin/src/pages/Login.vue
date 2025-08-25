@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { Lock, User } from '@element-plus/icons-vue'
-import { ElMessage, ElNotification } from 'element-plus'
+import { ElNotification } from 'element-plus'
 import { nextTick, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { login } from '~/composables/services/login'
+import { login } from '~/composables/services/loginService'
 
 const router = useRouter()
 const showRegisterFlg = ref(false)

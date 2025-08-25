@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElMessage, ElNotification } from 'element-plus'
 import { ref, toRaw } from 'vue'
-import { register } from '~/composables/services/user'
+import { register } from '~/composables/services/userService'
 
 const emit = defineEmits(['close'])
 const loading = ref(false)
