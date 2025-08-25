@@ -28,5 +28,6 @@ onMounted(() => {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: var(--ep-bg-color);
 }
 </style>
