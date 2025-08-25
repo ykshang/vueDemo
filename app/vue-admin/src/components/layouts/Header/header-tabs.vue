@@ -16,7 +16,7 @@ const tabList = ref([
 <template>
   <div class="flex items-center">
     <div v-for="item in tabList" :key="item.path">
-      <HeaderTabItem :label="item.label" />
+      <header-tab-item :label="item.label" />
     </div>
   </div>
 </template>
