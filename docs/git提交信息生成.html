@@ -1,0 +1,439 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git 提交提示工具</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 3fr 4fr;
+        gap: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      header {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 10px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      .description {
+        color: #7f8c8d;
+        font-size: 1rem;
+      }
+
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h3 {
+        color: #3498db;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      select,
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      select:focus,
+      input:focus,
+      textarea:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+
+      button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background 0.3s;
+        width: 100%;
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+
+      .preview {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 20px;
+        border-left: 4px solid #3498db;
+      }
+
+      .example {
+        margin-top: 15px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 6px;
+      }
+
+      .example h4 {
+        margin-bottom: 10px;
+        color: #2c3e50;
+      }
+
+      .example-code {
+        background: #2c3e50;
+        color: white;
+        padding: 12px;
+        border-radius: 4px;
+        font-family: monospace;
+        overflow-x: auto;
+      }
+
+      .rules-list {
+        list-style-type: none;
+      }
+
+      .rules-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .type-tag {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: white;
+        font-size: 14px;
+        margin-right: 5px;
+        font-weight: bold;
+      }
+
+      .Feat {
+        background: #3bc6f5;
+      }
+      .Fix {
+        background: #ffbe45;
+      }
+      .Chore {
+        background: #858585;
+      }
+      .Refactor {
+        background: #fb5656;
+      }
+      .Docs {
+        background: #3498db;
+      }
+      .Style {
+        background: #9b59b6;
+      }
+      .Perf {
+        background: #1abc9c;
+      }
+      .Test {
+        background: #27ae60;
+      }
+      .Build {
+        background: #586061;
+      }
+      .Revert {
+        background: #18222c;
+      }
+      .Lint {
+        background: #f39c12;
+      }
+
+      .message-display {
+        font-family: monospace;
+        font-size: 16px;
+        padding: 15px;
+        background: #2c3e50;
+        color: white;
+        border-radius: 6px;
+        margin-top: 20px;
+        white-space: pre-wrap;
+      }
+
+      .footer {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 30px;
+        padding: 20px;
+        color: #7f8c8d;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h2>Git 提交信息规范提示工具</h2>
+        <p class="description">
+          使用此工具生成符合 Conventional Commits 规范的提交信息
+        </p>
+      </header>
+
+      <div class="card">
+        <h3>提交信息生成器</h3>
+
+        <div class="form-group">
+          <label for="type">提交类型 (type):</label>
+          <select id="type">
+            <option value="Feat">✨ Feat - 新功能</option>
+            <option value="Fix">🐛 Fix - 修复 bug</option>
+            <option value="Chore">
+              ❌ Chore - 删除不再使用的功能、代码或依赖
+            </option>
+            <option value="Refactor">♻️ Refactor - 代码重构</option>
+            <option value="Style">💎 Style - 代码样式调整</option>
+            <option value="Docs">📚 Docs - 文档更新</option>
+            <option value="Perf">🚀 Perf - 性能优化</option>
+            <option value="Test">✅ Test - 测试相关</option>
+            <option value="Lint">🔰 Lint - 代码质量检查</option>
+            <option value="Build">⌛ Build - 构建、部署、依赖包等相关变动 </option>
+            <option value="Revert">⏪ Revert - 回退提交</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="scope">修改范围 (scope) - 可选:</label>
+          <input
+            type="text"
+            id="scope"
+            placeholder="例如: 权限, 角色, 路由, 某个业务模块"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="subject">标题 (subject):</label>
+          <input
+            type="text"
+            id="subject"
+            placeholder="提交内容的简要描述"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="body">详细描述 (body) - 可选:</label>
+          <textarea
+            id="body"
+            rows="3"
+            placeholder="详细描述提交内容，包括修改动机。可以使用换行、有序列表、无序列表组织内容"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="footer">脚注 (footer) - 可选:</label>
+          <input
+            type="text"
+            id="footer"
+            placeholder="例如: Close #123, BREAKING CHANGE:"
+          />
+        </div>
+
+        <button id="generate-btn">生成提交信息</button>
+
+        <div class="preview">
+          <h3>提交信息预览:</h3>
+          <div class="message-display" id="message-preview">
+            <p>Feat(scope): 简要描述提交内容</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>提交规范说明</h3>
+        <div class="example">
+          <h4>提交类型说明:</h4>
+          <ul class="rules-list">
+            <li>
+              <span class="type-tag Feat">Feat</span>
+              新功能：新增、调整了一个功能模块或功能点
+            </li>
+            <li>
+              <span class="type-tag Fix">Fix</span>
+              修复 Bug：修复原有功能的 bug
+            </li>
+            <li>
+              <span class="type-tag Chore">Chore</span>
+              不修改源代码或测试文件的变动（如构建过程、工具变动、依赖包版本）
+            </li>
+            <li>
+              <span class="type-tag Refactor">Refactor</span>
+              代码重构：不影响原有功能（既非新增功能，也非修复 bug）
+            </li>
+            <li>
+              <span class="type-tag Style">Style</span>
+              代码格式调整：空格、分号等，不影响逻辑
+            </li>
+            <li>
+              <span class="type-tag Docs">Docs</span>
+              文档更新：包含 README、API 文档、需求文档、使用说明等。
+            </li>
+            <li>
+              <span class="type-tag Perf">Perf</span>
+              性能优化：优化了业务代码运行效率、响应时间等
+            </li>
+            <li>
+              <span class="type-tag Test">Test</span>
+              测试相关：测试框架、测试用例、测试数据等
+            </li>
+            <li>
+              <span class="type-tag Lint">Lint</span>
+              代码质量检查：如 ESLint、Prettier、commitlint 等
+            </li>
+            <li>
+              <span class="type-tag Build">Build</span>
+              构建部署相关：如 Jekins 配置、构建脚本、依赖包变化等
+            </li>
+            <li>
+              <span class="type-tag Revert">Revert</span
+              >回退某一次代码提交，需要指定回退的 commit hash 值
+            </li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h4>提交示例:</h4>
+          <div class="example-code" style="margin-top: 10px">
+            Docs(README): 更新了项目依赖安装步骤和环境配置要求
+          </div>
+
+          <div class="example-code" style="margin-top: 10px">
+            Feat(auth): 添加用户登录功能
+            <br />
+            <br />
+            - 实现JWT令牌认证
+            <br />
+            - 添加登录页面UI
+            <br />
+            - 增加路由守卫
+            <br />
+            <br />
+            Close #123
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>使用此工具可以生成符合规范的提交信息，提高项目可维护性</p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const typeSelect = document.getElementById("type");
+        const scopeInput = document.getElementById("scope");
+        const subjectInput = document.getElementById("subject");
+        const bodyInput = document.getElementById("body");
+        const footerInput = document.getElementById("footer");
+        const generateBtn = document.getElementById("generate-btn");
+        const messagePreview = document.getElementById("message-preview");
+
+        // 更新预览
+        function updatePreview() {
+          const type = typeSelect.value;
+          const scope = scopeInput.value.trim();
+          const subject = subjectInput.value.trim();
+
+          let message = type;
+          if (scope) {
+            message += `(${scope})`;
+          }
+          message += `: ${subject || "本次提交的简要内容"}`;
+
+          if (bodyInput.value.trim()) {
+            message += `\n\n${bodyInput.value.trim()}`;
+          }
+          if (footerInput.value.trim()) {
+            message += `\n\n${footerInput.value.trim()}`;
+          }
+
+          messagePreview.textContent = message;
+        }
+
+        // 为所有输入元素添加事件监听
+        typeSelect.addEventListener("change", updatePreview);
+        scopeInput.addEventListener("input", updatePreview);
+        subjectInput.addEventListener("input", updatePreview);
+        bodyInput.addEventListener("input", updatePreview);
+        footerInput.addEventListener("input", updatePreview);
+
+        // 生成提交信息
+        generateBtn.addEventListener("click", function () {
+          updatePreview();
+
+          // 复制到剪贴板
+          const tempTextArea = document.createElement("textarea");
+          tempTextArea.value = messagePreview.textContent;
+          document.body.appendChild(tempTextArea);
+          tempTextArea.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempTextArea);
+
+          // 显示成功消息
+          alert(
+            '提交信息已生成并复制到剪贴板！\n\n您可以使用: git commit -m "提交信息"'
+          );
+        });
+
+        // 初始更新预览
+        updatePreview();
+      });
+    </script>
+  </body>
+</html>
