@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-import { onUnmounted, ref, watchEffect } from 'vue'
+import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
+// 滚动条元素 ref
+const scrollbarRef = ref()
 
-const scrollbarRef = ref<any>()
+// 滚动条当前位置
 const currPosition = ref(0)
+// 滚动条最大位置
 const maxLeftPosition = ref(0)
 
+// 滚动切换，步长200px
 function scrollChange(direction: 'left' | 'right') {
   if (direction === 'left') {
     currPosition.value -= 200
@@ -14,25 +18,43 @@ function scrollChange(direction: 'left' | 'right') {
     scrollbarRef.value!.setScrollLeft(currPosition.value as number)
   }
 }
-const menuNum = ref(10)
 // 滚动按钮
 const isShowScrollBtn = ref(false)
 // 左侧滚动按钮禁用
 const disabledLeftBtn = ref(false)
 // 右侧滚动按钮禁用
 const disabledRightBtn = ref(false)
-// 用watchEffect实现，控制滚动条两侧按钮的的显示隐藏和是否禁用
-const stopWtachEffect = watchEffect(() => {
-  const wrapRef = scrollbarRef?.value?.wrapRef
-  // 动态滚动条的的最大滚动距离，距离左侧的值
-  maxLeftPosition.value = wrapRef?.scrollWidth - wrapRef?.clientWidth
-  isShowScrollBtn.value = maxLeftPosition.value > 0
-  disabledLeftBtn.value = isShowScrollBtn.value && currPosition.value === 0
-  disabledRightBtn.value = isShowScrollBtn.value && currPosition.value >= maxLeftPosition.value
+let observer = null
+onMounted(() => {
+  // 监听滚动条动态
+  observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        const { clientWidth, scrollWidth } = mutation.target
+        isShowScrollBtn.value = clientWidth < scrollWidth
+        maxLeftPosition.value = scrollWidth - clientWidth
+      }
+    })
+  })
+  observer.observe(scrollbarRef.value.wrapRef, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+  })
+  // 动态计算滚动按钮禁用状态
+  watchEffect(() => {
+    disabledLeftBtn.value = isShowScrollBtn.value && currPosition.value <= 0
+    disabledRightBtn.value = isShowScrollBtn.value && currPosition.value >= maxLeftPosition.value
+    // 删除标签时，滚动条位置可能会超过最大位置，重置该值
+    if (currPosition.value > maxLeftPosition.value) {
+      currPosition.value = maxLeftPosition.value
+    }
+  })
 })
 onUnmounted(() => {
-  stopWtachEffect()
+  observer.disconnect()
 })
+
 // 调整菜单按钮显示隐藏时，动态添加动画
 const menuIconref = ref()
 function handleDropdownVisible(val: boolean) {
@@ -42,14 +64,19 @@ function handleDropdownVisible(val: boolean) {
     menuIconref.value.classList.remove('active')
   }
 }
+// 测试用
+const menuNum = ref(10)
 </script>
 
 <template>
   <div class="tabs-container px-10px">
-    <el-button v-show="isShowScrollBtn" :disabled="disabledLeftBtn" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
+    <el-button
+      v-show="isShowScrollBtn" :disabled="disabledLeftBtn" text bg class="scroll-btn mr-10px"
+      @click="scrollChange('left')"
+    >
       <div class="i-ri:arrow-left-s-fill" />
     </el-button>
-    <el-scrollbar ref="scrollbarRef" always flex-1>
+    <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
         <div v-for="item in menuNum" :key="item" class="tab-item">
           <div i-ri-home-2-line mr-3px />
@@ -61,7 +88,10 @@ function handleDropdownVisible(val: boolean) {
         </div>
       </div>
     </el-scrollbar>
-    <el-button v-show="isShowScrollBtn" :disabled="disabledRightBtn" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
+    <el-button
+      v-show="isShowScrollBtn" :disabled="disabledRightBtn" text bg class="scroll-btn ml-10px"
+      @click="scrollChange('right')"
+    >
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
@@ -96,6 +126,12 @@ function handleDropdownVisible(val: boolean) {
       </el-dropdown>
     </div>
   </div>
+  <el-button style="position: relative; top: 20px; z-index: 1111111111111;" @click="menuNum++">
+    新增标签
+  </el-button>
+  <el-button style="position: relative; top: 20px; z-index: 1111111111111;" @click="menuNum--">
+    减少标签
+  </el-button>
 </template>
 
 <style lang="scss" scoped>
