@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // import { useScroll } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
 
 const scrollbarRef = ref<any>()
 const currPosition = ref(0)
@@ -19,29 +19,23 @@ function scrollChange(direction: 'left' | 'right') {
     scrollbarRef.value!.setScrollLeft(currPosition.value as number)
   }
 }
-
+const isShowScrollBtn = ref(false)
 const disabledLeftBtn = ref(false)
 const disabledRightBtn = ref(false)
-// 动态计算滚动按钮是否显示
-const isShowScrollBtnLeft = computed(() => {
-  // 需要判断一下，保证DOM挂载完成之后，获取相关数据
-  if (scrollbarRef.value && scrollbarRef.value.wrapRef && currPosition.value > 0) {
-    const wrapRef = scrollbarRef?.value?.wrapRef
-    return wrapRef.scrollWidth > wrapRef.clientWidth
-  } else {
-    return false
+// 用watchEffect实现，控制滚动条两侧按钮的的显示隐藏和是否禁用
+const stopWtachEffect = watchEffect(() => {
+  const wrapRef = scrollbarRef?.value?.wrapRef
+  if (wrapRef?.scrollWidth > wrapRef?.clientWidth) {
+    isShowScrollBtn.value = true
   }
+  // disabledRightBtn.value = false
+  disabledLeftBtn.value = isShowScrollBtn.value && currPosition.value === 0
+  disabledRightBtn.value = isShowScrollBtn.value && currPosition.value >= maxLeftPosition.value
+})
+onUnmounted(() => {
+  stopWtachEffect()
 })
 
-const isShowScrollBtnRight = computed(() => {
-  // 需要判断一下，保证DOM挂载完成之后，获取相关数据
-  if (scrollbarRef.value && scrollbarRef.value.wrapRef && currPosition.value <= maxLeftPosition.value) {
-    const wrapRef = scrollbarRef?.value?.wrapRef
-    return wrapRef.scrollWidth > wrapRef.clientWidth
-  } else {
-    return false
-  }
-})
 const menuIconref = ref()
 function handleDropdownVisible(val: boolean) {
   if (val) {
@@ -50,22 +44,11 @@ function handleDropdownVisible(val: boolean) {
     menuIconref.value.classList.remove('active')
   }
 }
-
-// const tabList = ref([
-//   {
-//     label: '首页',
-//     path: '/',
-//   },
-//   {
-//     label: '列表',
-//     path: '/list',
-//   },
-// ])
 </script>
 
 <template>
   <div class="tabs-container px-10px">
-    <el-button v-show="isShowScrollBtnLeft" :disabled="!disabledLeftBtn" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
+    <el-button v-show="isShowScrollBtn" :disabled="disabledLeftBtn" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
       <div class="i-ri:arrow-left-s-fill" />
     </el-button>
     <el-scrollbar ref="scrollbarRef" always flex-1>
@@ -80,7 +63,7 @@ function handleDropdownVisible(val: boolean) {
         </div>
       </div>
     </el-scrollbar>
-    <el-button v-show="isShowScrollBtnRight" :disabled="!disabledRightBtn" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
+    <el-button v-show="isShowScrollBtn" :disabled="disabledRightBtn" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
@@ -184,11 +167,13 @@ function handleDropdownVisible(val: boolean) {
       }
     }
   }
+
   .menu-icon {
     font-size: 16px;
     color: var(--ep-text-color-regular);
     transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
   }
+
   .menu-icon.active {
     color: var(--ep-color-primary);
     cursor: pointer;
