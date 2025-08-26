@@ -74,7 +74,7 @@ const isShowScrollBtnRight = computed(() => {
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
-      <div class="i-ri:dashboard-horizontal-fill" />
+      <div class="i-ri:dashboard-horizontal-fill menu-icon" />
     </div>
   </div>
 </template>
@@ -144,6 +144,15 @@ const isShowScrollBtnRight = computed(() => {
           }
         }
       }
+    }
+  }
+  .menu-icon {
+    font-size: 16px;
+    color: var(--ep-text-color-regular);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    &:hover {
+      cursor: pointer;
+      transform: rotate(90deg);
     }
   }
 }
