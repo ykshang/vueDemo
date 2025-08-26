@@ -12,8 +12,15 @@ watch(
   { immediate: true },
 )
 onMounted(() => {
+  forrbidenContextMenu()
   router.push('/Home/HomePage')
 })
+// 禁用右键菜单
+function forrbidenContextMenu() {
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
+  })
+}
 </script>
 
 <template>
