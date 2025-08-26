@@ -179,6 +179,7 @@ const isShowScrollBtnRight = computed(() => {
     color: var(--ep-text-color-regular);
     transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
     &:hover {
+      color: var(--ep-color-primary);
       cursor: pointer;
       transform: rotate(90deg);
     }
