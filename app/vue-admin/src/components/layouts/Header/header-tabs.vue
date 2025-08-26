@@ -71,10 +71,10 @@ const menuNum = ref(10)
 <template>
   <div class="tabs-container px-10px">
     <el-button
-      v-show="isShowScrollBtn" :disabled="disabledLeftBtn" text bg class="scroll-btn mr-10px"
+      v-show="isShowScrollBtn" :disabled="disabledLeftBtn" class="scroll-btn mr-10px"
       @click="scrollChange('left')"
     >
-      <div class="i-ri:arrow-left-s-fill" />
+      <div class="i-ri:play-reverse-mini-fill" />
     </el-button>
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
@@ -89,10 +89,10 @@ const menuNum = ref(10)
       </div>
     </el-scrollbar>
     <el-button
-      v-show="isShowScrollBtn" :disabled="disabledRightBtn" text bg class="scroll-btn ml-10px"
+      v-show="isShowScrollBtn" :disabled="disabledRightBtn" class="scroll-btn ml-10px"
       @click="scrollChange('right')"
     >
-      <div class="i-ri:arrow-right-s-fill" />
+      <div class="i-ri:play-mini-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
       <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible($event)">
@@ -142,7 +142,8 @@ const menuNum = ref(10)
   transform: translateY(-50%);
 
   .scroll-btn {
-    padding: 0;
+    padding: 0 2px;
+    border: none;
   }
 
   .scrollbar-content {
