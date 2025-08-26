@@ -42,6 +42,14 @@ const isShowScrollBtnRight = computed(() => {
     return false
   }
 })
+const menuIconref = ref()
+function handleDropdownVisible(val: boolean) {
+  if (val) {
+    menuIconref.value.classList.add('active')
+  } else {
+    menuIconref.value.classList.remove('active')
+  }
+}
 
 // const tabList = ref([
 //   {
@@ -76,8 +84,10 @@ const isShowScrollBtnRight = computed(() => {
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
-      <el-dropdown placement="bottom-end">
-        <div class="i-ri:dashboard-horizontal-fill menu-icon" />
+      <!-- eslint-disable-next-line vue/attribute-hyphenation -->
+      <!-- // eslint-disable-next-line vue/v-on-event-hyphenation -->
+      <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible($event)">
+        <div ref="menuIconref" class="i-ri:dashboard-horizontal-fill menu-icon" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>
@@ -178,11 +188,11 @@ const isShowScrollBtnRight = computed(() => {
     font-size: 16px;
     color: var(--ep-text-color-regular);
     transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-    &:hover {
-      color: var(--ep-color-primary);
-      cursor: pointer;
-      transform: rotate(90deg);
-    }
+  }
+  .menu-icon.active {
+    color: var(--ep-color-primary);
+    cursor: pointer;
+    transform: rotate(90deg);
   }
 }
 
