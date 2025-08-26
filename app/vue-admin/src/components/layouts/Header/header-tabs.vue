@@ -95,8 +95,6 @@ const menuNum = ref(10)
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
-      <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-      <!-- // eslint-disable-next-line vue/v-on-event-hyphenation -->
       <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible($event)">
         <div ref="menuIconref" class="i-ri:dashboard-horizontal-fill menu-icon" />
         <template #dropdown>
