@@ -1,7 +1,19 @@
 <script lang="ts" setup>
+// import { useScroll } from '@vueuse/core'
 import { computed, ref } from 'vue'
 
 const scrollbarRef = ref<any>()
+const currPosition = ref(0)
+
+function scrollChange(direction: 'left' | 'right') {
+  if (direction === 'left') {
+    currPosition.value -= 200
+    scrollbarRef.value!.setScrollLeft(currPosition.value as number)
+  } else {
+    currPosition.value += 200
+    scrollbarRef.value!.setScrollLeft(currPosition.value as number)
+  }
+}
 
 // 动态计算滚动按钮是否显示
 const isShowScrollBtn = computed(() => {
@@ -28,7 +40,7 @@ const isShowScrollBtn = computed(() => {
 
 <template>
   <div class="tabs-container">
-    <el-button v-show="isShowScrollBtn" text bg mr-10px style="padding: 0;">
+    <el-button v-show="isShowScrollBtn" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
       <div class="i-ri:arrow-left-s-fill" />
     </el-button>
     <el-scrollbar ref="scrollbarRef" always flex-1>
@@ -43,7 +55,7 @@ const isShowScrollBtn = computed(() => {
         </div>
       </div>
     </el-scrollbar>
-    <el-button v-show="isShowScrollBtn" text bg style="padding: 0;" ml-10px>
+    <el-button v-show="isShowScrollBtn" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
   </div>
@@ -57,6 +69,10 @@ const isShowScrollBtn = computed(() => {
   justify-content: center;
   top: 50%;
   transform: translateY(-50%);
+
+  .scroll-btn {
+    padding: 0;
+  }
 
   .scrollbar-content {
     display: flex;
