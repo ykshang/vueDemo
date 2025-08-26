@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
+import { onUnmounted, ref, watchEffect } from 'vue'
 
 const scrollbarRef = ref<any>()
 const currPosition = ref(0)
 const maxLeftPosition = ref(0)
-onMounted(() => {
-  // 动态滚动条的的最大滚动距离，距离左侧的值
-  maxLeftPosition.value = scrollbarRef.value.wrapRef.scrollWidth - scrollbarRef.value.wrapRef.clientWidth
-})
 
 function scrollChange(direction: 'left' | 'right') {
   if (direction === 'left') {
@@ -18,6 +14,7 @@ function scrollChange(direction: 'left' | 'right') {
     scrollbarRef.value!.setScrollLeft(currPosition.value as number)
   }
 }
+const menuNum = ref(10)
 // 滚动按钮
 const isShowScrollBtn = ref(false)
 // 左侧滚动按钮禁用
@@ -27,7 +24,9 @@ const disabledRightBtn = ref(false)
 // 用watchEffect实现，控制滚动条两侧按钮的的显示隐藏和是否禁用
 const stopWtachEffect = watchEffect(() => {
   const wrapRef = scrollbarRef?.value?.wrapRef
-  isShowScrollBtn.value = wrapRef?.scrollWidth > wrapRef?.clientWidth
+  // 动态滚动条的的最大滚动距离，距离左侧的值
+  maxLeftPosition.value = wrapRef?.scrollWidth - wrapRef?.clientWidth
+  isShowScrollBtn.value = maxLeftPosition.value > 0
   disabledLeftBtn.value = isShowScrollBtn.value && currPosition.value === 0
   disabledRightBtn.value = isShowScrollBtn.value && currPosition.value >= maxLeftPosition.value
 })
@@ -52,7 +51,7 @@ function handleDropdownVisible(val: boolean) {
     </el-button>
     <el-scrollbar ref="scrollbarRef" always flex-1>
       <div class="scrollbar-content">
-        <div v-for="item in 10" :key="item" class="tab-item">
+        <div v-for="item in menuNum" :key="item" class="tab-item">
           <div i-ri-home-2-line mr-3px />
           {{ `标签${item}` }}
           <div class="close-btn">
