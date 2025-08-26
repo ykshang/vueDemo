@@ -125,7 +125,7 @@ const menuNum = ref(10)
       <div class="i-ri:arrow-right-wide-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
-      <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible($event)">
+      <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible">
         <div ref="menuIconref" class="i-ri:apps-fill menu-icon" />
         <template #dropdown>
           <el-dropdown-menu>
