@@ -18,16 +18,16 @@ function scrollChange(direction: 'left' | 'right') {
     scrollbarRef.value!.setScrollLeft(currPosition.value as number)
   }
 }
+// 滚动按钮
 const isShowScrollBtn = ref(false)
+// 左侧滚动按钮禁用
 const disabledLeftBtn = ref(false)
+// 右侧滚动按钮禁用
 const disabledRightBtn = ref(false)
 // 用watchEffect实现，控制滚动条两侧按钮的的显示隐藏和是否禁用
 const stopWtachEffect = watchEffect(() => {
   const wrapRef = scrollbarRef?.value?.wrapRef
-  if (wrapRef?.scrollWidth > wrapRef?.clientWidth) {
-    isShowScrollBtn.value = true
-  }
-  // disabledRightBtn.value = false
+  isShowScrollBtn.value = wrapRef?.scrollWidth > wrapRef?.clientWidth
   disabledLeftBtn.value = isShowScrollBtn.value && currPosition.value === 0
   disabledRightBtn.value = isShowScrollBtn.value && currPosition.value >= maxLeftPosition.value
 })
@@ -52,7 +52,7 @@ function handleDropdownVisible(val: boolean) {
     </el-button>
     <el-scrollbar ref="scrollbarRef" always flex-1>
       <div class="scrollbar-content">
-        <div v-for="item in 20" :key="item" class="tab-item">
+        <div v-for="item in 10" :key="item" class="tab-item">
           <div i-ri-home-2-line mr-3px />
           {{ `标签${item}` }}
           <div class="close-btn">
