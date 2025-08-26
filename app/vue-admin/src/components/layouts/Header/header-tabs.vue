@@ -54,7 +54,7 @@ const isShowScrollBtnRight = computed(() => {
 </script>
 
 <template>
-  <div class="tabs-container">
+  <div class="tabs-container px-10px">
     <el-button v-show="isShowScrollBtnLeft" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
       <div class="i-ri:arrow-left-s-fill" />
     </el-button>
@@ -73,6 +73,9 @@ const isShowScrollBtnRight = computed(() => {
     <el-button v-show="isShowScrollBtnRight" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
+    <div class="mx-30px flex items-center justify-center font-size-16px">
+      <div class="i-ri:dashboard-horizontal-fill" />
+    </div>
   </div>
 </template>
 

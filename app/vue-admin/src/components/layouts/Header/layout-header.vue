@@ -13,7 +13,7 @@
     <!-- 头像和用户信息 -->
     <header-user-operation-bar />
   </div>
-  <div class="border-bottom pos-relative h-50px min-h-50px px-10px">
+  <div class="border-bottom pos-relative h-50px min-h-50px">
     <!-- 标签页 -->
     <header-tabs />
   </div>
