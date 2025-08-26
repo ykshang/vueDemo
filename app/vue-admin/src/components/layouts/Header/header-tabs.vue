@@ -64,6 +64,24 @@ function handleDropdownVisible(val: boolean) {
     menuIconref.value.classList.remove('active')
   }
 }
+// 下拉菜单按钮列表
+const dropdownList = ref([{
+  label: '刷新',
+  icon: 'i-ri:refresh-line mr-5px',
+}, {
+  label: '关闭其他',
+  icon: 'i-ri:close-line mr-5px',
+}, {
+  label: '关闭左侧',
+  icon: 'i-ri:arrow-left-line mr-5px',
+}, {
+  label: '关闭右侧',
+  icon: 'i-ri:arrow-right-line mr-5px',
+}, {
+  label: '关闭全部',
+  icon: 'i-ri:close-line mr-5px',
+}])
+
 // 测试用
 const menuNum = ref(10)
 </script>
@@ -90,25 +108,9 @@ const menuNum = ref(10)
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item>
-                  <div class="i-ri:refresh-line mr-5px" />
-                  <span>刷新</span>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <div class="i-ri:close-line mr-5px" />
-                  <span>关闭其他</span>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <div class="i-ri:arrow-left-line mr-5px" />
-                  <span>关闭左侧</span>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <div class="i-ri:arrow-right-line mr-5px" />
-                  <span>关闭右侧</span>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <div class="i-ri:close-line" />
-                  <span>关闭全部</span>
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label">
+                  <div :class="dropMenu.icon" />
+                  <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -127,25 +129,9 @@ const menuNum = ref(10)
         <div ref="menuIconref" class="i-ri:apps-fill menu-icon" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>
-              <div class="i-ri:refresh-line mr-5px" />
-              <span>刷新</span>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <div class="i-ri:close-line mr-5px" />
-              <span>关闭其他</span>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <div class="i-ri:arrow-left-line mr-5px" />
-              <span>关闭左侧</span>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <div class="i-ri:arrow-right-line mr-5px" />
-              <span>关闭右侧</span>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <div class="i-ri:close-line" />
-              <span>关闭全部</span>
+            <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label">
+              <div :class="dropMenu.icon" />
+              <span>{{ dropMenu.label }}</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
