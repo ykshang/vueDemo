@@ -1,4 +1,19 @@
 <script lang="ts" setup>
+import { computed, ref } from 'vue'
+
+const scrollbarRef = ref<any>()
+
+// 动态计算滚动按钮是否显示
+const isShowScrollBtn = computed(() => {
+  // 需要判断一下，保证DOM挂载完成之后，获取相关数据
+  if (scrollbarRef.value && scrollbarRef.value.wrapRef) {
+    const wrapRef = scrollbarRef?.value?.wrapRef
+    return wrapRef.scrollWidth > wrapRef.clientWidth
+  } else {
+    return false
+  }
+})
+
 // const tabList = ref([
 //   {
 //     label: '首页',
@@ -13,10 +28,10 @@
 
 <template>
   <div class="tabs-container">
-    <el-button text bg mr-10px style="padding: 0;">
+    <el-button v-show="isShowScrollBtn" text bg mr-10px style="padding: 0;">
       <div class="i-ri:arrow-left-s-fill" />
     </el-button>
-    <el-scrollbar always flex-1>
+    <el-scrollbar ref="scrollbarRef" always flex-1>
       <div class="scrollbar-content">
         <div v-for="item in 50" :key="item" class="tab-item">
           <div i-ri-home-2-line mr-3px />
@@ -28,7 +43,7 @@
         </div>
       </div>
     </el-scrollbar>
-    <el-button text bg style="padding: 0;" ml-10px>
+    <el-button v-show="isShowScrollBtn" text bg style="padding: 0;" ml-10px>
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
   </div>
