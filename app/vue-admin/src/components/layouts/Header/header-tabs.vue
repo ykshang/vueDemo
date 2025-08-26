@@ -93,7 +93,7 @@ const isShowScrollBtnRight = computed(() => {
     display: flex;
     width: fit-content;
     max-width: 100%;
-    gap: 25px;
+    gap: 15px;
 
     .tab-item {
       display: flex;
@@ -108,7 +108,7 @@ const isShowScrollBtnRight = computed(() => {
 
       .close-btn {
         margin-left: 5px;
-        display: none;
+        visibility: hidden;
       }
 
       .btn-underline {
@@ -132,7 +132,7 @@ const isShowScrollBtnRight = computed(() => {
         }
 
         .close-btn {
-          display: block;
+          visibility: visible;
 
           &:hover {
             border-radius: 50%;
