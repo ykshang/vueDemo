@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>按钮悬停动画</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f8f9fa;
+        font-family: 'Segoe UI', sans-serif;
+      }
+
+      .btn-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .hover-btn {
+        padding: 12px 32px;
+        font-size: 18px;
+        color: #495057;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .hover-btn:hover {
+        color: #212529;
+      }
+
+      .underline {
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4dabf7, #339af0);
+        transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        border-radius: 2px;
+      }
+
+      .btn-wrapper:hover .underline {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <button class="hover-btn">悬停查看效果</button>
+      <div class="underline"></div>
+    </div>
+  </body>
+</html>
