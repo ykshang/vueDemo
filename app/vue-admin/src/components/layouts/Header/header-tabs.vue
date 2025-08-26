@@ -20,6 +20,8 @@ function scrollChange(direction: 'left' | 'right') {
   }
 }
 
+const disabledLeftBtn = ref(false)
+const disabledRightBtn = ref(false)
 // 动态计算滚动按钮是否显示
 const isShowScrollBtnLeft = computed(() => {
   // 需要判断一下，保证DOM挂载完成之后，获取相关数据
@@ -55,7 +57,7 @@ const isShowScrollBtnRight = computed(() => {
 
 <template>
   <div class="tabs-container px-10px">
-    <el-button v-show="isShowScrollBtnLeft" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
+    <el-button v-show="isShowScrollBtnLeft" :disabled="!disabledLeftBtn" text bg class="scroll-btn mr-10px" @click="scrollChange('left')">
       <div class="i-ri:arrow-left-s-fill" />
     </el-button>
     <el-scrollbar ref="scrollbarRef" always flex-1>
@@ -70,7 +72,7 @@ const isShowScrollBtnRight = computed(() => {
         </div>
       </div>
     </el-scrollbar>
-    <el-button v-show="isShowScrollBtnRight" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
+    <el-button v-show="isShowScrollBtnRight" :disabled="!disabledRightBtn" text bg class="scroll-btn ml-10px" @click="scrollChange('right')">
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
