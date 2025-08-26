@@ -78,13 +78,41 @@ const menuNum = ref(10)
     </el-button>
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
-        <div v-for="item in menuNum" :key="item" class="tab-item">
-          <div i-ri-home-2-line mr-3px />
-          {{ `标签${item}` }}
-          <div class="close-btn">
-            <div class="i-ri:close-line" />
-          </div>
-          <div class="btn-underline" />
+        <div v-for="item in menuNum" :key="item">
+          <el-dropdown trigger="contextmenu">
+            <div class="tab-item">
+              <div i-ri-home-2-line mr-3px />
+              {{ `标签${item}` }}
+              <div class="close-btn">
+                <div class="i-ri:close-line" />
+              </div>
+              <div class="btn-underline" />
+            </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>
+                  <div class="i-ri:refresh-line mr-5px" />
+                  <span>刷新</span>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <div class="i-ri:close-line mr-5px" />
+                  <span>关闭其他</span>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <div class="i-ri:arrow-left-line mr-5px" />
+                  <span>关闭左侧</span>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <div class="i-ri:arrow-right-line mr-5px" />
+                  <span>关闭右侧</span>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <div class="i-ri:close-line" />
+                  <span>关闭全部</span>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </div>
     </el-scrollbar>
