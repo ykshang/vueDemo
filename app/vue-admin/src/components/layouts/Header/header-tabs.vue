@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-// import { useScroll } from '@vueuse/core'
-import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
+import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
 
 const scrollbarRef = ref<any>()
 const currPosition = ref(0)
@@ -35,7 +34,7 @@ const stopWtachEffect = watchEffect(() => {
 onUnmounted(() => {
   stopWtachEffect()
 })
-
+// 调整菜单按钮显示隐藏时，动态添加动画
 const menuIconref = ref()
 function handleDropdownVisible(val: boolean) {
   if (val) {
