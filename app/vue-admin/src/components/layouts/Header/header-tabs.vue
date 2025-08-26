@@ -76,7 +76,33 @@ const isShowScrollBtnRight = computed(() => {
       <div class="i-ri:arrow-right-s-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
-      <div class="i-ri:dashboard-horizontal-fill menu-icon" />
+      <el-dropdown placement="bottom-end">
+        <div class="i-ri:dashboard-horizontal-fill menu-icon" />
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>
+              <div class="i-ri:refresh-line mr-5px" />
+              <span>刷新</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="i-ri:close-line mr-5px" />
+              <span>关闭其他</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="i-ri:arrow-left-line mr-5px" />
+              <span>关闭左侧</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="i-ri:arrow-right-line mr-5px" />
+              <span>关闭右侧</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <div class="i-ri:close-line" />
+              <span>关闭全部</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
