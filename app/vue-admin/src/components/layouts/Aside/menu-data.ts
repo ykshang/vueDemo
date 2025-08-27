@@ -72,6 +72,8 @@ const menuDataTree = [
     ],
   },
 ]
+const menuDataList = menuDataTree.flatMap(item => item.subMenu)
 export {
+  menuDataList,
   menuDataTree,
 }
