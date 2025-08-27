@@ -77,6 +77,21 @@ const tabItemList = ref([{
   path: '/Home/HomePage',
   icon: RiHome2Line,
   readonly: true,
+}, {
+  title: '首页1',
+  path: '/Home/HomePage1',
+  icon: RiHome2Line,
+  readonly: true,
+}, {
+  title: '首页2',
+  path: '/Home/HomePage2',
+  icon: RiHome2Line,
+  readonly: true,
+}, {
+  title: '首页3',
+  path: '/Home/HomePage3',
+  icon: RiHome2Line,
+  readonly: true,
 }])
 
 // 下拉菜单按钮列表
@@ -152,7 +167,7 @@ function disabledDropitem(tabItem: any, tabItemIndex: number, dropMenu: any) {
     return path === '/Home/HomePage' ? length < 2 : length < 3
   } else if (dropMenu.command === 'closeLeft') {
     // 至少第三个按钮才会显示关闭左侧
-    return tabItemIndex <= 3
+    return tabItemIndex < 2
   } else if (dropMenu.command === 'closeRight') {
     // 最右侧的被禁用
     return tabItemIndex === tabItemList.value.length - 1
