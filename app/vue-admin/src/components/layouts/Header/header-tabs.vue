@@ -3,7 +3,9 @@ import { ElMessage } from 'element-plus'
 
 import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
 import RiHome2Line from '~icons/ri/home-2-line'
-import { menuDataList } from '../Aside/menu-data'
+
+// import { menuDataList } from '../Aside/menu-data'
+// console.log(menuDataList)
 // 滚动条元素 ref
 const scrollbarRef = ref()
 
@@ -74,11 +76,9 @@ const tabItemList = ref([{
   title: '首页',
   path: '/Home/HomePage',
   icon: RiHome2Line,
-  isActive: true,
   readonly: true,
 }])
-// eslint-disable-next-line no-console
-console.log(menuDataList)
+
 // 下拉菜单按钮列表
 const dropdownList = ref([{
   label: '刷新',
@@ -137,6 +137,28 @@ function cloaseAllTab(item: any, command: any) {
     type: 'info',
   })
 }
+function disabledDropitem(tabItem: any, tabItemIndex: number, dropMenu: any) {
+  const command = dropMenu.command
+  const path = tabItem.path
+  const length = tabItemList.value.length
+  if (command === 'refresh') {
+    // 刷新按钮常亮
+    return false
+  } else if (command === 'closeAll') {
+    // 页签大于2时，显示关闭全部页签
+    return length <= 1
+  } else if (command === 'closeOther') {
+    // 如果是首页，页签至少为2，不是首页 ，页签至少为3
+    return path === '/Home/HomePage' ? length < 2 : length < 3
+  } else if (dropMenu.command === 'closeLeft') {
+    // 至少第三个按钮才会显示关闭左侧
+    return tabItemIndex <= 3
+  } else if (dropMenu.command === 'closeRight') {
+    // 最右侧的被禁用
+    return tabItemIndex === tabItemList.value.length - 1
+  }
+  return true
+}
 
 // 储存动态引用, 用于关闭其他标签
 const tabItemsRef = ref<{ [key: string]: any }>({})
@@ -157,6 +179,10 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
     })
   }
 }
+function disabledMenu() {
+  // console.log('disabledMenu')
+  return false
+}
 </script>
 
 <template>
@@ -169,7 +195,7 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
     </el-button>
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
-        <div v-for="tabItem in tabItemList" :key="tabItem.path">
+        <div v-for="(tabItem, tabItemIndex) in tabItemList" :key="tabItem.path">
           <el-dropdown :ref="val => setTabItemsRef(val, tabItem.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)">
             <div class="tab-item">
               <div i-ri-home-2-line mr-3px />
@@ -181,7 +207,7 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" @click="dropMenu.callback(tabItem, dropMenu.command)">
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropitem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, dropMenu.command)">
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
@@ -202,7 +228,7 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
         <div ref="menuIconref" class="i-ri:apps-fill menu-icon" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label">
+            <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledMenu()">
               <div :class="dropMenu.icon" />
               <span>{{ dropMenu.label }}</span>
             </el-dropdown-item>
