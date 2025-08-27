@@ -1,17 +1,13 @@
 import Koa from 'koa'
-import combineRouters from 'koa-combine-routers'
-import userRouter from './routes/products-router.js'
 import { connectDB } from './db.js'
-import productRouter from './routes/products-router.js'
 import bodyParser from 'koa-bodyparser'
 
-// 合并所有路由
-const unifiedRouter = combineRouters(userRouter, productRouter)
+import unifiedRouter from './routes/index.js'
 
 // 启动时连接数据库
 connectDB()
   .then(() => {
-    console.log('Database connection established')
+    console.log('Database connection ready')
   })
   .catch((err) => {
     console.error('Failed to connect to database:', err)
