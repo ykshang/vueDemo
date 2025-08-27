@@ -24,13 +24,13 @@ const isShowScrollBtn = ref(false)
 const disabledLeftBtn = ref(false)
 // 右侧滚动按钮禁用
 const disabledRightBtn = ref(false)
-let observer = null
+let observer: MutationObserver | null = null
 onMounted(() => {
   // 监听滚动条动态
   observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
-        const { clientWidth, scrollWidth } = mutation.target
+        const { clientWidth, scrollWidth } = mutation.target as HTMLElement
         isShowScrollBtn.value = clientWidth < scrollWidth
         maxLeftPosition.value = scrollWidth - clientWidth
       }
@@ -52,7 +52,7 @@ onMounted(() => {
   })
 })
 onUnmounted(() => {
-  observer.disconnect()
+  observer?.disconnect()
 })
 
 // 调整菜单按钮显示隐藏时，动态添加动画
