@@ -11,61 +11,61 @@ import RiUserSettingsLine from '~icons/ri/user-settings-line'
 
 const menuDataTree = [
   {
-    index: '/Home',
+    path: '/Home',
     title: '首页',
     icon: RiHome3Line,
     subMenu: [
       {
-        index: '/Home/HomePage',
+        path: '/Home/HomePage',
         title: '欢迎页',
         icon: RiHome2Line,
       },
       {
-        index: '/Home/DashBoard',
+        path: '/Home/DashBoard',
         title: '数据看板',
         icon: DataAnalysis,
       },
     ],
   },
   {
-    index: '/Setting',
+    path: '/Setting',
     title: '配置中心',
     icon: RiUserSettingsLine,
     subMenu: [
       {
-        index: '/Setting/Profile',
+        path: '/Setting/Profile',
         title: '个人信息',
         icon: User,
       },
       {
-        index: '/Setting/EmployeeManagent',
+        path: '/Setting/EmployeeManagent',
         title: '员工管理',
         icon: RiGroupLine,
       },
       {
-        index: '/Setting/DepartmentMangement',
+        path: '/Setting/DepartmentMangement',
         title: '部门管理',
         icon: OfficeBuilding,
       },
       {
-        index: '/Setting/MenuMangement',
+        path: '/Setting/MenuMangement',
         title: '菜单管理',
         icon: RiAppsLine,
       },
       {
-        index: '/Setting/TaskMangement',
+        path: '/Setting/TaskMangement',
         title: '任务管理',
         icon: RiCalendarTodoLine,
       },
     ],
   },
   {
-    index: '/Components',
+    path: '/Components',
     title: '内置组件',
     icon: RiBox3Line,
     subMenu: [
       {
-        index: '/Components/IconList',
+        path: '/Components/IconList',
         title: '图标组件',
         icon: RiRemixiconLine,
       },

@@ -35,12 +35,12 @@ const { isMenuCollapse } = storeToRefs(themeConfigStore)
       w-280px flex-1 :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false"
       @select="handleMenuSelect"
     >
-      <el-sub-menu v-for="menu1 in menuDataTree" :key="menu1.index" :index="menu1.index">
+      <el-sub-menu v-for="menu1 in menuDataTree" :key="menu1.path" :index="menu1.path">
         <template #title>
           <component :is="menu1.icon" mr-8px h-a w-18px />
           <span font-size-14px>{{ menu1.title }}</span>
         </template>
-        <el-menu-item v-for="menu2 in menu1.subMenu" :key="menu2.index" :index="menu2.index">
+        <el-menu-item v-for="menu2 in menu1.subMenu" :key="menu2.path" :index="menu2.path">
           <component :is="menu2.icon" mr-8px h-a w-18px />
           <span font-size-14px>{{ menu2.title }}</span>
         </el-menu-item>

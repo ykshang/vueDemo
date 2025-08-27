@@ -12,7 +12,7 @@ const navitemList = computed(() => {
   while (routeList.length > 0) {
     const route = routeList.shift()
     const menu = menuList.find((menu) => {
-      return menu.index === route?.path
+      return menu.path === route?.path
     })
     result.push(menu)
     menuList = menu?.subMenu as any
