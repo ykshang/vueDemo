@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
+import { onMounted, onUnmounted, readonly, ref, watchEffect } from 'vue'
 
 import RiHome2Line from '~icons/ri/home-2-line'
 import { menuDataList } from '../Aside/menu-data'
@@ -98,6 +98,8 @@ const tabItemList = ref([{
   title: '首页',
   path: '/Home/HomePage',
   icon: RiHome2Line,
+  isActive: true,
+  readonly: true,
 }])
 console.log(menuDataList)
 function cloaseRefreshTab(item: any, command: any) {
@@ -118,10 +120,9 @@ function cloaseAllTab(item: any, command: any) {
 
 // 储存动态引用, 用于关闭其他标签
 const tabItemsRef = ref<{ [key: string]: any }>({})
-function setTabItemsRef(el: any, indexed: any) {
+function setTabItemsRef(el: any, path: any) {
   // console.log(indexed, el)
-  const key = `tab${indexed}`
-  tabItemsRef.value[key] = el
+  tabItemsRef.value[path] = el
 }
 function handleTabDropdownVisible(visibility: boolean, item: any) {
   // console.log(visibility, item)
@@ -151,11 +152,11 @@ const menuNum = ref(10)
     </el-button>
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
-        <div v-for="item in menuNum" :key="item">
-          <el-dropdown :ref="val => setTabItemsRef(val, item)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, `tab${item}`)">
+        <div v-for="item in tabItemList" :key="item">
+          <el-dropdown :ref="val => setTabItemsRef(val, item.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, item.path)">
             <div class="tab-item">
               <div i-ri-home-2-line mr-3px />
-              {{ `标签${item}` }}
+              {{ item.title }}
               <div class="close-btn">
                 <div class="i-ri:close-line" />
               </div>
