@@ -2,11 +2,12 @@
 import { ElMessage } from 'element-plus'
 
 import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { defaultHomePage, menuDataList } from '../Aside/menu-data'
 
 // 路由实例
 const route = useRoute()
+const router = useRouter()
 
 // 滚动条元素 ref
 const scrollbarRef = ref()
@@ -214,6 +215,11 @@ function disabledMenu() {
 function calcActiveClass(tabItem: any) {
   return tabItem.path === currTab.value.path ? 'tab-item active' : 'tab-item'
 }
+// 点击页签, 切换路由,激活页签
+function handleClickTab(tabItem: any) {
+  currTab.value = tabItem
+  router.push(tabItem.path)
+}
 </script>
 
 <template>
@@ -228,7 +234,7 @@ function calcActiveClass(tabItem: any) {
       <div class="scrollbar-content">
         <div v-for="(tabItem, tabItemIndex) in tabItemList" :key="tabItem.path">
           <el-dropdown :ref="val => setTabItemsRef(val, tabItem.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)">
-            <div :class="calcActiveClass(tabItem)">
+            <div :class="calcActiveClass(tabItem)" @click="handleClickTab(tabItem)">
               <component :is="tabItem.icon" mr-3px h-16px w-16px />
               {{ tabItem.title }}
               <div v-if="!tabItem.readonly" class="close-btn">
