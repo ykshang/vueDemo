@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, readonly, ref, watchEffect } from 'vue'
+import { ElMessage } from 'element-plus'
 
+import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
 import RiHome2Line from '~icons/ri/home-2-line'
 import { menuDataList } from '../Aside/menu-data'
 // 滚动条元素 ref
@@ -101,21 +102,37 @@ const tabItemList = ref([{
   isActive: true,
   readonly: true,
 }])
+// eslint-disable-next-line no-console
 console.log(menuDataList)
 function cloaseRefreshTab(item: any, command: any) {
-  console.log(command, item)
+  ElMessage({
+    message: `${command}：${item.path}`,
+    type: 'info',
+  })
 }
 function cloaseOtherTab(item: any, command: any) {
-  console.log(command, item)
+  ElMessage({
+    message: `${command}：${item.path}`,
+    type: 'info',
+  })
 }
 function cloaseLeftTab(item: any, command: any) {
-  console.log(command, item)
+  ElMessage({
+    message: `${command}：${item.path}`,
+    type: 'info',
+  })
 }
 function cloaseRightTab(item: any, command: any) {
-  console.log(command, item)
+  ElMessage({
+    message: `${command}：${item.path}`,
+    type: 'info',
+  })
 }
 function cloaseAllTab(item: any, command: any) {
-  console.log(command, item)
+  ElMessage({
+    message: command + item.path,
+    type: 'info',
+  })
 }
 
 // 储存动态引用, 用于关闭其他标签
@@ -137,9 +154,6 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
     })
   }
 }
-
-// 测试用
-const menuNum = ref(10)
 </script>
 
 <template>
@@ -152,11 +166,11 @@ const menuNum = ref(10)
     </el-button>
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
-        <div v-for="item in tabItemList" :key="item">
-          <el-dropdown :ref="val => setTabItemsRef(val, item.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, item.path)">
+        <div v-for="tabItem in tabItemList" :key="tabItem.path">
+          <el-dropdown :ref="val => setTabItemsRef(val, tabItem.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)">
             <div class="tab-item">
               <div i-ri-home-2-line mr-3px />
-              {{ item.title }}
+              {{ tabItem.title }}
               <div class="close-btn">
                 <div class="i-ri:close-line" />
               </div>
@@ -164,7 +178,7 @@ const menuNum = ref(10)
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" @click="dropMenu.callback(item, dropMenu.command)">
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" @click="dropMenu.callback(tabItem, dropMenu.command)">
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
@@ -194,12 +208,6 @@ const menuNum = ref(10)
       </el-dropdown>
     </div>
   </div>
-  <el-button style="position: relative; top: 20px; z-index: 1111111111111;" @click="menuNum++">
-    新增标签
-  </el-button>
-  <el-button style="position: relative; top: 20px; z-index: 1111111111111;" @click="menuNum--">
-    减少标签
-  </el-button>
 </template>
 
 <style lang="scss" scoped>
