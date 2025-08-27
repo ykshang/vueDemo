@@ -85,7 +85,6 @@ const defaultHomePage = ref({
   path: '/Home/HomePage',
   title: '欢迎页',
   icon: RiHome2Line,
-  isActive: true,
   readonly: true,
 })
 const menuDataList = menuDataTree.flatMap(item => item.subMenu)

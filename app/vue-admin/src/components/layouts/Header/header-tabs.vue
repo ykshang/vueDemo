@@ -79,7 +79,8 @@ function handleDropdownVisible(val: boolean) {
 const tabItemList = ref<any[]>([])
 // Object.assign(tabItemList.value, menuDataList)
 tabItemList.value.push(defaultHomePage.value)
-
+const currTab = ref()
+currTab.value = defaultHomePage.value
 watch(
   () => route.path,
   (newPath) => {
@@ -87,15 +88,16 @@ watch(
     const newTabIndex = tabItemList.value.findIndex(tab => tab.path === newPath)
     // 如果当前路由对应的也i按不存在，添加到页签列表
     if (newTabIndex === -1) {
-      const newTab = menuDataList.find(tab => tab.path === newPath)
-      // 避免浅拷贝带来的数据影响
-      tabItemList.value.push({
-        path: newTab?.path,
-        icon: newTab?.icon,
-        title: newTab?.title,
-        isActive: true,
+      const tabData = menuDataList.find(tab => tab.path === newPath)
+      currTab.value = {
+        path: tabData?.path,
+        icon: tabData?.icon,
+        title: tabData?.title,
         readonly: false,
-      })
+      }
+
+      // 避免浅拷贝带来的数据影响
+      tabItemList.value.push(currTab.value)
     }
     // console.log(newPath, newTabIndex)
     // 路由变化时，重置滚动条位置
@@ -204,6 +206,9 @@ function disabledMenu() {
   // console.log('disabledMenu')
   return false
 }
+function calcActiveClass(tabItem: any) {
+  return tabItem.path === currTab.value.path ? 'tab-item active' : 'tab-item'
+}
 </script>
 
 <template>
@@ -218,7 +223,7 @@ function disabledMenu() {
       <div class="scrollbar-content">
         <div v-for="(tabItem, tabItemIndex) in tabItemList" :key="tabItem.path">
           <el-dropdown :ref="val => setTabItemsRef(val, tabItem.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)">
-            <div class="tab-item">
+            <div :class="calcActiveClass(tabItem)">
               <component :is="tabItem.icon" mr-3px h-16px w-16px />
               {{ tabItem.title }}
               <div v-if="!tabItem.readonly" class="close-btn">
@@ -325,6 +330,19 @@ function disabledMenu() {
             background-color: var(--ep-color-info-light-3);
           }
         }
+      }
+    }
+    .active {
+      color: var(--ep-color-primary);
+      background-color: var(--ep-color-primary-light-9);
+      cursor: pointer;
+
+      .btn-underline {
+        width: 100%;
+      }
+
+      .close-btn {
+        visibility: visible;
       }
     }
   }
