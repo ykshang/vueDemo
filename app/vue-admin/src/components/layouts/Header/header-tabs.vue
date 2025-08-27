@@ -8,15 +8,6 @@ import { menuDataList } from '../Aside/menu-data'
 // 路由实例
 const route = useRoute()
 
-watch(
-  () => route.path,
-  (newPath) => {
-    console.log(newPath)
-    console.log(tabItemsRef.value[newPath]?.$el?.scrollWidth)
-
-  // 路由变化时，重置滚动条位置
-  },
-)
 // 滚动条元素 ref
 const scrollbarRef = ref()
 
@@ -88,6 +79,22 @@ function handleDropdownVisible(val: boolean) {
 const tabItemList = ref<any[]>([])
 Object.assign(tabItemList.value, menuDataList)
 tabItemList.value.pop()
+
+watch(
+  () => route.path,
+  (newPath) => {
+    // 检测该路由是否存在
+    const newTabIndex = tabItemList.value.findIndex(tab => tab.path === newPath)
+    // 如果当前路由对应的也i按不存在，添加到页签列表
+    if (newTabIndex === -1) {
+      const newTab = menuDataList.find(tab => tab.path === newPath)
+      tabItemList.value.push(newTab)
+    }
+    // console.log(newPath, newTabIndex)
+    // 路由变化时，重置滚动条位置
+    // console.log(tabItemsRef.value[newPath]?.$el?.scrollWidth)
+  },
+)
 // 下拉菜单按钮列表
 const dropdownList = ref([{
   label: '刷新',
