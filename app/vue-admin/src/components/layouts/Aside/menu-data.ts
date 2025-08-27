@@ -1,5 +1,6 @@
 import { DataAnalysis, OfficeBuilding, User } from '@element-plus/icons-vue'
 
+import RiAlarmWarningLine from '~icons/ri/alarm-warning-line'
 import RiAppsLine from '~icons/ri/apps-line'
 import RiBox3Line from '~icons/ri/box-3-line'
 import RiCalendarTodoLine from '~icons/ri/calendar-todo-line'
@@ -24,6 +25,11 @@ const menuDataTree = [
         path: '/Home/DashBoard',
         title: '数据看板',
         icon: DataAnalysis,
+      },
+      {
+        path: '/Home/Demo',
+        title: '测试 Demo',
+        icon: RiAlarmWarningLine,
       },
     ],
   },
