@@ -69,25 +69,48 @@ const dropdownList = ref([{
   label: '刷新',
   icon: 'i-ri:refresh-line mr-5px',
   command: 'refresh',
+  callback: cloaseRefreshTab,
 }, {
   label: '关闭其他',
   icon: 'i-ri:close-line mr-5px',
   command: 'closeOther',
+  callback: cloaseOtherTab,
 }, {
   label: '关闭左侧',
   icon: 'i-ri:arrow-left-line mr-5px',
   command: 'closeLeft',
+  callback: cloaseLeftTab,
 }, {
   label: '关闭右侧',
   icon: 'i-ri:arrow-right-line mr-5px',
   command: 'closeRight',
+  callback: cloaseRightTab,
 }, {
   label: '关闭全部',
   icon: 'i-ri:close-line mr-5px',
   command: 'closeAll',
+  callback: cloaseAllTab,
 }])
+const tabItemList = ref()
+
+function cloaseRefreshTab(item: any, command: any) {
+  console.log(command, item)
+}
+function cloaseOtherTab(item: any, command: any) {
+  console.log(command, item)
+}
+function cloaseLeftTab(item: any, command: any) {
+  console.log(command, item)
+}
+function cloaseRightTab(item: any, command: any) {
+  console.log(command, item)
+}
+function cloaseAllTab(item: any, command: any) {
+  console.log(command, item)
+}
+
+// 储存动态引用, 用于关闭其他标签
 const tabItemsRef = ref<{ [key: string]: any }>({})
-// 储存动态引用
 function setTabItemsRef(el: any, indexed: any) {
   // console.log(indexed, el)
   const key = `tab${indexed}`
@@ -106,9 +129,7 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
     })
   }
 }
-function handleDropdownCommand(value: any) {
-  console.log(value)
-}
+
 // 测试用
 const menuNum = ref(10)
 </script>
@@ -124,7 +145,7 @@ const menuNum = ref(10)
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
         <div v-for="item in menuNum" :key="item">
-          <el-dropdown :ref="val => setTabItemsRef(val, item)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, `tab${item}`)" @command="handleDropdownCommand">
+          <el-dropdown :ref="val => setTabItemsRef(val, item)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, `tab${item}`)">
             <div class="tab-item">
               <div i-ri-home-2-line mr-3px />
               {{ `标签${item}` }}
@@ -135,7 +156,7 @@ const menuNum = ref(10)
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :command="dropMenu.command">
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" @click="dropMenu.callback(item, dropMenu.command)">
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
@@ -152,11 +173,11 @@ const menuNum = ref(10)
       <div class="i-ri:arrow-right-wide-fill" />
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
-      <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible" @command="handleDropdownCommand">
+      <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible">
         <div ref="menuIconref" class="i-ri:apps-fill menu-icon" />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :command="dropMenu.command">
+            <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label">
               <div :class="dropMenu.icon" />
               <span>{{ dropMenu.label }}</span>
             </el-dropdown-item>
