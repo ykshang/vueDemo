@@ -68,6 +68,17 @@ function handleDropdownVisible(val: boolean) {
     menuIconref.value.classList.remove('active')
   }
 }
+
+// 页签列表
+const tabItemList = ref([{
+  title: '首页',
+  path: '/Home/HomePage',
+  icon: RiHome2Line,
+  isActive: true,
+  readonly: true,
+}])
+// eslint-disable-next-line no-console
+console.log(menuDataList)
 // 下拉菜单按钮列表
 const dropdownList = ref([{
   label: '刷新',
@@ -95,15 +106,7 @@ const dropdownList = ref([{
   command: 'closeAll',
   callback: cloaseAllTab,
 }])
-const tabItemList = ref([{
-  title: '首页',
-  path: '/Home/HomePage',
-  icon: RiHome2Line,
-  isActive: true,
-  readonly: true,
-}])
-// eslint-disable-next-line no-console
-console.log(menuDataList)
+
 function cloaseRefreshTab(item: any, command: any) {
   ElMessage({
     message: `${command}：${item.path}`,
