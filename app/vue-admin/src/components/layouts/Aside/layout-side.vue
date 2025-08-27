@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useThemeConfigStore } from '~/stores/useThemeStroe'
-import menuData from './menu-data'
+import { menuData } from './menu-data'
 
 const route = useRoute()
 const router = useRouter()

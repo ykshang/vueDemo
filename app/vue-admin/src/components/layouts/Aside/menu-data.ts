@@ -9,7 +9,7 @@ import RiHome3Line from '~icons/ri/home-3-line'
 import RiRemixiconLine from '~icons/ri/remixicon-line'
 import RiUserSettingsLine from '~icons/ri/user-settings-line'
 
-export default [
+const menuData = [
   {
     index: '/Home',
     title: '首页',
@@ -72,3 +72,6 @@ export default [
     ],
   },
 ]
+export {
+  menuData,
+}
