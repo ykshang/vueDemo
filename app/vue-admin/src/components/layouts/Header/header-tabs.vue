@@ -81,6 +81,26 @@ const dropdownList = ref([{
   label: '关闭全部',
   icon: 'i-ri:close-line mr-5px',
 }])
+const tabItemsRef = ref<{ [key: string]: any }>({})
+// 储存动态引用
+function setTabItemsRef(el: any, indexed: any) {
+  // console.log(indexed, el)
+  const key = `tab${indexed}`
+  tabItemsRef.value[key] = el
+}
+function handleTabDropdownVisible(visibility: boolean, item: any) {
+  // console.log(visibility, item)
+  if (visibility) {
+    const keys = Object.keys(tabItemsRef.value)
+    // console.log(keys)
+    keys.forEach((key) => {
+      if (key !== item) {
+        // console.log(key, tabItemsRef.value[key])
+        tabItemsRef.value[key]?.handleClose()
+      }
+    })
+  }
+}
 
 // 测试用
 const menuNum = ref(10)
@@ -97,7 +117,7 @@ const menuNum = ref(10)
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
         <div v-for="item in menuNum" :key="item">
-          <el-dropdown trigger="contextmenu">
+          <el-dropdown :ref="val => setTabItemsRef(val, item)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, `tab${item}`)">
             <div class="tab-item">
               <div i-ri-home-2-line mr-3px />
               {{ `标签${item}` }}
