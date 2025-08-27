@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { menuData } from '../Aside/menu-data'
+import { menuDataTree } from '../Aside/menu-data'
 
 const route = useRoute()
 
 const navitemList = computed(() => {
   const routeList = route.matched.slice(1) || []
   const result: any[] = []
-  let menuList = menuData
+  let menuList = menuDataTree
   while (routeList.length > 0) {
     const route = routeList.shift()
     const menu = menuList.find((menu) => {

@@ -9,7 +9,7 @@ import RiHome3Line from '~icons/ri/home-3-line'
 import RiRemixiconLine from '~icons/ri/remixicon-line'
 import RiUserSettingsLine from '~icons/ri/user-settings-line'
 
-const menuData = [
+const menuDataTree = [
   {
     index: '/Home',
     title: '首页',
@@ -73,5 +73,5 @@ const menuData = [
   },
 ]
 export {
-  menuData,
+  menuDataTree,
 }

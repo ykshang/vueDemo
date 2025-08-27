@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useThemeConfigStore } from '~/stores/useThemeStroe'
-import { menuData } from './menu-data'
+import { menuDataTree } from './menu-data'
 
 const route = useRoute()
 const router = useRouter()
@@ -35,7 +35,7 @@ const { isMenuCollapse } = storeToRefs(themeConfigStore)
       w-280px flex-1 :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false"
       @select="handleMenuSelect"
     >
-      <el-sub-menu v-for="menu1 in menuData" :key="menu1.index" :index="menu1.index">
+      <el-sub-menu v-for="menu1 in menuDataTree" :key="menu1.index" :index="menu1.index">
         <template #title>
           <component :is="menu1.icon" mr-8px h-a w-18px />
           <span font-size-14px>{{ menu1.title }}</span>
