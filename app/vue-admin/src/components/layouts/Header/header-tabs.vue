@@ -206,6 +206,7 @@ function disabledMenu() {
   // console.log('disabledMenu')
   return false
 }
+// 动态计算当前页签的是否激活的样式
 function calcActiveClass(tabItem: any) {
   return tabItem.path === currTab.value.path ? 'tab-item active' : 'tab-item'
 }
