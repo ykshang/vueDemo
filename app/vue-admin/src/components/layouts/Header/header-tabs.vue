@@ -271,8 +271,8 @@ function handleTabDropdownVisible(visibility: boolean, item: any) {
 
           &:hover {
             border-radius: 50%;
-            color: #fff;
-            background-color: gray;
+            color: var(--ep-bg-color-page);
+            background-color: var(--ep-color-info-light-3);
           }
         }
       }
