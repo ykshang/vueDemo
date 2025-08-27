@@ -1,11 +1,22 @@
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
 
-import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
-import RiHome2Line from '~icons/ri/home-2-line'
+import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
+import { menuDataList } from '../Aside/menu-data'
 
-// import { menuDataList } from '../Aside/menu-data'
-// console.log(menuDataList)
+// 路由实例
+const route = useRoute()
+
+watch(
+  () => route.path,
+  (newPath) => {
+    console.log(newPath)
+    console.log(tabItemsRef.value[newPath]?.$el?.scrollWidth)
+
+  // 路由变化时，重置滚动条位置
+  },
+)
 // 滚动条元素 ref
 const scrollbarRef = ref()
 
@@ -57,7 +68,9 @@ onMounted(() => {
     }
   })
 })
+// 页面卸载钩子
 onUnmounted(() => {
+  // 销毁滚动条监听
   observer?.disconnect()
 })
 
@@ -72,28 +85,9 @@ function handleDropdownVisible(val: boolean) {
 }
 
 // 页签列表
-const tabItemList = ref([{
-  title: '首页',
-  path: '/Home/HomePage',
-  icon: RiHome2Line,
-  readonly: true,
-}, {
-  title: '首页1',
-  path: '/Home/HomePage1',
-  icon: RiHome2Line,
-  readonly: true,
-}, {
-  title: '首页2',
-  path: '/Home/HomePage2',
-  icon: RiHome2Line,
-  readonly: true,
-}, {
-  title: '首页3',
-  path: '/Home/HomePage3',
-  icon: RiHome2Line,
-  readonly: true,
-}])
-
+const tabItemList = ref<any[]>([])
+Object.assign(tabItemList.value, menuDataList)
+tabItemList.value.pop()
 // 下拉菜单按钮列表
 const dropdownList = ref([{
   label: '刷新',
@@ -152,6 +146,7 @@ function cloaseAllTab(item: any, command: any) {
     type: 'info',
   })
 }
+// 动态判断页签的下拉菜单按钮是否禁用
 function disabledDropitem(tabItem: any, tabItemIndex: number, dropMenu: any) {
   const command = dropMenu.command
   const path = tabItem.path
@@ -178,17 +173,14 @@ function disabledDropitem(tabItem: any, tabItemIndex: number, dropMenu: any) {
 // 储存动态引用, 用于关闭其他标签
 const tabItemsRef = ref<{ [key: string]: any }>({})
 function setTabItemsRef(el: any, path: any) {
-  // console.log(indexed, el)
   tabItemsRef.value[path] = el
 }
+// 打开当前下拉框，关闭其他下拉框
 function handleTabDropdownVisible(visibility: boolean, item: any) {
-  // console.log(visibility, item)
   if (visibility) {
     const keys = Object.keys(tabItemsRef.value)
-    // console.log(keys)
     keys.forEach((key) => {
       if (key !== item) {
-        // console.log(key, tabItemsRef.value[key])
         tabItemsRef.value[key]?.handleClose()
       }
     })
@@ -213,7 +205,7 @@ function disabledMenu() {
         <div v-for="(tabItem, tabItemIndex) in tabItemList" :key="tabItem.path">
           <el-dropdown :ref="val => setTabItemsRef(val, tabItem.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)">
             <div class="tab-item">
-              <div i-ri-home-2-line mr-3px />
+              <component :is="tabItem.icon" mr-3px h-16px w-16px />
               {{ tabItem.title }}
               <div class="close-btn">
                 <div class="i-ri:close-line" />
