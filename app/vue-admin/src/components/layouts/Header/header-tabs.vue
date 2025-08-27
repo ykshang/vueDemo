@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref, watchEffect } from 'vue'
+
+import RiHome2Line from '~icons/ri/home-2-line'
+import { menuDataList } from '../Aside/menu-data'
 // 滚动条元素 ref
 const scrollbarRef = ref()
 
@@ -91,8 +94,12 @@ const dropdownList = ref([{
   command: 'closeAll',
   callback: cloaseAllTab,
 }])
-const tabItemList = ref()
-
+const tabItemList = ref([{
+  title: '首页',
+  path: '/Home/HomePage',
+  icon: RiHome2Line,
+}])
+console.log(menuDataList)
 function cloaseRefreshTab(item: any, command: any) {
   console.log(command, item)
 }
