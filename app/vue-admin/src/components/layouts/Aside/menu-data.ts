@@ -1,4 +1,5 @@
 import { DataAnalysis, OfficeBuilding, User } from '@element-plus/icons-vue'
+import { ref } from 'vue'
 
 import RiAlarmWarningLine from '~icons/ri/alarm-warning-line'
 import RiAppsLine from '~icons/ri/apps-line'
@@ -78,8 +79,14 @@ const menuDataTree = [
     ],
   },
 ]
+const defaultHomePage = ref({
+  path: '/Home/HomePage',
+  title: '欢迎页',
+  icon: RiHome2Line,
+})
 const menuDataList = menuDataTree.flatMap(item => item.subMenu)
 export {
+  defaultHomePage,
   menuDataList,
   menuDataTree,
 }
