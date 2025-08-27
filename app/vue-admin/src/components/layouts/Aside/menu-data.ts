@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { readonly, ref } from 'vue'
 
 import RiAlarmWarningLine from '~icons/ri/alarm-warning-line'
 import RiAppsLine from '~icons/ri/apps-line'
@@ -85,6 +85,8 @@ const defaultHomePage = ref({
   path: '/Home/HomePage',
   title: '欢迎页',
   icon: RiHome2Line,
+  isActive: true,
+  readonly: true,
 })
 const menuDataList = menuDataTree.flatMap(item => item.subMenu)
 export {

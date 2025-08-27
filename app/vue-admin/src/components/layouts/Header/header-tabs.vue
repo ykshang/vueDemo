@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus'
 
 import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import { menuDataList } from '../Aside/menu-data'
+import { defaultHomePage, menuDataList } from '../Aside/menu-data'
 
 // 路由实例
 const route = useRoute()
@@ -77,8 +77,8 @@ function handleDropdownVisible(val: boolean) {
 
 // 页签列表
 const tabItemList = ref<any[]>([])
-Object.assign(tabItemList.value, menuDataList)
-tabItemList.value.pop()
+// Object.assign(tabItemList.value, menuDataList)
+tabItemList.value.push(defaultHomePage.value)
 
 watch(
   () => route.path,
@@ -94,6 +94,7 @@ watch(
         icon: newTab?.icon,
         title: newTab?.title,
         isActive: true,
+        readonly: false,
       })
     }
     // console.log(newPath, newTabIndex)
@@ -220,7 +221,7 @@ function disabledMenu() {
             <div class="tab-item">
               <component :is="tabItem.icon" mr-3px h-16px w-16px />
               {{ tabItem.title }}
-              <div class="close-btn">
+              <div v-if="!tabItem.readonly" class="close-btn">
                 <div class="i-ri:close-line" />
               </div>
               <div class="btn-underline" />
