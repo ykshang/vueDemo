@@ -88,7 +88,13 @@ watch(
     // 如果当前路由对应的也i按不存在，添加到页签列表
     if (newTabIndex === -1) {
       const newTab = menuDataList.find(tab => tab.path === newPath)
-      tabItemList.value.push(newTab)
+      // 避免浅拷贝带来的数据影响
+      tabItemList.value.push({
+        path: newTab?.path,
+        icon: newTab?.icon,
+        title: newTab?.title,
+        isActive: true,
+      })
     }
     // console.log(newPath, newTabIndex)
     // 路由变化时，重置滚动条位置
