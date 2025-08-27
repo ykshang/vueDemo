@@ -1,14 +1,16 @@
-import { DataAnalysis, OfficeBuilding, User } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 
 import RiAlarmWarningLine from '~icons/ri/alarm-warning-line'
 import RiAppsLine from '~icons/ri/apps-line'
+import RiBarChartBoxAiLine from '~icons/ri/bar-chart-box-ai-line'
 import RiBox3Line from '~icons/ri/box-3-line'
+import RiBuildingLine from '~icons/ri/building-line'
 import RiCalendarTodoLine from '~icons/ri/calendar-todo-line'
 import RiGroupLine from '~icons/ri/group-line'
 import RiHome2Line from '~icons/ri/home-2-line'
 import RiHome3Line from '~icons/ri/home-3-line'
 import RiRemixiconLine from '~icons/ri/remixicon-line'
+import RiUser3Line from '~icons/ri/user-3-line'
 import RiUserSettingsLine from '~icons/ri/user-settings-line'
 
 const menuDataTree = [
@@ -25,7 +27,7 @@ const menuDataTree = [
       {
         path: '/Home/DashBoard',
         title: '数据看板',
-        icon: DataAnalysis,
+        icon: RiBarChartBoxAiLine,
       },
       {
         path: '/Home/Demo',
@@ -42,7 +44,7 @@ const menuDataTree = [
       {
         path: '/Setting/Profile',
         title: '个人信息',
-        icon: User,
+        icon: RiUser3Line,
       },
       {
         path: '/Setting/EmployeeManagent',
@@ -52,7 +54,7 @@ const menuDataTree = [
       {
         path: '/Setting/DepartmentMangement',
         title: '部门管理',
-        icon: OfficeBuilding,
+        icon: RiBuildingLine,
       },
       {
         path: '/Setting/MenuMangement',
