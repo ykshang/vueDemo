@@ -1,4 +1,4 @@
-import { readonly, ref } from 'vue'
+import { ref } from 'vue'
 
 import RiAlarmWarningLine from '~icons/ri/alarm-warning-line'
 import RiAppsLine from '~icons/ri/apps-line'

@@ -1,23 +1,23 @@
 // 引入 ElementPlus
 import ElementPlus from 'element-plus'
+
 // 引入 pinia
 import { createPinia } from 'pinia' // pinia
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate' // pinia 持久化
-
 import { createApp } from 'vue'
-// 引入路由
-import { createRouter, createWebHistory } from 'vue-router'
-import { routes } from 'vue-router/auto-routes' // 根据文件结构自动生成路由
-// console.log(routes)
+
+import router from '~/config/router'
 
 // 应用入口
 import App from './App.vue'
+
+// 导入 nprogress 样式
+import 'nprogress/nprogress.css'
 
 /**
  * 自定义的全局样式，重置默认样式
  */
 import '~/assets/styles/index.scss'
-
 /**
  * 引入 unocss
  */
@@ -29,6 +29,7 @@ import 'uno.css'
  */
 import 'element-plus/theme-chalk/src/message.scss'
 import 'element-plus/theme-chalk/src/message-box.scss'
+
 import 'element-plus/theme-chalk/src/notification.scss'
 
 // 引入 element-plus 的全量 css
@@ -45,14 +46,6 @@ app.use(pinia)
 
 // 引入 element-plus
 app.use(ElementPlus)
-
-/**
- * 创建路由实例
- */
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-})
 // 应用路由实例
 app.use(router)
 /**
