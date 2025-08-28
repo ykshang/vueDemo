@@ -277,6 +277,9 @@ function handleCloseTab(tabItem: any) {
   // 删除当前页签
   tabItemList.value.splice(index, 1)
   // 删除当前页签的历史记录
+  // 不需要关心栈类似 [tab1, tab2, tab3, tab2, tab3]，关闭tab3的情况，出现tab2连续重复的情况
+  // 因为关闭 tab2 之前，已经把历史的 tab2 清掉了，到了跳转时，会跳转到 tab1
+  // 因此其他地方也不需要关心重复的场景。
   tabHistoryStack.value = tabHistoryStack.value.filter(item => item !== tabItem.path)
   if (tabItem.path === currTab.value.path) {
     // 弹出当前的页签，因为跳转到新路由时，该页签还进栈，避免历史重复
