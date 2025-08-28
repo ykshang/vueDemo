@@ -220,6 +220,14 @@ function handleClickTab(tabItem: any) {
   currTab.value = tabItem
   router.push(tabItem.path)
 }
+// 关闭页签
+function handleCloseTab(tabItem: any) {
+  const index = tabItemList.value.findIndex(item => item.path === tabItem.path)
+  tabItemList.value.splice(index, 1)
+  if (tabItem.path === currTab.value.path) {
+    router.back()
+  }
+}
 </script>
 
 <template>
@@ -237,7 +245,7 @@ function handleClickTab(tabItem: any) {
             <div :class="calcActiveClass(tabItem)" @click="handleClickTab(tabItem)">
               <component :is="tabItem.icon" mr-3px h-16px w-16px />
               {{ tabItem.title }}
-              <div v-if="!tabItem.readonly" class="close-btn">
+              <div v-if="!tabItem.readonly" class="close-btn" @click.stop="handleCloseTab(tabItem)">
                 <div class="i-ri:close-line" />
               </div>
               <div class="btn-underline" />
