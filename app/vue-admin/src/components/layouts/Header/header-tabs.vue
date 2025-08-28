@@ -195,8 +195,18 @@ function closeLeftTab(item: any, index: number) {
     type: 'info',
   })
 }
+/**
+ * 关闭右侧页签、删除右侧页签，清空历史栈，保证该页签激活
+ */
 function closeRightTab(item: any, index: number) {
-  console.log(index, item)
+  // 利用 splice 删除右侧的页签的同时，返回被删掉的页签列表对应的全部路由 path
+  const deletePathList = tabItemList.value.splice(index + 1).map(item => item.path)
+  // 删除对应的访问历史
+  tabHistoryStack.value = tabHistoryStack.value.filter(item => !deletePathList.includes(item))
+  // 点击的页签不是当前页签，跳转到该页签
+  if (currTab.value.path !== item.path) {
+    router.push(item.path)
+  }
 }
 /**
  * 关闭全部比较简单，直接重置页签列表和历史栈
