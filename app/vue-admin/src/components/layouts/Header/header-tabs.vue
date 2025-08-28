@@ -11,7 +11,7 @@ const route = useRoute()
 const router = useRouter()
 
 // tabHistoryStack 页签历史记录栈
-const tabHistoryStack = ref<string[]>([defaultHomePage.path])
+const tabHistoryStack = ref<string[]>([])
 
 // 滚动条元素 ref
 const scrollbarRef = ref()
@@ -146,21 +146,46 @@ const dropdownList = ref([{
 function closeRefreshTab() {
   emitter.emit('refreshPage')
 }
-
 /**
  * @description 关闭当前页签以外的所有页签，并打开该页签
+ *
+ * 点击的是当前页面
+ *    1. 不发生跳转
+ *    2. 点击的是首页，历史栈重置为默认首页
+ *    3. 如果不是首页，历史栈重置为默认首页和当前页签
+ * 点击的不是当前页面
+ *    1. 发生跳转，发生跳转时，会把点击的页签塞进历史栈
+ *    2. 点击的是首页，跳转到首页，历史栈重置为默认首页
+ *    3. 点击的不是首页，跳转到点击的页签，历史栈重置为默认首页和点击的页签
  */
 function closeOtherTab(tab: any) {
-  // 不管当前页签是不是默认首页，塞到一起
-  const pathlist = [defaultHomePage.path, tab.path]
-
-  // 关闭其他页签，跳转到当前页签
-  tabItemList.value = tabItemList.value.filter(item => pathlist.includes(item.path))
-
-  // 如果点击的页签和当前页签不一致，跳转过去
+  const defaultHomePagePath = defaultHomePage.path
+  let pathStack: string[] = []
+  let tabList: string[] = []
+  // 点击的是不是当前页签
   if (tab.path !== currTab.value.path) {
+    // 点击的是不是默认首页
+    if (tab.path === defaultHomePagePath) {
+      pathStack = []
+      tabList = [defaultHomePagePath]
+    } else {
+      pathStack = [defaultHomePagePath]
+      tabList = [defaultHomePagePath]
+    }
     router.push(tab.path)
+  } else {
+    // 点击的是不是默认首页
+    if (tab.path === defaultHomePagePath) {
+      pathStack = [defaultHomePagePath]
+      tabList = [defaultHomePagePath]
+    } else {
+      pathStack = [defaultHomePagePath, tab.path]
+      tabList = [defaultHomePagePath, tab.path]
+    }
   }
+
+  tabHistoryStack.value = pathStack
+  tabItemList.value = tabItemList.value.filter(item => tabList.includes(item.path))
 }
 function closeLeftTab(item: any, index: number, command: string) {
   ElMessage({
