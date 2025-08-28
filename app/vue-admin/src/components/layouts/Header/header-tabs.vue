@@ -120,7 +120,7 @@ const dropdownList = ref([{
   label: '刷新',
   icon: 'i-ri:refresh-line mr-5px',
   command: 'refresh',
-  callback: closeRefreshTab,
+  callback: clickRefreshTab,
 }, {
   label: '关闭其他',
   icon: 'i-ri:close-line mr-5px',
@@ -143,7 +143,7 @@ const dropdownList = ref([{
   callback: closeAllTab,
 }])
 // 触发 mitt 事件，通知路由的重新刷新
-function closeRefreshTab() {
+function clickRefreshTab() {
   emitter.emit('refreshPage')
 }
 /**
@@ -194,10 +194,7 @@ function closeLeftTab(item: any, index: number) {
   })
 }
 function closeRightTab(item: any, index: number) {
-  ElMessage({
-    message: `${index}：${item.path}`,
-    type: 'info',
-  })
+  console.log(index, item)
 }
 /**
  * 关闭全部比较简单，直接重置页签列表和历史栈
@@ -216,7 +213,7 @@ function closeAllTab() {
   }
 }
 // 动态判断页签的下拉菜单按钮是否禁用
-function disabledDropItem(tabItem: any, tabItemIndex: number, dropMenu: any) {
+function checkDropItemDisabled(tabItem: any, tabItemIndex: number, dropMenu: any) {
   const command = dropMenu.command
   const path = tabItem.path
   const length = tabItemList.value.length
@@ -300,7 +297,11 @@ function handleCloseTab(tabItem: any) {
     <el-scrollbar ref="scrollbarRef" flex-1>
       <div class="scrollbar-content">
         <div v-for="(tabItem, tabItemIndex) in tabItemList" :key="tabItem.path">
-          <el-dropdown :ref="val => setTabItemsRef(val, tabItem.path)" trigger="contextmenu" @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)">
+          <el-dropdown
+            :ref="val => setTabItemsRef(val, tabItem.path)"
+            trigger="contextmenu"
+            @visible-change="(isVisible: boolean) => handleTabDropdownVisible(isVisible, tabItem.path)"
+          >
             <div :class="calcActiveClass(tabItem)" @click="handleClickTab(tabItem)">
               <component :is="tabItem.icon" mr-3px h-16px w-16px />
               {{ tabItem.title }}
@@ -311,7 +312,12 @@ function handleCloseTab(tabItem: any) {
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropItem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, tabItemIndex)">
+                <el-dropdown-item
+                  v-for="dropMenu in dropdownList"
+                  :key="dropMenu.label"
+                  :disabled="checkDropItemDisabled(tabItem, tabItemIndex, dropMenu)"
+                  @click="dropMenu.callback(tabItem, tabItemIndex)"
+                >
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
