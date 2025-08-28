@@ -8,5 +8,13 @@
     "source.fixAll": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["axios", "taze", "pinia", "Stroe"]
+  "cSpell.words": [
+    "axios",
+    "Iconify",
+    "pinia",
+    "Stroe",
+    "taze",
+    "unocss",
+    "unplugin"
+  ]
 }

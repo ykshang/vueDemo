@@ -71,12 +71,12 @@ onUnmounted(() => {
 })
 
 // 调整菜单按钮显示隐藏时，动态添加动画
-const menuIconref = ref()
+const menuIconRef = ref()
 function handleDropdownVisible(val: boolean) {
   if (val) {
-    menuIconref.value.classList.add('active')
+    menuIconRef.value.classList.add('active')
   } else {
-    menuIconref.value.classList.remove('active')
+    menuIconRef.value.classList.remove('active')
   }
 }
 
@@ -120,58 +120,58 @@ const dropdownList = ref([{
   label: '刷新',
   icon: 'i-ri:refresh-line mr-5px',
   command: 'refresh',
-  callback: cloaseRefreshTab,
+  callback: closeRefreshTab,
 }, {
   label: '关闭其他',
   icon: 'i-ri:close-line mr-5px',
   command: 'closeOther',
-  callback: cloaseOtherTab,
+  callback: closeOtherTab,
 }, {
   label: '关闭左侧',
   icon: 'i-ri:arrow-left-line mr-5px',
   command: 'closeLeft',
-  callback: cloaseLeftTab,
+  callback: closeLeftTab,
 }, {
   label: '关闭右侧',
   icon: 'i-ri:arrow-right-line mr-5px',
   command: 'closeRight',
-  callback: cloaseRightTab,
+  callback: closeRightTab,
 }, {
   label: '关闭全部',
   icon: 'i-ri:close-line mr-5px',
   command: 'closeAll',
-  callback: cloaseAllTab,
+  callback: closeAllTab,
 }])
 // 触发 mitt 事件，通知路由的重新刷新
-function cloaseRefreshTab() {
+function closeRefreshTab() {
   emitter.emit('refreshPage')
 }
-function cloaseOtherTab(item: any, command: any) {
+function closeOtherTab(item: any, command: any) {
   ElMessage({
     message: `${command}：${item.path}`,
     type: 'info',
   })
 }
-function cloaseLeftTab(item: any, command: any) {
+function closeLeftTab(item: any, command: any) {
   ElMessage({
     message: `${command}：${item.path}`,
     type: 'info',
   })
 }
-function cloaseRightTab(item: any, command: any) {
+function closeRightTab(item: any, command: any) {
   ElMessage({
     message: `${command}：${item.path}`,
     type: 'info',
   })
 }
-function cloaseAllTab(item: any, command: any) {
+function closeAllTab(item: any, command: any) {
   ElMessage({
     message: command + item.path,
     type: 'info',
   })
 }
 // 动态判断页签的下拉菜单按钮是否禁用
-function disabledDropitem(tabItem: any, tabItemIndex: number, dropMenu: any) {
+function disabledDropItem(tabItem: any, tabItemIndex: number, dropMenu: any) {
   const command = dropMenu.command
   const path = tabItem.path
   const length = tabItemList.value.length
@@ -267,7 +267,7 @@ function handleCloseTab(tabItem: any) {
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropitem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, dropMenu.command)">
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropItem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, dropMenu.command)">
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
@@ -285,7 +285,7 @@ function handleCloseTab(tabItem: any) {
     </el-button>
     <div class="mx-30px flex items-center justify-center font-size-16px">
       <el-dropdown placement="bottom-end" @visible-change="handleDropdownVisible">
-        <div ref="menuIconref" class="i-ri:apps-fill menu-icon" />
+        <div ref="menuIconRef" class="i-ri:apps-fill menu-icon" />
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledMenu()">
