@@ -37,10 +37,11 @@ const isShowScrollBtn = ref(false)
 const disabledLeftBtn = ref(false)
 // 右侧滚动按钮禁用
 const disabledRightBtn = ref(false)
-let observer: MutationObserver | null = null
+let mutationObserver: MutationObserver | null = null
+let resizeObserver: ResizeObserver | null = null
 onMounted(() => {
   // 监听滚动条动态
-  observer = new MutationObserver((mutations) => {
+  mutationObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
         const { clientWidth, scrollWidth } = mutation.target as HTMLElement
@@ -49,11 +50,21 @@ onMounted(() => {
       }
     })
   })
-  observer.observe(scrollbarRef.value.wrapRef, {
+  mutationObserver.observe(scrollbarRef.value.wrapRef, {
     attributes: true,
     childList: true,
     subtree: true,
   })
+  // 监听滚动条宽度变化
+  resizeObserver = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      const { clientWidth, scrollWidth } = entry.target as HTMLElement
+      isShowScrollBtn.value = clientWidth < scrollWidth
+      maxLeftPosition.value = scrollWidth - clientWidth
+    })
+  })
+  resizeObserver.observe(scrollbarRef.value.wrapRef)
+
   // 动态计算滚动按钮禁用状态
   watchEffect(() => {
     disabledLeftBtn.value = isShowScrollBtn.value && currPosition.value <= 0
@@ -67,7 +78,8 @@ onMounted(() => {
 // 页面卸载钩子
 onUnmounted(() => {
   // 销毁滚动条监听
-  observer?.disconnect()
+  mutationObserver?.disconnect()
+  resizeObserver?.disconnect()
 })
 
 // 调整菜单按钮显示隐藏时，动态添加动画
