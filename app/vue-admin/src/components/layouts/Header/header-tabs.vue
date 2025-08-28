@@ -146,28 +146,37 @@ const dropdownList = ref([{
 function closeRefreshTab() {
   emitter.emit('refreshPage')
 }
-function closeOtherTab(item: any, command: any) {
-  // let pathlist = [defaultHomePage.path]
+
+/**
+ * @description 关闭当前页签以外的所有页签，并打开该页签
+ */
+function closeOtherTab(tab: any) {
+  // 不管当前页签是不是默认首页，塞到一起
+  const pathlist = [defaultHomePage.path, tab.path]
+
+  // 关闭其他页签，跳转到当前页签
+  tabItemList.value = tabItemList.value.filter(item => pathlist.includes(item.path))
+
+  // 如果点击的页签和当前页签不一致，跳转过去
+  if (tab.path !== currTab.value.path) {
+    router.push(tab.path)
+  }
+}
+function closeLeftTab(item: any, index: number, command: string) {
   ElMessage({
     message: `${command}：${item.path}`,
     type: 'info',
   })
 }
-function closeLeftTab(item: any, command: any) {
+function closeRightTab(item: any, index: number, command: string) {
   ElMessage({
     message: `${command}：${item.path}`,
     type: 'info',
   })
 }
-function closeRightTab(item: any, command: any) {
+function closeAllTab(item: any) {
   ElMessage({
-    message: `${command}：${item.path}`,
-    type: 'info',
-  })
-}
-function closeAllTab(item: any, command: any) {
-  ElMessage({
-    message: command + item.path,
+    message: item.path,
     type: 'info',
   })
 }
@@ -267,7 +276,7 @@ function handleCloseTab(tabItem: any) {
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropItem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, dropMenu.command)">
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropItem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, tabItemIndex, dropMenu.command)">
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
