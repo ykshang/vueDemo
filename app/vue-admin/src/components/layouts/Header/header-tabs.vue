@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-
 import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+
+import emitter from '~/composables/util/emitter'
 import { defaultHomePage, menuDataList } from '../Aside/menu-data'
 
 // 路由实例
@@ -141,12 +142,9 @@ const dropdownList = ref([{
   command: 'closeAll',
   callback: cloaseAllTab,
 }])
-
-function cloaseRefreshTab(item: any, command: any) {
-  ElMessage({
-    message: `${command}：${item.path}`,
-    type: 'info',
-  })
+// 触发 mitt 事件，通知路由的重新刷新
+function cloaseRefreshTab() {
+  emitter.emit('refreshPage')
 }
 function cloaseOtherTab(item: any, command: any) {
   ElMessage({
