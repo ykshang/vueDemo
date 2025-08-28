@@ -91,6 +91,8 @@ watch(
   (newPath) => {
     // 检测该路由是否存在
     const newTab = tabItemList.value.find(tab => tab.path === newPath)
+    // 把该页签的历史挪到队尾，防止栈过长。
+    tabHistoryStack.value = tabHistoryStack.value.filter(item => item !== newPath)
     tabHistoryStack.value.push(newPath)
     // 如果当前路由对应的也i按不存在，添加到页签列表
     if (!newTab) {
