@@ -28,6 +28,8 @@ export default {
     'scope-case': [0], // 不检查 scope 的大小写
     'subject-full-stop': [0, 'never'], // 不检查 subject 末尾的句号
     'subject-case': [0, 'never'], // 不检查 subject 的大小写
-    'header-max-length': [0, 'always', 72], // 不检查 header 的最大长度
+    // 'header-max-length': [0, 'always', 72], // 不检查 header 的最大长度
+    'body-max-line-length': [2, 'always', 300], // 不检查 body 每一行的最大长度
+    // 'footer-max-line-length': [2, 'always', 200], // 不检查 footer 每一行的最大长度
   },
 }
