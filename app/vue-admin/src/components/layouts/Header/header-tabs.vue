@@ -135,22 +135,23 @@ watch(
     // console.log(newPath)
     nextTick(() => {
       // 当前页签的距离左侧的距离
-      // console.log(tabItemsRef.value[newPath].$el)
+      // console.log()
+      tabItemsRef.value[newPath].$el.scrollIntoView()
+      // // console.log('currPosition', currPosition.value)
+      // // 如果该元素的最右侧大于滚动条宽度，说明该元素超出了滚动条的范围
+      // const { offsetLeft, clientWidth } = tabItemsRef.value[newPath].$el
       // console.log('offsetLeft', offsetLeft)
       // console.log('clientWidth', clientWidth)
-      console.log('scrollbarWidth.value', scrollbarWidth.value)
-      // console.log('currPosition', currPosition.value)
-      // 如果该元素的最右侧大于滚动条宽度，说明该元素超出了滚动条的范围
-      const { offsetLeft, clientWidth } = tabItemsRef.value[newPath].$el
-      if ((offsetLeft + clientWidth) > scrollbarWidth.value) {
-        // 滚动条位置 = 该元素的最右侧 - 滚动条宽度
-        currPosition.value = (offsetLeft + clientWidth) - scrollbarWidth.value
-        scrollbarRef.value.setScrollLeft(currPosition.value as number)
-      }
-      if ((offsetLeft + clientWidth) < currPosition.value) {
-        currPosition.value = offsetLeft
-        scrollbarRef.value.setScrollLeft(currPosition.value as number)
-      }
+      // console.log('scrollbarWidth.value', scrollbarWidth.value)
+      // if ((offsetLeft + clientWidth) > scrollbarWidth.value) {
+      //   // 滚动条位置 = 该元素的最右侧 - 滚动条宽度
+      //   currPosition.value = (offsetLeft + clientWidth) - scrollbarWidth.value
+      //   scrollbarRef.value.setScrollLeft(currPosition.value as number)
+      // }
+      // if ((offsetLeft + clientWidth) < currPosition.value) {
+      //   currPosition.value = offsetLeft
+      //   scrollbarRef.value.setScrollLeft(currPosition.value as number)
+      // }
     })
 
     // console.log(newPath, newTabIndex)
