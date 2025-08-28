@@ -9,6 +9,9 @@ import { defaultHomePage, menuDataList } from '../Aside/menu-data'
 const route = useRoute()
 const router = useRouter()
 
+// tabHistoryStack 页签历史记录栈
+const tabHistoryStack = ref<string[]>(['/Home/HomePage'])
+
 // 滚动条元素 ref
 const scrollbarRef = ref()
 
@@ -87,6 +90,7 @@ watch(
   (newPath) => {
     // 检测该路由是否存在
     const newTab = tabItemList.value.find(tab => tab.path === newPath)
+    tabHistoryStack.value.push(newPath)
     // 如果当前路由对应的也i按不存在，添加到页签列表
     if (!newTab) {
       const tabData = menuDataList.find(tab => tab.path === newPath)
@@ -100,6 +104,7 @@ watch(
       // 避免浅拷贝带来的数据影响
       tabItemList.value.push(currTab.value)
     } else {
+      // 如果当前路由存在，激活该页签
       currTab.value = {
         ...newTab,
       }
@@ -221,11 +226,23 @@ function handleClickTab(tabItem: any) {
   router.push(tabItem.path)
 }
 // 关闭页签
+
+/**
+ * 关闭页签
+ * @param tabItem 页签对象
+ * @description 如果关闭的是其他页签，直接关闭
+ * @description 如果关闭的是当前页签，需要考虑跳转到上一个页签，但是不能是已关闭的页签
+ */
 function handleCloseTab(tabItem: any) {
   const index = tabItemList.value.findIndex(item => item.path === tabItem.path)
+  // 删除当前页签
   tabItemList.value.splice(index, 1)
+  // 删除当前页签的历史记录
+  tabHistoryStack.value = tabHistoryStack.value.filter(item => item !== tabItem.path)
   if (tabItem.path === currTab.value.path) {
-    router.back()
+    // 弹出当前的页签，因为跳转到新路由时，该页签还进栈，避免历史重复
+    const newPath = tabHistoryStack.value.pop()
+    router.push(newPath as string)
   }
 }
 </script>
