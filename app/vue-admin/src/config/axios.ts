@@ -1,6 +1,7 @@
+import axios from 'axios'
 // utils/request.ts
 
-import axios from 'axios'
+import NProgress from 'nprogress'
 
 // 创建一个axios实例
 const request = axios.create({
@@ -11,6 +12,7 @@ const request = axios.create({
 // 添加请求拦截器
 request.interceptors.request.use(
   (config) => {
+    NProgress.start() // 手动启动进度条
     // 请求地址携带时间戳
     const _t = new Date().getTime()
     config.url += `?${_t}`
@@ -33,13 +35,13 @@ request.interceptors.request.use(
 // 添加响应拦截器
 request.interceptors.response.use(
   (response) => {
+    NProgress.done() // 手动完成进度条
     // 对响应数据做点什么
     // console.log('我接收到响应数据啦------')
     // console.log(response, '响应配置')
     if (response.status === 200) {
       return Promise.resolve(response.data)
-    }
-    else {
+    } else {
       return Promise.reject(response)
     }
   },
@@ -86,8 +88,7 @@ request.interceptors.response.use(
         default:
           error.message = `未知错误${error.response.status}`
       }
-    }
-    else {
+    } else {
       error.message = '连接到服务器失败'
     }
     return Promise.reject(error)
