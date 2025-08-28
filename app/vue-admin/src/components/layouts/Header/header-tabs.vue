@@ -187,15 +187,15 @@ function closeOtherTab(tab: any) {
   tabHistoryStack.value = pathStack
   tabItemList.value = tabItemList.value.filter(item => tabList.includes(item.path))
 }
-function closeLeftTab(item: any, index: number, command: string) {
+function closeLeftTab(item: any, index: number) {
   ElMessage({
-    message: `${command}：${item.path}`,
+    message: `${index}：${item.path}`,
     type: 'info',
   })
 }
-function closeRightTab(item: any, index: number, command: string) {
+function closeRightTab(item: any, index: number) {
   ElMessage({
-    message: `${command}：${item.path}`,
+    message: `${index}：${item.path}`,
     type: 'info',
   })
 }
@@ -311,7 +311,7 @@ function handleCloseTab(tabItem: any) {
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropItem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, tabItemIndex, dropMenu.command)">
+                <el-dropdown-item v-for="dropMenu in dropdownList" :key="dropMenu.label" :disabled="disabledDropItem(tabItem, tabItemIndex, dropMenu)" @click="dropMenu.callback(tabItem, tabItemIndex)">
                   <div :class="dropMenu.icon" />
                   <span>{{ dropMenu.label }}</span>
                 </el-dropdown-item>
