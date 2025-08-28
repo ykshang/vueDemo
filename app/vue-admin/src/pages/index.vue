@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import NProgress from 'nprogress'
 import { ref } from 'vue'
 import emitter from '~/config/emitter'
 
 const refreshKey = ref(0)
 
 emitter.on('refreshPage', () => {
+  NProgress.start() // 手动启动进度条
   refreshKey.value++
+  NProgress.done() // 手动完成进度条
 })
 </script>
 
