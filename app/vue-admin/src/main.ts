@@ -34,6 +34,7 @@ import 'element-plus/theme-chalk/src/notification.scss'
 // 引入 element-plus 的全量 css
 // import 'element-plus/theme-chalk/src/index.scss'
 
+// 创建 APP 实例
 const app = createApp(App)
 /**
  * pinia 相关
@@ -46,14 +47,14 @@ app.use(pinia)
 app.use(ElementPlus)
 
 /**
- * 应用路由实例
+ * 创建路由实例
  */
-app.use(
-  createRouter({
-    history: createWebHistory(),
-    routes,
-  }),
-)
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+// 应用路由实例
+app.use(router)
 /**
  * 挂载应用
  */

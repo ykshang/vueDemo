@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import emitter from '~/composables/util/emitter'
+import emitter from '~/config/emitter'
 
 const refreshKey = ref(0)
 

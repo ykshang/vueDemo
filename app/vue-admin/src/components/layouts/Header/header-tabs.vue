@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus'
 import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import emitter from '~/composables/util/emitter'
+import emitter from '~/config/emitter'
 import { defaultHomePage, menuDataList } from '../Aside/menu-data'
 
 // 路由实例

@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { toggleDark } from '~/composables/util'
+import { toggleDark } from '~/config/toggleDarkTheme'
 import { useUserInfoStore } from '~/stores/userIfnoStroe'
 
 const router = useRouter()
