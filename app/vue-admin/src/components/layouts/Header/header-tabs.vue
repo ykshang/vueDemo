@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ElMessage } from 'element-plus'
 import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -61,6 +60,7 @@ onMounted(() => {
       const { clientWidth, scrollWidth } = entry.target as HTMLElement
       isShowScrollBtn.value = clientWidth < scrollWidth
       maxLeftPosition.value = scrollWidth - clientWidth
+      // console.log(tabItemsRef)
     })
   })
   resizeObserver.observe(scrollbarRef.value.wrapRef)
@@ -261,7 +261,6 @@ function checkDropItemDisabled(tabItem: any, tabItemIndex: number, dropMenu: any
     // 最右侧的被禁用
     return tabItemIndex === tabItemList.value.length - 1
   }
-  return true
 }
 
 // 储存动态引用, 用于关闭其他标签
