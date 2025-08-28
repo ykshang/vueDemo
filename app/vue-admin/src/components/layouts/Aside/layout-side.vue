@@ -32,7 +32,7 @@ const { isMenuCollapse } = storeToRefs(themeConfigStore)
       <span v-show="!isMenuCollapse" class="text-2xl font-bold">Vue Admin</span>
     </div>
     <el-menu
-      w-280px flex-1 :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false"
+      w-280px flex-1 overflow-y-auto :default-active="defaultActive" :collapse="isMenuCollapse" :collapse-transition="false"
       @select="handleMenuSelect"
     >
       <el-sub-menu v-for="menu1 in menuDataTree" :key="menu1.path" :index="menu1.path">
