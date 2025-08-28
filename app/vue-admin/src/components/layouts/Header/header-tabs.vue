@@ -199,11 +199,21 @@ function closeRightTab(item: any, index: number, command: string) {
     type: 'info',
   })
 }
-function closeAllTab(item: any) {
-  ElMessage({
-    message: item.path,
-    type: 'info',
-  })
+/**
+ * 关闭全部比较简单，直接重置页签列表和历史栈
+ */
+function closeAllTab() {
+  // 页签只保留首页
+  tabItemList.value = [defaultHomePage]
+  // 如果当前激活的页签是首页
+  if (currTab.value.path === defaultHomePage.path) {
+    // 如果当前页签是首页，历史栈重置为默认首页
+    tabHistoryStack.value = [defaultHomePage.path]
+  } else {
+    // 如果当前激活的页签不是首页，清空历史栈，并跳转到默认首页
+    tabHistoryStack.value = []
+    router.push(defaultHomePage.path)
+  }
 }
 // 动态判断页签的下拉菜单按钮是否禁用
 function disabledDropItem(tabItem: any, tabItemIndex: number, dropMenu: any) {
