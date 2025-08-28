@@ -5,6 +5,13 @@ import { useRoute, useRouter } from 'vue-router'
 import emitter from '~/config/emitter'
 import { defaultHomePage, menuDataList } from '../Aside/menu-data'
 
+// 页签列表
+const tabItemList = ref<any[]>([])
+// Object.assign(tabItemList.value, menuDataList)
+tabItemList.value.push(defaultHomePage)
+const currTab = ref()
+currTab.value = defaultHomePage
+
 // 路由实例
 const route = useRoute()
 const router = useRouter()
@@ -68,7 +75,8 @@ onMounted(() => {
       scrollbarWidth.value = clientWidth
       isShowScrollBtn.value = clientWidth < scrollWidth
       maxLeftPosition.value = scrollWidth - clientWidth
-      // console.log(tabItemsRef)
+      // 动态调整已激活页签，保证其位于可视范围内
+      tabItemsRef.value[currTab.value.path].$el.scrollIntoView()
     })
   })
   resizeObserver.observe(scrollbarRef.value.wrapRef)
@@ -100,12 +108,6 @@ function handleDropdownVisible(val: boolean) {
   }
 }
 
-// 页签列表
-const tabItemList = ref<any[]>([])
-// Object.assign(tabItemList.value, menuDataList)
-tabItemList.value.push(defaultHomePage)
-const currTab = ref()
-currTab.value = defaultHomePage
 watch(
   () => route.path,
   (newPath) => {
