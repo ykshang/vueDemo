@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import emitter from '~/config/emitter'
@@ -19,16 +19,22 @@ const scrollbarRef = ref()
 const currPosition = ref(0)
 // 滚动条最大位置
 const maxLeftPosition = ref(0)
-
+// 滚动条的长度
+const scrollbarWidth = ref(0)
 // 滚动切换，步长200px
 function scrollChange(direction: 'left' | 'right') {
   if (direction === 'left') {
     currPosition.value -= 200
-    scrollbarRef.value!.setScrollLeft(currPosition.value as number)
+    scrollbarRef.value.setScrollLeft(currPosition.value as number)
   } else {
     currPosition.value += 200
-    scrollbarRef.value!.setScrollLeft(currPosition.value as number)
+    scrollbarRef.value.setScrollLeft(currPosition.value as number)
   }
+}
+// 储存动态引用, 用于关闭其他标签、重置滚动条
+const tabItemsRef = ref<{ [key: string]: any }>({})
+function setTabItemsRef(el: any, path: any) {
+  tabItemsRef.value[path] = el
 }
 // 滚动按钮
 const isShowScrollBtn = ref(false)
@@ -44,6 +50,7 @@ onMounted(() => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
         const { clientWidth, scrollWidth } = mutation.target as HTMLElement
+        scrollbarWidth.value = clientWidth
         isShowScrollBtn.value = clientWidth < scrollWidth
         maxLeftPosition.value = scrollWidth - clientWidth
       }
@@ -58,6 +65,7 @@ onMounted(() => {
   resizeObserver = new ResizeObserver((entries) => {
     entries.forEach((entry) => {
       const { clientWidth, scrollWidth } = entry.target as HTMLElement
+      scrollbarWidth.value = clientWidth
       isShowScrollBtn.value = clientWidth < scrollWidth
       maxLeftPosition.value = scrollWidth - clientWidth
       // console.log(tabItemsRef)
@@ -124,9 +132,29 @@ watch(
         ...newTab,
       }
     }
+    // console.log(newPath)
+    nextTick(() => {
+      // 当前页签的距离左侧的距离
+      // console.log(tabItemsRef.value[newPath].$el)
+      // console.log('offsetLeft', offsetLeft)
+      // console.log('clientWidth', clientWidth)
+      console.log('scrollbarWidth.value', scrollbarWidth.value)
+      // console.log('currPosition', currPosition.value)
+      // 如果该元素的最右侧大于滚动条宽度，说明该元素超出了滚动条的范围
+      const { offsetLeft, clientWidth } = tabItemsRef.value[newPath].$el
+      if ((offsetLeft + clientWidth) > scrollbarWidth.value) {
+        // 滚动条位置 = 该元素的最右侧 - 滚动条宽度
+        currPosition.value = (offsetLeft + clientWidth) - scrollbarWidth.value
+        scrollbarRef.value.setScrollLeft(currPosition.value as number)
+      }
+      if ((offsetLeft + clientWidth) < currPosition.value) {
+        currPosition.value = offsetLeft
+        scrollbarRef.value.setScrollLeft(currPosition.value as number)
+      }
+    })
+
     // console.log(newPath, newTabIndex)
     // 路由变化时，重置滚动条位置
-    // console.log(tabItemsRef.value[newPath]?.$el?.scrollWidth)
   },
 )
 // 下拉菜单按钮列表
@@ -263,11 +291,6 @@ function checkDropItemDisabled(tabItem: any, tabItemIndex: number, dropMenu: any
   }
 }
 
-// 储存动态引用, 用于关闭其他标签
-const tabItemsRef = ref<{ [key: string]: any }>({})
-function setTabItemsRef(el: any, path: any) {
-  tabItemsRef.value[path] = el
-}
 // 打开当前下拉框，关闭其他下拉框
 function handleTabDropdownVisible(visibility: boolean, item: any) {
   if (visibility) {
