@@ -81,12 +81,12 @@ const menuDataTree = [
     ],
   },
 ]
-const defaultHomePage = ref({
+const defaultHomePage = {
   path: '/Home/HomePage',
   title: '欢迎页',
   icon: RiHome2Line,
   readonly: true,
-})
+}
 const menuDataList = menuDataTree.flatMap(item => item.subMenu)
 export {
   defaultHomePage,

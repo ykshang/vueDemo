@@ -11,7 +11,7 @@ const route = useRoute()
 const router = useRouter()
 
 // tabHistoryStack 页签历史记录栈
-const tabHistoryStack = ref<string[]>(['/Home/HomePage'])
+const tabHistoryStack = ref<string[]>([defaultHomePage.path])
 
 // 滚动条元素 ref
 const scrollbarRef = ref()
@@ -83,9 +83,9 @@ function handleDropdownVisible(val: boolean) {
 // 页签列表
 const tabItemList = ref<any[]>([])
 // Object.assign(tabItemList.value, menuDataList)
-tabItemList.value.push(defaultHomePage.value)
+tabItemList.value.push(defaultHomePage)
 const currTab = ref()
-currTab.value = defaultHomePage.value
+currTab.value = defaultHomePage
 watch(
   () => route.path,
   (newPath) => {
@@ -147,6 +147,7 @@ function closeRefreshTab() {
   emitter.emit('refreshPage')
 }
 function closeOtherTab(item: any, command: any) {
+  // let pathlist = [defaultHomePage.path]
   ElMessage({
     message: `${command}：${item.path}`,
     type: 'info',
@@ -183,7 +184,7 @@ function disabledDropItem(tabItem: any, tabItemIndex: number, dropMenu: any) {
     return length <= 1
   } else if (command === 'closeOther') {
     // 如果是首页，页签至少为2，不是首页 ，页签至少为3
-    return path === '/Home/HomePage' ? length < 2 : length < 3
+    return path === defaultHomePage.path ? length < 2 : length < 3
   } else if (dropMenu.command === 'closeLeft') {
     // 至少第三个按钮才会显示关闭左侧
     return tabItemIndex < 2
@@ -223,7 +224,6 @@ function handleClickTab(tabItem: any) {
   currTab.value = tabItem
   router.push(tabItem.path)
 }
-// 关闭页签
 
 /**
  * 关闭页签
