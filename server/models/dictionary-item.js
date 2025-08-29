@@ -2,20 +2,62 @@ import mongoose from '../db.js' // 复用连接
 
 // 定义用户模型
 const dataSchema = new mongoose.Schema({
-  dictionaryItemkey: String, // 字典项关键词
-  dictionaryItemName: String, // 名称
-  dictionaryKey: String, // 关联 字典关键词
-  desc: String, // 描述
-  extField1: String, // 扩展字段1
-  extField2: String, // 扩展字段2
-  extField3: String, // 扩展字段3
-  extField4: String, // 扩展字段4
-  extField5: String, // 扩展字段5
-  extField6: String, // 扩展字段6
-  extField7: String, // 扩展字段7
-  extField8: String, // 扩展字段8
-  extField9: String, // 扩展字段9
-  extField10: String, // 扩展字段10
+  dictionaryItemkey: {
+    type: String,
+    default: '',
+  }, // 字典项关键词
+  dictionaryItemName: {
+    type: String,
+    default: '',
+  }, // 名称
+  dictionaryKey: {
+    type: String,
+    default: '',
+  }, // 关联 字典关键词
+  desc: {
+    type: String,
+    default: '',
+  }, // 描述
+  extField1: {
+    type: String,
+    default: '',
+  }, // 扩展字段1
+  extField2: {
+    type: String,
+    default: '',
+  }, // 扩展字段2
+  extField3: {
+    type: String,
+    default: '',
+  }, // 扩展字段3
+  extField4: {
+    type: String,
+    default: '',
+  }, // 扩展字段4
+  extField5: {
+    type: String,
+    default: '',
+  }, // 扩展字段5
+  extField6: {
+    type: String,
+    default: '',
+  }, // 扩展字段6
+  extField7: {
+    type: String,
+    default: '',
+  }, // 扩展字段7
+  extField8: {
+    type: String,
+    default: '',
+  }, // 扩展字段8
+  extField9: {
+    type: String,
+    default: '',
+  }, // 扩展字段9
+  extField10: {
+    type: String,
+    default: '',
+  }, // 扩展字段10
   createdAt: {
     type: Date,
     default: Date.now,
@@ -23,7 +65,7 @@ const dataSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
-  },
+  }, // 更新时间
 })
 
 // 导出模型

@@ -2,9 +2,18 @@ import mongoose from '../db.js' // 复用连接
 
 // 定义模型
 const dataSchema = new mongoose.Schema({
-  userName: String,
-  email: String,
-  password: String,
+  userName: {
+    type: String,
+    default: '',
+  },
+  email: {
+    type: String,
+    default: '',
+  },
+  password: {
+    type: String,
+    default: '',
+  },
   createdAt: {
     type: Date,
     default: Date.now,
