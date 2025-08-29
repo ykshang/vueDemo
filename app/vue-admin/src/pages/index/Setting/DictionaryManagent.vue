@@ -8,8 +8,8 @@ const request: Dictionary = {
   desc: '测试字典',
 }
 dictionaryService.createDictionary(request).then((res) => {
-  // eslint-disable-next-line no-console
-  console.log('字典列表', res)
+
+  // console.log('字典列表', res)
   // if (res.status === 'success') {
   // console.log('字典列表', res.data)
   // } else {
@@ -17,15 +17,15 @@ dictionaryService.createDictionary(request).then((res) => {
   // }
 })
 dictionaryService.getDictionaryList().then((res) => {
-  // eslint-disable-next-line no-console
-  console.log('字典列表', res)
+
+  // console.log('字典列表', res)
 })
 const formInline = reactive({
   key: '',
   name: '',
 })
 function onSubmit() {
-  console.log('查询字典', formInline)
+  // console.log('查询字典', formInline)
 }
 </script>
 
@@ -47,7 +47,7 @@ function onSubmit() {
       </el-form>
     </div>
     <div class="page-container-content">
-      <el-table :data="[]" border style="width: 100%" header-cell-class-name="table-header-cell">
+      <el-table :data="[]" style="width: 100%" header-cell-class-name="table-header-cell">
         <el-table-column prop="date" label="日期" width="180" />
         <el-table-column prop="name" label="姓名" width="180" />
         <el-table-column prop="address" label="地址" />

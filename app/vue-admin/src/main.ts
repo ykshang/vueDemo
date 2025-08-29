@@ -1,9 +1,10 @@
 // 引入 ElementPlus
-import ElementPlus from 'element-plus'
+import ElementPlus, { ElTable } from 'element-plus'
 
 // 引入 pinia
 import { createPinia } from 'pinia' // pinia
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate' // pinia 持久化
+
 import { createApp } from 'vue'
 
 import router from '~/config/router'
@@ -32,6 +33,12 @@ import 'element-plus/theme-chalk/src/message-box.scss'
 
 import 'element-plus/theme-chalk/src/notification.scss'
 
+// 执行一些ElementPlus的全局配置
+// 修改表格的一些默认样式
+ElTable.props.border = { type: Boolean, default: true }
+ElTable.props.highlightCurrentRow = { type: Boolean, default: true }
+ElTable.props.headerCellClassName = { type: String, default: 'table-header-cell' }
+// console.log(ElTable.props)
 // 引入 element-plus 的全量 css
 // import 'element-plus/theme-chalk/src/index.scss'
 
