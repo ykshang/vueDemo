@@ -3,35 +3,52 @@ import DictionaryLangModel from '../models/dictionary-lang.js'
 // import DictionaryItemModel from '../models/dictionary-item.js'
 // import DictionaryItemLangModel from '../models/dictionary-item-lang.js'
 async function getDictionaryList(request) {
-  const userList = await DictionaryModel.find()
-  let result = {}
-  if (userList.length > 0) {
-    result.status = 'success'
-    result.msg = '获取字典列表成功'
-    result.data = userList[0]
+  const result = await DictionaryModel.find()
+  let response = {}
+  console.log('获取字典列表参数', result)
+  if (result.length > 0) {
+    response.status = 'success'
+    response.msg = '获取字典列表成功'
+    response.data = result
   } else {
-    result.status = 'error'
-    result.msg = '获取字典列表失败'
-    result.data = null
+    response.status = 'error'
+    response.msg = '获取字典列表失败'
+    response.data = null
   }
-  return result
+  return response
 }
-
 async function getDictionaryLangList(request) {
   const userList = await DictionaryLangModel.find()
-  let result = {}
+  let response = {}
   if (userList.length > 0) {
-    result.status = 'success'
-    result.msg = '获取字典列表成功'
-    result.data = userList[0]
+    response.status = 'success'
+    response.msg = '获取字典列表成功'
+    response.data = userList[0]
   } else {
-    result.status = 'error'
-    result.msg = '获取字典列表失败'
-    result.data = null
+    response.status = 'error'
+    response.msg = '获取字典列表失败'
+    response.data = null
   }
-  return result
+  return response
+}
+
+async function createDictionary(request) {
+  // console.log('创建字典参数', request)
+  const result = await new DictionaryModel(request).save()
+  let response = {}
+  if (result) {
+    response.status = 'success'
+    response.msg = '创建字典成功'
+    response.data = result
+  } else {
+    response.status = 'error'
+    response.msg = '创建字典失败'
+    response.data = null
+  }
+  return response
 }
 export default {
   getDictionaryList,
   getDictionaryLangList,
+  createDictionary,
 }
