@@ -1,7 +1,7 @@
 import mongoose from '../db.js' // 复用连接
 
-// 定义用户模型
-const userSchema = new mongoose.Schema({
+// 定义模型
+const dataSchema = new mongoose.Schema({
   userName: String,
   age: Number,
   gender: String,
@@ -9,4 +9,4 @@ const userSchema = new mongoose.Schema({
 })
 
 // 导出模型
-export default mongoose.model('users', userSchema)
+export default mongoose.model('users', dataSchema)
