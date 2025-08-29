@@ -4,6 +4,8 @@
 
 @use './animate/animate.scss';
 
+@use './base.scss';
+
 *:focus-visible {
   outline: none;
 }
