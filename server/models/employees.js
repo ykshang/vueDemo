@@ -13,4 +13,4 @@ const dataSchema = new mongoose.Schema({
 })
 
 // 导出模型
-export default mongoose.model('employees', dataSchema)
+export default mongoose.model('employee', dataSchema, 'employee')

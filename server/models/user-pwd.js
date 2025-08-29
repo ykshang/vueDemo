@@ -8,4 +8,4 @@ const dataSchema = new mongoose.Schema({
 })
 
 // 导出模型
-export default mongoose.model('user-pwd', dataSchema)
+export default mongoose.model('user-pwd', dataSchema, 'user-pwd')

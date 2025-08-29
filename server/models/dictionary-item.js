@@ -19,4 +19,4 @@ const dataSchema = new mongoose.Schema({
 })
 
 // 导出模型
-export default mongoose.model('dictionary-item', dataSchema)
+export default mongoose.model('dictionary-item', dataSchema, 'dictionary-item')
