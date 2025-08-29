@@ -1,7 +1,7 @@
 import combineRouters from 'koa-combine-routers'
 
-import userRouter from './users.js'
-import productRouter from './products.js'
+import userRouter from './user.js'
+import productRouter from './product.js'
 import dictionaryRouter from './dictionary.js'
 
 // 合并所有路由
