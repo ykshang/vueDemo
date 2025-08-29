@@ -3,7 +3,7 @@ import dictionaryService from '../service/dictionary.js'
 
 const router = new Router({ prefix: '/dictionary' })
 
-router.get('/list', async (ctx) => {
+router.get('/getDictionaryList', async (ctx) => {
   const resultList = await dictionaryService.getDictionaryList()
   ctx.body = resultList
 })
