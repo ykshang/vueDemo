@@ -3,9 +3,9 @@ import { reactive, ref } from 'vue'
 import dictionaryService from '~/composables/services/dictionaryService'
 
 // const request = {
-//   dictionaryKey: 'test-31',
-//   name: '测试字典14',
-//   desc: '这是一个测试字典',
+//   dictionaryKey: 'test-31112311',
+//   name: '测试字典1131214',
+//   desc: '这是一个测试字典131',
 // }
 
 // dictionaryService.createDictionary(request).then((res) => {
@@ -29,7 +29,6 @@ function initTableData() {
 }
 const formInline = reactive({
   key: '',
-  name: '',
 })
 function onSubmit() {
   // console.log('查询字典', formInline)
@@ -56,7 +55,7 @@ function onSubmit() {
       </el-form>
     </div>
     <div class="page-container-content flex flex-1">
-      <el-table :data="tableData" style="width: 100%; flex:1">
+      <el-table :data="tableData" style="width: 100%; height: 100%;">
         <el-table-column type="index" width="50" />
         <el-table-column prop="dictionaryKey" label="关键字" width="200" />
         <el-table-column prop="name" label="字典名称" width="200" />
