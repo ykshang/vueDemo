@@ -3,5 +3,8 @@
   background: var(--ep-bg-color);
   color: var(--ep-text-color-primary);
   flex: 1;
-  display: flex;
+  .page-container-header{
+    display: flex;
+  }
+  .page-container-content{}
 }
