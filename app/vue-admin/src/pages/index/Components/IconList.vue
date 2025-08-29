@@ -2,7 +2,7 @@
 
 <template>
   <div class="flex-1 p-20px">
-    <my-card>
+    <base-ui-card>
       <template #title>
         @element-plus/icons-vue
       </template>
@@ -16,8 +16,8 @@
           <div class="i-ri:external-link-line" ml-3px />
         </el-link>
       </template>
-    </my-card>
-    <my-card class="mt-20px">
+    </base-ui-card>
+    <base-ui-card class="mt-20px">
       <template #title>
         @iconify-json
       </template>
@@ -58,6 +58,6 @@
           （选中一个图标后，可以查看具体引入方式的对应代码）
         </el-text>
       </template>
-    </my-card>
+    </base-ui-card>
   </div>
 </template>
