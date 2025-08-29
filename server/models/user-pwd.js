@@ -5,6 +5,14 @@ const dataSchema = new mongoose.Schema({
   userName: String,
   email: String,
   password: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 // 导出模型

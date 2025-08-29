@@ -6,6 +6,14 @@ const dataSchema = new mongoose.Schema({
   age: Number,
   gender: String,
   email: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 // 导出模型

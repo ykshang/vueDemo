@@ -15,6 +15,14 @@ const dataSchema = new mongoose.Schema({
   extField8: String, // 扩展字段8
   extField9: String, // 扩展字段9
   extField10: String, // 扩展字段10
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 // 导出模型

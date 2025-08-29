@@ -10,6 +10,14 @@ const dataSchema = new mongoose.Schema({
   jobPostion: String, // 岗位
   phone: String, // 手机号
   password: String, // 密码
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
 // 导出模型
