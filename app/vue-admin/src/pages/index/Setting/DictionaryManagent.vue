@@ -47,7 +47,7 @@ function onSubmit() {
       </el-form>
     </div>
     <div class="page-container-content">
-      <el-table :data="[]" border style="width: 100%">
+      <el-table :data="[]" border style="width: 100%" header-cell-class-name="table-header-cell">
         <el-table-column prop="date" label="日期" width="180" />
         <el-table-column prop="name" label="姓名" width="180" />
         <el-table-column prop="address" label="地址" />
