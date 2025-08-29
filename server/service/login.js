@@ -1,6 +1,6 @@
-import User from '../../models/user-pwd-model.js'
-export default async function login(user) {
-  const userList = await User.find(user)
+import UserPwdModel from '../models/user-pwd.js'
+async function login(user) {
+  const userList = await UserPwdModel.find(user)
   let result = {}
   if (userList.length > 0) {
     result.status = 'success'
@@ -12,4 +12,7 @@ export default async function login(user) {
     result.data = null
   }
   return result
+}
+export default {
+  login,
 }

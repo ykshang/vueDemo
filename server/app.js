@@ -2,7 +2,7 @@ import Koa from 'koa'
 import { connectDB } from './db.js'
 import bodyParser from 'koa-bodyparser'
 
-import unifiedRouter from './routes/index.js'
+import unifiedRouter from './routes/routes.js'
 
 // 启动时连接数据库
 connectDB()
