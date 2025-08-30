@@ -1,16 +1,8 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
-const route = useRoute()
 const router = useRouter()
-watch(
-  () => route.path,
-  (newPath) => {
-    router.push(newPath)
-  },
-  { immediate: true },
-)
 onMounted(() => {
   forrbidenContextMenu()
   router.push('/Home/HomePage')
