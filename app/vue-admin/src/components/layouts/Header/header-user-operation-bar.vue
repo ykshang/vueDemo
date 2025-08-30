@@ -13,7 +13,7 @@ function openProfile() {
 
 // 退出登录
 function loginout() {
-  router.push('/Login')
+  router.push('/Login/')
 }
 
 /**

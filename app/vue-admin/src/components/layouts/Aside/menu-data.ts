@@ -90,7 +90,7 @@ const menuDataTree = [
     )),
     subMenu: [
       {
-        path: '/Components/IconList',
+        path: '/Components/IconList/',
         title: '图标组件',
         icon: markRaw(defineAsyncComponent(() =>
           import('~icons/ri/remixicon-line'),
