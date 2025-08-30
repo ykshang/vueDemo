@@ -54,7 +54,7 @@ function onSubmit() {
         </el-form-item>
       </el-form>
     </div>
-    <div class="page-container-content flex flex-1">
+    <div class="page-container-content mb-40px flex flex-1">
       <el-table :data="tableData" style="width: 100%; height: 100%;">
         <el-table-column type="index" width="50" />
         <el-table-column prop="dictionaryKey" label="关键字" width="200" />
