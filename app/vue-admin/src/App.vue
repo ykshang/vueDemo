@@ -13,7 +13,7 @@ watch(
 )
 onMounted(() => {
   forrbidenContextMenu()
-  router.push('/Setting/DictionaryManagent')
+  router.push('/Home/HomePage')
 })
 // 禁用右键菜单
 function forrbidenContextMenu() {
