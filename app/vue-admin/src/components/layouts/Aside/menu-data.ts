@@ -107,7 +107,18 @@ const defaultHomePage = {
   )),
   readonly: true,
 }
-const menuDataList = menuDataTree.flatMap(item => item.subMenu)
+// 递归塞list
+function flatMenuDataTree(dataList: any, result: any, parent: any) {
+  dataList.forEach((item: any) => {
+    item.parent = parent
+    result.push(item)
+    if (item.subMenu && item.subMenu.length > 0) {
+      flatMenuDataTree(item.subMenu, result, item)
+    }
+  })
+  return result
+}
+const menuDataList = flatMenuDataTree(menuDataTree, [], { path: '/', name: 'root', title: '根目录' })
 export {
   defaultHomePage,
   menuDataList,

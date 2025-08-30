@@ -1,24 +1,30 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { menuDataTree } from '../Aside/menu-data'
+import { menuDataList } from '../Aside/menu-data'
 
 const route = useRoute()
+const navitemList = ref<any[]>([])
 
-const navitemList = computed(() => {
-  const routeList = route.matched.slice(1) || []
-  const result: any[] = []
-  let menuList = menuDataTree
-  while (routeList.length > 0) {
-    const route = routeList.shift()
-    const menu = menuList.find((menu) => {
-      return menu.path === route?.path
-    })
-    result.push(menu)
-    menuList = menu?.subMenu as any
-  }
-  return result
-})
+watch(
+  () => route.path,
+  (newPath) => {
+    // console.log(newPath)
+    const result: any[] = []
+    const targetMenu = menuDataList.find((item: any) => item.path === newPath)
+    let menu = targetMenu
+    while (menu) {
+      result.push({
+        icon: menu.icon,
+        title: menu.title,
+        path: menu.path,
+      })
+      menu = menu.parent
+    }
+    navitemList.value = result.reverse().slice(1)
+  },
+  { immediate: true, deep: true },
+)
 </script>
 
 <template>
