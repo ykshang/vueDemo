@@ -1,4 +1,4 @@
 <template>
-  <!-- 真实的 Components 容器 -->
-  <RouterView />
+  <!-- /Components/ 对应的页面面 -->
+  <router-view />
 </template>
