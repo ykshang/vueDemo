@@ -52,6 +52,21 @@ const disabledRightBtn = ref(false)
 let mutationObserver: MutationObserver | null = null
 let resizeObserver: ResizeObserver | null = null
 onMounted(() => {
+  // 判断当前路由是否存在
+  let targetMenu = tabItemList.value.find((item: any) => item.path === route.path)
+  if (!targetMenu) {
+    targetMenu = menuDataList.find((item: any) => item.path === route.path)
+    currTab.value = {
+      path: targetMenu?.path,
+      icon: targetMenu?.icon,
+      title: targetMenu?.title,
+    }
+    tabItemList.value.push(currTab.value)
+    tabHistoryStack.value = [defaultHomePage.path, currTab.value.path]
+  }
+  // if (!targetMenu) {
+  // router.push(defaultHomePage.path)
+  // }
   // 监听滚动条动态
   mutationObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
@@ -111,6 +126,7 @@ function handleDropdownVisible(val: boolean) {
 watch(
   () => route.path,
   (newPath) => {
+    // console.log(newPath)
     // 检测该路由是否存在
     const newTab = tabItemList.value.find(tab => tab.path === newPath)
     // 把该页签的历史挪到队尾，防止栈过长。
@@ -118,7 +134,7 @@ watch(
     tabHistoryStack.value.push(newPath)
     // 如果当前路由对应的也i按不存在，添加到页签列表
     if (!newTab) {
-      const tabData = menuDataList.find(tab => tab.path === newPath)
+      const tabData = menuDataList.find((tab: any) => tab.path === newPath)
       currTab.value = {
         path: tabData?.path,
         icon: tabData?.icon,
