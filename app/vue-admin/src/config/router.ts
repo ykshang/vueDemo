@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // 根据文件结构自动生成路由
 import { routes } from 'vue-router/auto-routes'
 
-// console.log(routes)
+console.log(routes)
 /**
  * 创建路由实例
  */
