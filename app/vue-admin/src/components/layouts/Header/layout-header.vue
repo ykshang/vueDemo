@@ -6,7 +6,7 @@
     <!-- 控制左侧菜单的展开和收起 -->
     <header-menu-collapse-btn />
     <!-- 导航栏 -->
-    <header-navigator-bar />
+    <!-- <header-navigator-bar /> -->
     <div flex-1 />
     <!-- 头像左侧的工具条 -->
     <header-tool-bar />
